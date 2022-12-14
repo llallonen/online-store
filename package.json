@@ -1,0 +1,11 @@
+{
+  "name": "online-store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/llallonen/online-store",
+  "author": "Valeria Sycheva, Andrey Lapin",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.75.0"
+  }
+}
