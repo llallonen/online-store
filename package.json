@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "build": "./node_modules/.bin/webpack",
-        "dev": "./node_modules/.bin/webpack --watch",
-        "start": "webpack serve --open"
+        "build": "webpack",
+        "start": "webpack serve --open",
+        "lint": "eslint . --ext .ts --fix"
     },
     "repository": "https://github.com/llallonen/online-store",
     "author": "Valeria Sycheva, Andrey Lapin",
