@@ -1,8 +1,9 @@
 import Observer from '../../Observer/Observer';
 
-interface IButtonProps {
+interface IButtonWithCounterProps {
     container: HTMLElement;
+    count?: number;
     observer: Observer;
 }
 
-export { IButtonProps };
+export { IButtonWithCounterProps };
