@@ -1,0 +1,59 @@
+import { Model } from '../Model/Model';
+import { IActionType, IModelData } from '../Model/Model.types';
+import Observer from '../Observer/Observer';
+import { EventName } from '../Observer/Observer.types';
+import { View } from '../View/View';
+import { IPresenterProps } from './Presenter.types';
+
+class Presenter {
+    private view: View;
+    private model: Model;
+    private container: HTMLElement;
+    private observer: Observer;
+    private state: IModelData;
+    constructor({ container }: IPresenterProps) {
+        this.start();
+        this.observer = new Observer();
+        this.container = container;
+        this.view = new View({ container: this.container, observer: this.observer });
+        this.model = new Model({ counter: 3, observer: this.observer });
+        this.state = this.model.getState();
+        this.subscribe();
+    }
+
+    start() {
+        console.log('Старт');
+    }
+
+    subscribe() {
+        this.observer.subscribe({ eventName: EventName.clickButton, function: this.handleButtonClick.bind(this) });
+        this.observer.subscribe({ eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) });
+    }
+
+    handleButtonClick(e: Event | IModelData): void {
+        if (!(e instanceof PointerEvent)) {
+            return;
+        }
+        if (!(e.target instanceof HTMLElement)) {
+            return;
+        }
+
+        console.log('щелчек');
+        console.log(this.model);
+        this.getState();
+        this.model.updateState({ type: IActionType.count, payload: (this.state.count += 1) });
+    }
+
+    handleStateUpdate(data: Event | IModelData): void {
+        if (data instanceof Event) {
+            return;
+        }
+        this.view.update(data);
+    }
+
+    getState() {
+        this.state = this.model.getState();
+    }
+}
+
+export { Presenter };
