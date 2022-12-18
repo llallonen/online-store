@@ -9,11 +9,21 @@ class View {
     private observer: Observer;
     private button: Button;
     private buttonWithCounter: ButtonWithCounter;
+    //private typeButton?: string | null; - нужны ли здесь эти поля
+    //private textButton?: string | null;
     private state: IModelData | undefined;
+
     constructor({ container, observer }: IViewProps) {
         this.container = container;
         this.observer = observer;
-        this.button = new Button({ container: this.container, observer: this.observer });
+
+        this.button = new Button({
+            container: this.container,
+            observer: this.observer,
+            typeButton: 'red',
+            textButton: 'this is red button',
+        });
+
         this.buttonWithCounter = new ButtonWithCounter({
             container: this.container,
             observer: this.observer,
