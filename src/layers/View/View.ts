@@ -22,7 +22,7 @@ class View {
             observer: this.observer,
             count: 5,
         });
-        this.header = new Header({ container: this.container, observer: this.observer, bagCount: 4, total: 666 });
+        this.header = new Header({ container: this.container, observer: this.observer });
         this.render();
     }
 
