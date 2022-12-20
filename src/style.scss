@@ -1,0 +1,21 @@
+$black: #000;
+$gray-dark: rgb(49, 49, 49);
+$gray-mid: rgb(136, 136, 136);
+$gray-light: rgb(201, 201, 201);
+$brown: rgb(111, 85, 63);
+$peach: rgb(215, 162, 118);
+$peach-light: rgb(235, 203, 177);
+$terracota: rgb(94, 24, 0);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.logo {
+    width: 100px;
+    height: 70px;
+    background-image: url(assets/icons/logo.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
