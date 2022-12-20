@@ -1,4 +1,5 @@
 import { Presenter } from './layers/Presenter/Presenter';
+import './style.scss';
 
 const initApp = () => {
     const container = document.querySelector('#app');
