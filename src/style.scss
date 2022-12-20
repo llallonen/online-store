@@ -6,10 +6,26 @@ $brown: rgb(111, 85, 63);
 $peach: rgb(215, 162, 118);
 $peach-light: rgb(235, 203, 177);
 $terracota: rgb(94, 24, 0);
+$pink: #d782a7;
 
 * {
     box-sizing: border-box;
     margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-grow: 1;
 }
 
 .logo {
@@ -18,4 +34,21 @@ $terracota: rgb(94, 24, 0);
     background-image: url(assets/icons/logo.svg);
     background-size: 100%;
     background-repeat: no-repeat;
+}
+
+.link {
+    text-decoration: none;
+
+    &--github {
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-image: url(assets/icons/github.svg);
+        background-size: 100%;
+        background-repeat: no-repeat;
+
+        &:first-of-type {
+            filter: invert(84%) sepia(51%) saturate(1344%) hue-rotate(286deg) brightness(87%) contrast(93%);;
+        }
+    }
 }

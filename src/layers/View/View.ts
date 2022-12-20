@@ -1,5 +1,6 @@
 import { Button } from '../components/Button/Button';
 import { ButtonWithCounter } from '../components/ButtonWithCounter/ButtonWithCounter';
+import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
 import { IModelData } from '../Model/Model.types';
 import Observer from '../Observer/Observer';
@@ -9,6 +10,7 @@ class View {
     private container: HTMLElement;
     private observer: Observer;
     private header: Header;
+    private footer: Footer;
     private button: Button;
     private buttonWithCounter: ButtonWithCounter;
     private state: IModelData | undefined;
@@ -23,17 +25,21 @@ class View {
             count: 5,
         });
         this.header = new Header({ container: this.container, observer: this.observer });
+        this.footer = new Footer({ container: this.container });
         this.render();
     }
 
     render() {
         this.renderHeader();
-        this.renderButton();
-        this.renderButtonWithCounter();
+        this.renderFooter();
     }
 
     renderHeader() {
         this.header.render();
+    }
+
+    renderFooter() {
+        this.footer.render();
     }
 
     renderButton() {
