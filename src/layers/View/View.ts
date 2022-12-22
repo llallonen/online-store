@@ -1,7 +1,6 @@
-import { Button } from '../components/Button/Button';
-import { ButtonWithCounter } from '../components/ButtonWithCounter/ButtonWithCounter';
 import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
+import { Main } from '../components/Main/Main';
 import { IModelData } from '../Model/Model.types';
 import Observer from '../Observer/Observer';
 import { IViewProps } from './View.types';
@@ -11,26 +10,22 @@ class View {
     private observer: Observer;
     private header: Header;
     private footer: Footer;
-    private button: Button;
-    private buttonWithCounter: ButtonWithCounter;
+    private main: Main;
     private state: IModelData | undefined;
 
     constructor({ container, observer }: IViewProps) {
         this.container = container;
         this.observer = observer;
-        this.button = new Button({ container: this.container, observer: this.observer });
-        this.buttonWithCounter = new ButtonWithCounter({
-            container: this.container,
-            observer: this.observer,
-            count: 5,
-        });
         this.header = new Header({ container: this.container, observer: this.observer });
         this.footer = new Footer({ container: this.container });
+        this.main = new Main({ container: this.container, observer: this.observer });
+
         this.render();
     }
 
     render() {
         this.renderHeader();
+        this.renderMain();
         this.renderFooter();
     }
 
@@ -42,18 +37,12 @@ class View {
         this.footer.render();
     }
 
-    renderButton() {
-        this.button.render();
-    }
-
-    renderButtonWithCounter() {
-        this.buttonWithCounter.render();
+    renderMain() {
+        this.main.render();
     }
 
     public update(data: IModelData) {
-        // this.container.innerHTML = '';
         this.state = data;
-        this.buttonWithCounter.updateCounter(this.state.count);
     }
 }
 

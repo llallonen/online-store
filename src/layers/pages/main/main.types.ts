@@ -1,8 +1,8 @@
 import Observer from '../../Observer/Observer';
 
-interface IMain {
+interface IMainProps {
     container: HTMLElement;
     observer: Observer;
 }
 
-export { IMain };
+export { IMainProps };
