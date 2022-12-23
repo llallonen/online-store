@@ -1,19 +1,40 @@
+import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
+import Router from '../../Router/Router';
 import { IMain } from './Main.types';
 
 class Main {
     private container: HTMLElement;
     private observer: Observer;
+    private main: HTMLElement | undefined;
+    private state: IModelData;
 
-    constructor({ container, observer }: IMain) {
+    constructor({ container, observer, data }: IMain) {
         this.container = container;
         this.observer = observer;
+        this.state = data;
     }
 
     public render() {
         const main = document.createElement('main');
         main.classList.add('main');
-        this.container.append(main);
+        this.main = main;
+
+        this.container.append(this.main);
+    }
+
+    public route() {
+        const router = new Router();
+        if (!this.main) return;
+        return router.getPage({ container: this.main, observer: this.observer, data: this.state });
+    }
+
+    public update(state: IModelData) {
+        this.state = state;
+        if (this.main) {
+            this.main.innerHTML = '';
+            this.route()?.render();
+        }
     }
 }
 

@@ -1,13 +1,16 @@
+import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { IPage404Props } from './404.types';
 
 class Page404 {
     private container: HTMLElement;
+    private data: IModelData;
     private observer: Observer;
 
-    constructor({ container, observer }: IPage404Props) {
+    constructor({ container, observer, data }: IPage404Props) {
         this.container = container;
         this.observer = observer;
+        this.data = data;
     }
 
     public render() {

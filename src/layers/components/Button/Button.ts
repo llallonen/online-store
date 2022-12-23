@@ -19,7 +19,6 @@ class Button {
         button.addEventListener('click', (e: Event) => {
             const eventObject = { eventName: EventName.clickButton, eventPayload: e };
             this.observer.notify(eventObject);
-            console.log(eventObject, 'нотифай');
         });
         this.container.append(button);
     }

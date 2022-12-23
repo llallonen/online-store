@@ -1,13 +1,16 @@
+import { IMain } from '../../components/Main/Main.types';
+import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
-import { IMainProps } from './main.types';
 
 class MainPage {
     private container: HTMLElement;
     private observer: Observer;
+    private data: IModelData;
 
-    constructor({ container, observer }: IMainProps) {
+    constructor({ container, observer, data }: IMain) {
         this.container = container;
         this.observer = observer;
+        this.data = data;
     }
 
     public render() {
