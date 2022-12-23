@@ -1,0 +1,24 @@
+.product-card {
+    &__photos {
+        display: flex;
+        width: 400px;
+        height: 600px;
+    }
+
+    &__slider {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 130px;
+    }
+
+    &__slide {
+        width: 80px;
+        height: 80px;
+    }
+
+    &__thumbnail {
+        width: 400px;
+        height: 400px;
+    }
+}
