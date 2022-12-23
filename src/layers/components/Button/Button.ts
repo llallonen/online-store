@@ -6,15 +6,20 @@ import { EventName } from '../../Observer/Observer.types';
 class Button {
     private container: HTMLElement;
     private observer: Observer;
-    constructor({ container, observer }: IButtonProps) {
+    private typeButton?: string | null;
+    private textButton?: string | null;
+
+    constructor({ container, observer, typeButton, textButton }: IButtonProps) {
         this.container = container;
         this.observer = observer;
+        this.typeButton = typeButton;
+        this.textButton = textButton;
     }
 
     public render() {
         const button = document.createElement('button');
-        button.textContent = 'Кнопка';
-        button.classList.add('button');
+        button.textContent = `${this.textButton}`;
+        button.classList.add('button', `${this.typeButton}`);
 
         button.addEventListener('click', (e: Event) => {
             const eventObject = { eventName: EventName.clickButton, eventPayload: e };
