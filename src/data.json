@@ -28,7 +28,12 @@
             "stock": 2,
             "brand": "Hedgren",
             "category": "backpacks",
-            "images": ["https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg"]
+            "images": [
+                "https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg",
+                "https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG",
+                "https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG",
+                "https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_03_800.JPG"
+            ]
         },
         {
             "id": 3,
