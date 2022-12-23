@@ -15,10 +15,12 @@ class Presenter {
         this.start();
         this.observer = new Observer();
         this.container = container;
-        this.view = new View({ container: this.container, observer: this.observer });
         this.model = new Model({ counter: 3, observer: this.observer });
         this.state = this.model.getState();
+        this.view = new View({ container: this.container, observer: this.observer, data: this.state });
         this.subscribe();
+        this.listenPopState();
+        this.setHash();
     }
 
     start() {
@@ -53,6 +55,18 @@ class Presenter {
 
     getState() {
         this.state = this.model.getState();
+    }
+
+    listenPopState() {
+        window.addEventListener('popstate', () => {
+            this.getState();
+            this.view.update(this.state);
+        });
+    }
+
+    setHash() {
+        window.location.hash = '#';
+        window.location.hash = '#/';
     }
 }
 
