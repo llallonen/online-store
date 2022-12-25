@@ -1,6 +1,7 @@
 import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { IPage404Props } from './404.types';
+import './404.scss';
 
 class Page404 {
     private container: HTMLElement;

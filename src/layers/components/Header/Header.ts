@@ -1,6 +1,6 @@
 import Observer from '../../Observer/Observer';
 import { IHeader } from './Header.types';
-import './header.scss';
+import './Header.scss';
 
 class Header {
     private container: HTMLElement;
