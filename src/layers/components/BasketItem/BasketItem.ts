@@ -16,29 +16,32 @@ class BasketItem {
     }
 
     public render() {
-        const basketItem = `<div class="cartItem">
-            <div class="cartItem__id">${this.number + 1}</div>
-            <img class="cartItem__image" src=${this.data.images[0]} />
-            <div class="cartItem__details">
-                <div class="cartItem__title">${this.data.title}</div>
-                <div class="cartItem__description">${this.data.description}</div>
-                <div class="cartItem__product-details">
-                    <div class="cartItem__product-rating">Rating: ${this.data.rating}</div>
-                    <div class="cartItem__product-discount">Discount: ${this.data.discountPercentage}</div>
+        const basketItem = `<div class="basketItem">
+            <div class="basketItem__id">${this.number + 1}</div>
+            <img class="basketItem__image" src=${this.data.images[0]} />
+            <div class="basketItem__details">
+                <div class="basketItem__title">${this.data.title}</div>
+                <div class="basketItem__description">${this.data.description}</div>
+                <div class="basketItem__product-details">
+                    <div class="basketItem__product-rating">Rating: ${this.data.rating}</div>
+                    <div class="basketItem__product-discount">Discount: ${this.data.discountPercentage}</div>
                 </div>
             </div>
-            <div class="cartItem__number-control">
-                <div class="cartItem__product-stock"> Stock: ${this.data.stock}</div>
-                <div class="cartItem__product-stock">
-                    <button class="cartItem__increment">+</button> 
-                    <div class="cartItem__increment">${this.data.count}</div>
-                    <button class="cartItem__decrement">-</button>
+            <div class="basketItem__number-control">
+                <div class="basketItem__product-stock"> Stock: ${this.data.stock}</div>
+                <div class="basketItem__product-stock">
+                    <button class="basketItem__increment">+</button> 
+                    <div class="basketItem__increment">${this.data.count}</div>
+                    <button class="basketItem__decrement">-</button>
                 </div>
-                <div class="cartItem__totalPrice">${this.countTotalPrice()}</div>
+                <div class="basketItem__totalPrice">${this.countTotalPrice()}</div>
             </div>
         </div>`;
 
         this.container.innerHTML += basketItem;
+
+        // const basketItemInc: HTMLElement | null = this.container.querySelector('.basketItem__increment');
+        // const basketItemDec = this.container.querySelector('.basketItem__decrement');
     }
 
     private countTotalPrice() {

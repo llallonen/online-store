@@ -1,15 +1,26 @@
 .basket {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   &__left {
+    width: 65%;
+    border: 1px solid black;
 
   }
 
   &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border: 1px solid black;
 
   }
 
   &__header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border: 1px solid black;
 
     &-title {
