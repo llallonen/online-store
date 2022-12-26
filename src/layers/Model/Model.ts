@@ -5,20 +5,22 @@ import { IAction, IActionType, IModelData, IModelProps } from './Model.types';
 class Model {
     private observer: Observer;
     private data: IModelData = {
-        count: 1,
+        basket: {
+            limit: 1,
+            page: 1,
+            products: [],
+        },
     };
 
-    constructor({ counter, observer }: IModelProps) {
-        this.data.count = counter;
+    constructor({ observer }: IModelProps) {
         this.observer = observer;
     }
 
     public updateState({ type, payload }: IAction) {
         switch (type) {
-            case IActionType.count:
-                this.data.count = payload;
+            case IActionType.basket:
+                this.data.basket = payload;
                 break;
-
             default:
                 break;
         }

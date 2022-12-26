@@ -1,21 +1,43 @@
 import Observer from '../Observer/Observer';
 
 interface IModelProps {
-    counter: number;
     observer: Observer;
 }
 
 interface IAction {
     type: IActionType;
-    payload: number;
+    payload: IBasket;
 }
 
 enum IActionType {
     count = 'count',
+    basket = 'basket',
 }
 
 interface IModelData {
+    basket: IBasket;
+}
+
+interface IBasket {
+    products: IProduct[];
+    page: number;
+    limit: number;
+}
+
+interface IProduct {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    color: string;
+    size: string;
+    stock: number;
+    brand: string;
+    category: string;
+    images: string[];
     count: number;
 }
 
-export { IModelProps, IAction, IActionType, IModelData };
+export { IModelProps, IAction, IActionType, IModelData, IBasket, IProduct };

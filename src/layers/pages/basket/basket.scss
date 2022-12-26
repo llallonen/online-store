@@ -1,0 +1,34 @@
+.basket {
+  &__left {
+
+  }
+
+  &__right {
+
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+
+    &-title {
+      
+    }
+  }
+  &__pagination {
+    display: flex;
+    &-items {
+      display: flex;
+    }
+    &-page {
+      display: flex;
+    }
+  }
+
+  &__items {
+
+  }
+
+  
+}
