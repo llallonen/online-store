@@ -10,7 +10,6 @@ interface IAction {
 }
 
 enum IActionType {
-    count = 'count',
     basket = 'basket',
 }
 
