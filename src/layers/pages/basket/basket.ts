@@ -2,6 +2,7 @@ import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { IBasketProps } from './basket.types';
 import './basket.scss';
+import { BasketList } from '../../components/BasketList/BasketList';
 
 class BasketPage {
     private container: HTMLElement;
@@ -33,10 +34,16 @@ class BasketPage {
                 <div class="basket__items">
                 </div>
             </div>
-            <div class="basket__right"></div>
+            <div class="basket__right">
+            </div>
         </div>`;
 
         this.container.innerHTML = basket;
+
+        const basketList = document.querySelector('.basket__items');
+        if (basketList && basketList instanceof HTMLElement) {
+            new BasketList({ container: basketList, observer: this.observer, basketData: this.data.basket }).render();
+        }
     }
 }
 
