@@ -16,7 +16,15 @@
   }
 
   &__image {
+    &-wrapper {
+      position: relative;
+      background-color: rgba(0, 0, 0, .07);
+      padding-bottom: calc(150px/100%*100%);
+    }
+    position: absolute;
     width: 150px;
+    height: 100%;
+    
   }
 
   &__product-stock {

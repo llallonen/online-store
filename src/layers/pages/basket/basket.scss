@@ -35,11 +35,19 @@
     &-page {
       display: flex;
     }
+    &-count {
+      width: 20px;
+    }
   }
 
   &__items {
 
   }
 
+  &__empty-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
 }

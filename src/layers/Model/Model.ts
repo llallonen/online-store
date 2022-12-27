@@ -10,6 +10,9 @@ class Model {
             page: 1,
             products: [],
         },
+        goods: {
+            products: [],
+        },
     };
 
     constructor({ observer }: IModelProps) {
@@ -19,7 +22,7 @@ class Model {
     public updateState({ type, payload }: IAction) {
         switch (type) {
             case IActionType.basket:
-                this.data.basket = payload;
+                this.data.basket = { ...this.data.basket, ...payload };
                 break;
             default:
                 break;

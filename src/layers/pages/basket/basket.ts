@@ -6,6 +6,7 @@ import { BasketList } from '../../components/BasketList/BasketList';
 import { Button } from '../../components/Button/Button';
 import { countTotalPrice } from '../../../utils/countTotalPrice';
 import { countQuantityProducts } from '../../../utils/countQuantityProducts';
+import { EventName } from '../../Observer/Observer.types';
 
 class BasketPage {
     private container: HTMLElement;
@@ -26,11 +27,13 @@ class BasketPage {
                     <div class="basket__pagination">
                         <div class="basket__pagination-items">
                             <span class="basket__pagination-text">ITEMS:</span>
-                            <div class="basket__pagination-count">1</div>
+                                <input class="basket__pagination-count" value=${this.data.basket.limit} />
                         </div>
                         <div class="basket__pagination-page">
                             <span class="basket__pagination-text">PAGE:</span>
+                            <button class="basket__pagination-prev"> &lt; </button>
                             <div class="basket__pagination-count">1</div>
+                            <button class="basket__pagination-next"> &gt; </button>
                         </div>
                     </div>
                 </div>
@@ -49,14 +52,27 @@ class BasketPage {
 
         this.container.innerHTML = basket;
 
+        const itemsInput: HTMLElement | null = document.querySelector('.basket__pagination-count');
+
+        if (itemsInput) {
+            itemsInput.addEventListener('change', (e: Event) => {
+                this.observer.notify({ eventName: EventName.changeItemsLimit, eventPayload: e });
+            });
+        }
+
         this.renderBasketList();
         this.renderBasketDetailsButton();
     }
 
     private renderBasketList() {
         const basketList = document.querySelector('.basket__items');
-        if (basketList && basketList instanceof HTMLElement) {
+        if (basketList && basketList instanceof HTMLElement && this.data.basket.products.length > 0) {
             new BasketList({ container: basketList, observer: this.observer, basketData: this.data.basket }).render();
+        } else {
+            const basket = `<div class="basket__empty-header">
+                <h1>Cart is Empty</h1>
+            </div>`;
+            this.container.innerHTML = basket;
         }
     }
 

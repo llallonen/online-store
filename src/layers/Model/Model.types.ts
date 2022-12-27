@@ -15,15 +15,16 @@ enum IActionType {
 
 interface IModelData {
     basket: IBasket;
+    goods: IGoods;
 }
 
 interface IBasket {
-    products: IProduct[];
+    products: IBasketProduct[];
     page: number;
     limit: number;
 }
 
-interface IProduct {
+interface IBasketProduct {
     id: number;
     title: string;
     description: string;
@@ -36,7 +37,11 @@ interface IProduct {
     brand: string;
     category: string;
     images: string[];
-    count: number;
+    count?: number;
 }
 
-export { IModelProps, IAction, IActionType, IModelData, IBasket, IProduct };
+interface IGoods {
+    products: IBasketProduct[];
+}
+
+export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods };
