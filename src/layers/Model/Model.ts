@@ -17,6 +17,7 @@ class Model {
 
     constructor({ observer }: IModelProps) {
         this.observer = observer;
+        this.setQueryParams();
     }
 
     public updateState({ type, payload }: IAction) {
@@ -37,6 +38,16 @@ class Model {
 
     public getState(): IModelData {
         return { ...this.data };
+    }
+
+    private setQueryParams() {
+        const hash = location.hash;
+        const query = hash.match(/\?[a-zA-Z=&0-9]{0,}/g);
+        if (query && query[0]) {
+            const urlParams = new URLSearchParams(query[0]);
+            const params = Object.fromEntries(urlParams.entries());
+            console.log(query, params); //http://localhost:8080/#basket?ss=2&dd=3  {ss: '2', dd: '3'}
+        }
     }
 }
 

@@ -10,6 +10,7 @@ class Router {
     private routes: IRoutes = [
         { path: '404', class: Page404 },
         { path: '#', class: MainPage },
+        { path: '', class: MainPage },
         { path: '#basket', class: BasketPage },
         { path: '#product', class: ProductPage },
     ];

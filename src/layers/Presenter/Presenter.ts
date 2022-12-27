@@ -21,7 +21,7 @@ class Presenter {
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
         this.subscribe();
         this.listenPopState();
-        this.setHash();
+        // this.setHash();
         this.fetchLocalStorage();
     }
 
