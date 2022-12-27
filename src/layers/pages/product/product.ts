@@ -22,7 +22,11 @@ class ProductPage {
         const main = document.querySelector('main');
 
         if (main) {
-            const productCard = new ProductCard({ container: main, observer: this.observer });
+            const productCard = new ProductCard({
+                container: main,
+                observer: this.observer,
+                currImg: this.data.currImg,
+            });
             productCard.render();
         }
     }

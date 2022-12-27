@@ -23,8 +23,6 @@ class ProductInfo {
             for (const k in t) {
                 const fields = ['title', 'description', 'price', 'stock', 'color', 'brand'];
                 if (fields.includes(k)) {
-                    console.log(`${k} - ${t[k]}`);
-
                     const productInfoItem = document.createElement('li');
                     productInfoItem.classList.add('product__info-item');
                     productInfoItem.textContent = `${k} - ${t[k]}`;

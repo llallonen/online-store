@@ -8,10 +8,12 @@ import { Button } from '../Button/Button';
 class ProductCard {
     private container: HTMLElement;
     private observer: Observer;
+    private currImg?: string;
 
-    constructor({ container, observer }: IProductCard) {
+    constructor({ container, observer, currImg }: IProductCard) {
         this.container = container;
         this.observer = observer;
+        this.currImg = currImg;
     }
 
     public render() {
@@ -25,7 +27,11 @@ class ProductCard {
         let buyNowButton;
 
         if (productCard instanceof HTMLElement) {
-            productPhotos = new ProductPhotos({ container: productCard, observer: this.observer });
+            productPhotos = new ProductPhotos({
+                container: productCard,
+                observer: this.observer,
+                currImg: this.currImg,
+            });
             productInfo = new ProductInfo({ container: productCard, observer: this.observer });
             addButton = new Button({
                 container: productCard,
@@ -44,6 +50,7 @@ class ProductCard {
 
         if (productPhotos) {
             productPhotos.render();
+            productPhotos.renderThumbnail();
         }
 
         if (productInfo) {

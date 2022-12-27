@@ -2,14 +2,17 @@ import Observer from '../../Observer/Observer';
 import data from '../../../data.json';
 import { IProductPhotos } from './ProductPhotos.types';
 import './ProductPhotos.scss';
+import { EventName } from '../../Observer/Observer.types';
 
 class ProductPhotos {
     private container: HTMLElement;
     private observer: Observer;
+    private currImg?: string;
 
-    constructor({ container, observer }: IProductPhotos) {
+    constructor({ container, observer, currImg }: IProductPhotos) {
         this.container = container;
         this.observer = observer;
+        this.currImg = currImg;
     }
 
     public render() {
@@ -29,10 +32,26 @@ class ProductPhotos {
             productSlider.append(slide);
         });
 
+        productSlides.forEach(() => {
+            const slide = document.querySelector('.product__slide');
+            if (slide) {
+                slide.addEventListener('click', (e: Event) => {
+                    console.log('click on photo');
+                    const eventObject = { eventName: EventName.clickImg, eventPayload: e };
+                    this.observer.notify(eventObject);
+                });
+            }
+        });
+    }
+
+    public renderThumbnail() {
         const productThumbnail = document.createElement('img');
         productThumbnail.classList.add('product__thumbnail');
         productThumbnail.src = `${data.products[1].images[0]}`;
-        productPhotos.append(productThumbnail);
+        const productPhotos = document.querySelector('.productPhotos');
+        if (productPhotos) {
+            productPhotos.append(productThumbnail);
+        }
     }
 }
 

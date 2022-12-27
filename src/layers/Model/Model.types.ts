@@ -7,15 +7,18 @@ interface IModelProps {
 
 interface IAction {
     type: IActionType;
-    payload: number;
+    payload?: number;
+    payloadImg?: string;
 }
 
 enum IActionType {
     count = 'count',
+    currImg = 'currImg',
 }
 
 interface IModelData {
-    count: number;
+    count?: number;
+    currImg?: string;
 }
 
 export { IModelProps, IAction, IActionType, IModelData };

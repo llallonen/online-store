@@ -30,6 +30,7 @@ class Presenter {
     subscribe() {
         this.observer.subscribe({ eventName: EventName.clickButton, function: this.handleButtonClick.bind(this) });
         this.observer.subscribe({ eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) });
+        this.observer.subscribe({ eventName: EventName.clickImg, function: this.handleImgChange.bind(this) });
     }
 
     handleButtonClick(e: Event | IModelData): void {
@@ -39,11 +40,24 @@ class Presenter {
         if (!(e.target instanceof HTMLElement)) {
             return;
         }
-
-        console.log('щелчек');
-        console.log(this.model);
         this.getState();
-        this.model.updateState({ type: IActionType.count, payload: (this.state.count += 1) });
+        if (this.state.count) {
+            this.model.updateState({ type: IActionType.count, payload: (this.state.count += 1) });
+        }
+    }
+
+    handleImgChange(e: Event | IModelData): void {
+        if (!(e instanceof PointerEvent)) {
+            return;
+        }
+        if (!(e.target instanceof HTMLElement)) {
+            return;
+        }
+
+        console.log('изменилась картинка');
+        const targetImg = e.target as HTMLImageElement;
+        this.getState();
+        this.model.updateState({ type: IActionType.currImg, payloadImg: (this.state.currImg += `${targetImg}`) });
     }
 
     handleStateUpdate(data: Event | IModelData): void {

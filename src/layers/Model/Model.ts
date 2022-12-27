@@ -6,6 +6,7 @@ class Model {
     private observer: Observer;
     private data: IModelData = {
         count: 1,
+        currImg: '',
     };
 
     constructor({ counter, observer }: IModelProps) {
@@ -13,12 +14,14 @@ class Model {
         this.observer = observer;
     }
 
-    public updateState({ type, payload }: IAction) {
+    public updateState({ type, payload, payloadImg }: IAction) {
         switch (type) {
             case IActionType.count:
                 this.data.count = payload;
                 break;
-
+            case IActionType.currImg:
+                this.data.currImg = payloadImg;
+                break;
             default:
                 break;
         }
