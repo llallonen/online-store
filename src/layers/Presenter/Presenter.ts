@@ -135,7 +135,7 @@ class Presenter {
         this.getState();
         this.model.updateState({
             type: IActionType.basket,
-            payload: { ...this.state.basket, limit: Number(newLimit) },
+            payload: { ...this.state.basket, limit: Number(newLimit), page: 1 },
         });
     }
 
