@@ -23,6 +23,7 @@ class Model {
         switch (type) {
             case IActionType.basket:
                 this.data.basket = { ...this.data.basket, ...payload };
+                localStorage.setItem('online-store2023', JSON.stringify({ basketData: { ...this.data.basket } }));
                 break;
             default:
                 break;
