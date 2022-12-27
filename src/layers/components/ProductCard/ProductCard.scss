@@ -1,5 +1,16 @@
 .product {
     display: flex;
-    justify-content: space-between;
+    margin: 0 auto;
     border: 1px solid rgb(205, 205, 205);
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+    }
+
+    &__btns {
+        display: flex;
+        order: 2;
+    }
 }

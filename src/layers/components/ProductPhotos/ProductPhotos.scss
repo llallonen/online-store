@@ -1,6 +1,7 @@
 .product {
     &__photos {
         display: flex;
+        flex-wrap: nowrap;
         width: 400px;
         height: 400px;
     }
@@ -18,7 +19,7 @@
     }
 
     &__thumbnail {
-        width: 400px;
+        width: 200px;
         height: 400px;
     }
 }

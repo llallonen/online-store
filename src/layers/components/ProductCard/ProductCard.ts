@@ -2,8 +2,8 @@ import './ProductCard.scss';
 import Observer from '../../Observer/Observer';
 import { ProductPhotos } from '../ProductPhotos/ProductPhotos';
 import { IProductCard } from './ProductCard.types';
-import { ProductInfo } from '../ProductInfo/ProductInfo';
 import { Button } from '../Button/Button';
+import { ProductDescription } from '../ProductDescription/ProductDescription';
 
 class ProductCard {
     private container: HTMLElement;
@@ -21,8 +21,12 @@ class ProductCard {
         productCard.classList.add('product');
         this.container.append(productCard);
 
+        const productInfo = document.createElement('div');
+        productInfo.classList.add('product__info');
+        productCard.append(productInfo);
+
         let productPhotos;
-        let productInfo;
+        let productDescription;
         let addButton;
         let buyNowButton;
 
@@ -32,16 +36,21 @@ class ProductCard {
                 observer: this.observer,
                 currImg: this.currImg,
             });
-            productInfo = new ProductInfo({ container: productCard, observer: this.observer });
+            productDescription = new ProductDescription({ container: productInfo, observer: this.observer });
+
+            const productBtns = document.createElement('div');
+            productBtns.classList.add('product__btns');
+            productInfo.append(productBtns);
+
             addButton = new Button({
-                container: productCard,
+                container: productBtns,
                 observer: this.observer,
                 typeButton: 'button--product',
                 textButton: 'Add to cart',
             });
 
             buyNowButton = new Button({
-                container: productCard,
+                container: productBtns,
                 observer: this.observer,
                 typeButton: 'button--product',
                 textButton: 'Buy now',
@@ -53,8 +62,8 @@ class ProductCard {
             productPhotos.renderThumbnail();
         }
 
-        if (productInfo) {
-            productInfo.render();
+        if (productDescription) {
+            productDescription.render();
         }
 
         if (addButton) {
