@@ -6,7 +6,7 @@ class Model {
     private observer: Observer;
     private data: IModelData = {
         basket: {
-            limit: 1,
+            limit: 3,
             page: 1,
             products: [],
         },

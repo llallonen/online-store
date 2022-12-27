@@ -14,8 +14,17 @@ class BasketList {
     }
 
     public render() {
+        const fromIterate = (this.basketData.page - 1) * this.basketData.limit;
         this.basketData.products.forEach((product, i) => {
-            new BasketItem({ container: this.container, data: product, number: i, observer: this.observer }).render();
+            console.log(i, fromIterate, fromIterate + this.basketData.page, this.basketData.limit);
+            if (i >= fromIterate && i < fromIterate + this.basketData.page * this.basketData.limit) {
+                new BasketItem({
+                    container: this.container,
+                    data: product,
+                    number: i,
+                    observer: this.observer,
+                }).render();
+            }
         });
     }
 }

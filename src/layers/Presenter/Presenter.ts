@@ -124,8 +124,10 @@ class Presenter {
             return;
         }
 
-        const newLimit = e.target.value;
-
+        const newLimit = Number(e.target.value);
+        if (Number.isNaN(newLimit)) {
+            return;
+        }
         this.getState();
         this.model.updateState({
             type: IActionType.basket,

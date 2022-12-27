@@ -55,8 +55,12 @@ class BasketPage {
         const itemsInput: HTMLElement | null = document.querySelector('.basket__pagination-count');
 
         if (itemsInput) {
-            itemsInput.addEventListener('change', (e: Event) => {
-                this.observer.notify({ eventName: EventName.changeItemsLimit, eventPayload: e });
+            itemsInput.addEventListener('input', (e: Event) => {
+                if (e.target instanceof HTMLInputElement) {
+                    if (e.target.value) {
+                        this.observer.notify({ eventName: EventName.changeItemsLimit, eventPayload: e });
+                    }
+                }
             });
         }
 
