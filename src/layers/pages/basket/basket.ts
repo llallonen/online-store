@@ -31,9 +31,9 @@ class BasketPage {
                         </div>
                         <div class="basket__pagination-page">
                             <span class="basket__pagination-text">PAGE:</span>
-                            <button class="basket__pagination-prev"> &lt; </button>
-                            <div class="basket__pagination-count">1</div>
-                            <button class="basket__pagination-next"> &gt; </button>
+                            <button class="basket__pagination-prev" data-type="prev"> &lt; </button>
+                            <div class="basket__pagination-count">${this.data.basket.page}</div>
+                            <button class="basket__pagination-next" data-type="next"> &gt; </button>
                         </div>
                     </div>
                 </div>
@@ -60,6 +60,22 @@ class BasketPage {
                     if (e.target.value) {
                         this.observer.notify({ eventName: EventName.changeItemsLimit, eventPayload: e });
                     }
+                }
+            });
+        }
+
+        const paginationButtonPrev = document.querySelector('.basket__pagination-prev');
+        const paginationButtonNext = document.querySelector('.basket__pagination-next');
+
+        if (paginationButtonPrev && paginationButtonNext) {
+            paginationButtonPrev.addEventListener('click', (e) => {
+                if (this.data.basket.page !== 1) {
+                    this.observer.notify({ eventName: EventName.changeNavigationPage, eventPayload: e });
+                }
+            });
+            paginationButtonNext.addEventListener('click', (e) => {
+                if (this.data.basket.page < Math.ceil(this.data.basket.products.length / this.data.basket.limit)) {
+                    this.observer.notify({ eventName: EventName.changeNavigationPage, eventPayload: e });
                 }
             });
         }

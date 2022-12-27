@@ -37,6 +37,10 @@ class Presenter {
             eventName: EventName.changeItemsLimit,
             function: this.changeBasketItemsLimit.bind(this),
         });
+        this.observer.subscribe({
+            eventName: EventName.changeNavigationPage,
+            function: this.addNavigationPage.bind(this),
+        });
     }
 
     handleStateUpdate(data: Event | IModelData): void {
@@ -133,6 +137,29 @@ class Presenter {
             type: IActionType.basket,
             payload: { ...this.state.basket, limit: Number(newLimit) },
         });
+    }
+
+    addNavigationPage(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLButtonElement)) {
+            return;
+        }
+
+        const typeButton = e.target.dataset?.type;
+        this.getState();
+        if (typeButton) {
+            if (typeButton === 'prev') {
+                this.model.updateState({
+                    type: IActionType.basket,
+                    payload: { ...this.state.basket, page: this.state.basket.page - 1 },
+                });
+            }
+            if (typeButton === 'next') {
+                this.model.updateState({
+                    type: IActionType.basket,
+                    payload: { ...this.state.basket, page: this.state.basket.page + 1 },
+                });
+            }
+        }
     }
 }
 

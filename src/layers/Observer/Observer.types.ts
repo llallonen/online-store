@@ -6,6 +6,7 @@ enum EventName {
     addGoods = 'addGoods',
     removeGoods = 'removeGoods',
     changeItemsLimit = 'changeItemsLimit',
+    changeNavigationPage = 'changeNavigationPage',
 }
 
 interface ISubscriber {
