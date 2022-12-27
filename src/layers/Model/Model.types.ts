@@ -7,8 +7,7 @@ interface IModelProps {
 
 interface IAction {
     type: IActionType;
-    payload?: number;
-    payloadImg?: string;
+    payload?: number | string;
 }
 
 enum IActionType {

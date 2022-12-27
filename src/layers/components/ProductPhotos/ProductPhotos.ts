@@ -33,22 +33,23 @@ class ProductPhotos {
         });
 
         productSlides.forEach(() => {
-            const slide = document.querySelector('.product__slide');
-            if (slide) {
+            const slides = document.querySelectorAll('.product__slide');
+
+            slides.forEach((slide) => {
                 slide.addEventListener('click', (e: Event) => {
                     console.log('click on photo');
                     const eventObject = { eventName: EventName.clickImg, eventPayload: e };
                     this.observer.notify(eventObject);
                 });
-            }
+            });
         });
     }
 
     public renderThumbnail() {
         const productThumbnail = document.createElement('img');
         productThumbnail.classList.add('product__thumbnail');
-        productThumbnail.src = `${data.products[1].images[0]}`;
-        const productPhotos = document.querySelector('.productPhotos');
+        productThumbnail.src = `${this.currImg}`;
+        const productPhotos = document.querySelector('.product__photos');
         if (productPhotos) {
             productPhotos.append(productThumbnail);
         }

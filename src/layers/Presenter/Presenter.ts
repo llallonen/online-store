@@ -50,14 +50,17 @@ class Presenter {
         if (!(e instanceof PointerEvent)) {
             return;
         }
-        if (!(e.target instanceof HTMLElement)) {
+        if (!(e.target instanceof HTMLImageElement)) {
             return;
         }
 
         console.log('изменилась картинка');
-        const targetImg = e.target as HTMLImageElement;
         this.getState();
-        this.model.updateState({ type: IActionType.currImg, payloadImg: (this.state.currImg += `${targetImg}`) });
+        const imgUrl = e.target.src;
+
+        this.model.updateState({ type: IActionType.currImg, payload: imgUrl });
+        this.getState();
+        console.log(this.state);
     }
 
     handleStateUpdate(data: Event | IModelData): void {

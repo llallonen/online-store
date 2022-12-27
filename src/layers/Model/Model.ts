@@ -14,13 +14,19 @@ class Model {
         this.observer = observer;
     }
 
-    public updateState({ type, payload, payloadImg }: IAction) {
+    public updateState({ type, payload }: IAction) {
         switch (type) {
             case IActionType.count:
+                if (typeof payload !== 'number') {
+                    return;
+                }
                 this.data.count = payload;
                 break;
             case IActionType.currImg:
-                this.data.currImg = payloadImg;
+                if (typeof payload !== 'string') {
+                    return;
+                }
+                this.data.currImg = payload;
                 break;
             default:
                 break;
