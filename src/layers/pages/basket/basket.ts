@@ -45,13 +45,25 @@ class BasketPage {
             <div class="basket__right">
                 <h2 class="basket__header-title">Products In Cart</h2>
                 <div class="basket__details-count">Products: ${this.countQuantityProducts()}</div>
-                <div class="basket__details-total">Total: ${this.countTotalPrice()}$</div>
-                <div class="basket__details-total-promo">Total: ${this.countTotalPriceWithDiscount()}$</div>
-                <div class="basket__res-promo-active hide" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-active-button" data-type="RS">Drop</span></div>
-                <div class="basket__res-promo-active hide" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-active-button" data-type="EPM">Drop</span></div>
+                <div class="basket__details-total ${
+                    this.data.basket.promo.length === 0 ? '' : 'old'
+                }">Total: ${this.countTotalPrice()}$</div>
+                <div class="basket__details-total-promo ${
+                    this.data.basket.promo.length === 0 ? '' : 'active'
+                }">Total: ${this.countTotalPriceWithDiscount()}$</div>
+                <div class="basket__res-promo-active ${
+                    this.data.basket.promo.includes('RS') ? '' : 'hide'
+                }" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-active-button" data-type="RS">Drop</span></div>
+                <div class="basket__res-promo-active ${
+                    this.data.basket.promo.includes('EPM') ? '' : 'hide'
+                }" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-active-button" data-type="EPM">Drop</span></div>
                 <input class="basket__details-promo" type="text"/>
-                <div class="basket__res-promo" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-button" data-type="RS">ADD</span></div>
-                <div class="basket__res-promo" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-button" data-type="EPM">ADD</span></div>
+                <div class="basket__res-promo" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-button ${
+                    this.data.basket.promo.includes('RS') ? 'active' : ''
+                }" data-type="RS">ADD</span></div>
+                <div class="basket__res-promo" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-button ${
+                    this.data.basket.promo.includes('EPM') ? 'active' : ''
+                }" data-type="EPM">ADD</span></div>
                 <div class="basket__details-promo-text">Promo for test: 'RS', 'EPM'</div>
                 <div class="basket__details-button"></div>
             </div>
@@ -63,7 +75,6 @@ class BasketPage {
         this.container.innerHTML = basket;
 
         const itemsInput: HTMLElement | null = document.querySelector('.basket__pagination-count');
-
         if (itemsInput) {
             itemsInput.addEventListener('input', (e: Event) => {
                 if (e.target instanceof HTMLInputElement) {
@@ -76,7 +87,6 @@ class BasketPage {
 
         const paginationButtonPrev = document.querySelector('.basket__pagination-prev');
         const paginationButtonNext = document.querySelector('.basket__pagination-next');
-
         if (paginationButtonPrev && paginationButtonNext) {
             paginationButtonPrev.addEventListener('click', (e) => {
                 if (this.data.basket.page !== 1) {
@@ -104,14 +114,7 @@ class BasketPage {
         }
 
         const promoButtonNodes = document.querySelectorAll('.basket__promo-button');
-
         promoButtonNodes.forEach((node) => {
-            if (node instanceof HTMLSpanElement) {
-                const dataset = node.dataset.type;
-                if (dataset && this.data.basket.promo.includes(dataset)) {
-                    node.classList.toggle('active');
-                }
-            }
             node.addEventListener('click', (e: Event) => {
                 this.observer.notify({ eventName: EventName.addPromoCode, eventPayload: e });
             });
@@ -126,7 +129,7 @@ class BasketPage {
                         const promoCodes = document.querySelectorAll('.basket__res-promo');
                         promoCodes.forEach((node) => {
                             if (node instanceof HTMLElement && node.dataset.type === promoValue) {
-                                node.classList.toggle('active');
+                                node.classList.add('active');
                             }
                         });
                     }
@@ -134,35 +137,12 @@ class BasketPage {
             });
         }
 
-        const promoCodes = document.querySelectorAll('.basket__res-promo-active');
-        promoCodes.forEach((node) => {
-            if (node instanceof HTMLElement && node.dataset.type) {
-                if (this.data.basket.promo.includes(node.dataset.type)) {
-                    node.classList.toggle('hide');
-                }
-            }
-        });
-
         const promoCodesDropButton = document.querySelectorAll('.basket__promo-active-button');
         promoCodesDropButton.forEach((node) => {
             node.addEventListener('click', (e: Event) => {
                 this.observer.notify({ eventName: EventName.removePromoCode, eventPayload: e });
             });
         });
-
-        const newTotalPrice = document.querySelector('.basket__details-total-promo');
-        if (newTotalPrice && newTotalPrice instanceof HTMLDivElement) {
-            if (this.data.basket.promo.length !== 0) {
-                newTotalPrice.classList.toggle('active');
-            }
-        }
-
-        const oldTotalPrice = document.querySelector('.basket__details-total');
-        if (oldTotalPrice && oldTotalPrice instanceof HTMLDivElement) {
-            if (this.data.basket.promo.length !== 0) {
-                oldTotalPrice.classList.toggle('old');
-            }
-        }
     }
 
     private renderBasketList() {
