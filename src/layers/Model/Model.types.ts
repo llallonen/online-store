@@ -22,6 +22,7 @@ interface IBasket {
     products: IBasketProduct[];
     page: number;
     limit: number;
+    promo: string[];
 }
 
 interface IBasketProduct {

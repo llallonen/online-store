@@ -7,6 +7,8 @@ enum EventName {
     removeGoods = 'removeGoods',
     changeItemsLimit = 'changeItemsLimit',
     changeNavigationPage = 'changeNavigationPage',
+    addPromoCode = 'addPromoCode',
+    removePromoCode = 'removePromoCode',
 }
 
 interface ISubscriber {

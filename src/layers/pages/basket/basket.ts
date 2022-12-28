@@ -5,8 +5,10 @@ import './basket.scss';
 import { BasketList } from '../../components/BasketList/BasketList';
 import { Button } from '../../components/Button/Button';
 import { countTotalPrice } from '../../../utils/countTotalPrice';
+import { countTotalPriceWithPromo } from '../../../utils/countTotalPriceWithPromo';
 import { countQuantityProducts } from '../../../utils/countQuantityProducts';
 import { EventName } from '../../Observer/Observer.types';
+import { promo } from './promo/promo';
 
 class BasketPage {
     private container: HTMLElement;
@@ -44,7 +46,12 @@ class BasketPage {
                 <h2 class="basket__header-title">Products In Cart</h2>
                 <div class="basket__details-count">Products: ${this.countQuantityProducts()}</div>
                 <div class="basket__details-total">Total: ${this.countTotalPrice()}$</div>
+                <div class="basket__details-total-promo">Total: ${this.countTotalPriceWithDiscount()}$</div>
+                <div class="basket__res-promo-active hide" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-active-button" data-type="RS">Drop</span></div>
+                <div class="basket__res-promo-active hide" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-active-button" data-type="EPM">Drop</span></div>
                 <input class="basket__details-promo" type="text"/>
+                <div class="basket__res-promo" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-button" data-type="RS">ADD</span></div>
+                <div class="basket__res-promo" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-button" data-type="EPM">ADD</span></div>
                 <div class="basket__details-promo-text">Promo for test: 'RS', 'EPM'</div>
                 <div class="basket__details-button"></div>
             </div>
@@ -82,6 +89,67 @@ class BasketPage {
 
         this.renderBasketList();
         this.renderBasketDetailsButton();
+
+        const promoButtonNodes = document.querySelectorAll('.basket__promo-button');
+
+        promoButtonNodes.forEach((node) => {
+            if (node instanceof HTMLSpanElement) {
+                const dataset = node.dataset.type;
+                if (dataset && this.data.basket.promo.includes(dataset)) {
+                    node.classList.toggle('active');
+                }
+            }
+            node.addEventListener('click', (e: Event) => {
+                this.observer.notify({ eventName: EventName.addPromoCode, eventPayload: e });
+            });
+        });
+
+        const promoInput = document.querySelector('.basket__details-promo');
+        if (promoInput && promoInput instanceof HTMLInputElement) {
+            promoInput.addEventListener('input', (e: Event) => {
+                if (e.target instanceof HTMLInputElement) {
+                    const promoValue = e.target.value;
+                    if (Object.keys(promo).includes(promoValue)) {
+                        const promoCodes = document.querySelectorAll('.basket__res-promo');
+                        promoCodes.forEach((node) => {
+                            if (node instanceof HTMLElement && node.dataset.type === promoValue) {
+                                node.classList.toggle('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        const promoCodes = document.querySelectorAll('.basket__res-promo-active');
+        promoCodes.forEach((node) => {
+            if (node instanceof HTMLElement && node.dataset.type) {
+                if (this.data.basket.promo.includes(node.dataset.type)) {
+                    node.classList.toggle('hide');
+                }
+            }
+        });
+
+        const promoCodesDropButton = document.querySelectorAll('.basket__promo-active-button');
+        promoCodesDropButton.forEach((node) => {
+            node.addEventListener('click', (e: Event) => {
+                this.observer.notify({ eventName: EventName.removePromoCode, eventPayload: e });
+            });
+        });
+
+        const newTotalPrice = document.querySelector('.basket__details-total-promo');
+        if (newTotalPrice && newTotalPrice instanceof HTMLDivElement) {
+            if (this.data.basket.promo.length !== 0) {
+                newTotalPrice.classList.toggle('active');
+            }
+        }
+
+        const oldTotalPrice = document.querySelector('.basket__details-total');
+        if (oldTotalPrice && oldTotalPrice instanceof HTMLDivElement) {
+            if (this.data.basket.promo.length !== 0) {
+                oldTotalPrice.classList.toggle('old');
+            }
+        }
     }
 
     private renderBasketList() {
@@ -106,6 +174,10 @@ class BasketPage {
 
     private countTotalPrice() {
         return countTotalPrice(this.data.basket.products);
+    }
+
+    private countTotalPriceWithDiscount() {
+        return countTotalPriceWithPromo(this.data.basket.products, this.data.basket.promo);
     }
 
     private countQuantityProducts() {

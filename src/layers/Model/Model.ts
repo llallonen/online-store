@@ -9,6 +9,7 @@ class Model {
             limit: 3,
             page: 1,
             products: [],
+            promo: [],
         },
         goods: {
             products: [],

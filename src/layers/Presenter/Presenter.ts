@@ -32,7 +32,6 @@ class Presenter {
     subscribe() {
         this.observer.subscribe({ eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) });
         this.observer.subscribe({ eventName: EventName.addGoods, function: this.addGoodToBasket.bind(this) });
-        this.observer.subscribe({ eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) });
         this.observer.subscribe({
             eventName: EventName.changeItemsLimit,
             function: this.changeBasketItemsLimit.bind(this),
@@ -41,6 +40,8 @@ class Presenter {
             eventName: EventName.changeNavigationPage,
             function: this.addNavigationPage.bind(this),
         });
+        this.observer.subscribe({ eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) });
+        this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
     }
 
     handleStateUpdate(data: Event | IModelData): void {
@@ -159,6 +160,40 @@ class Presenter {
                     payload: { ...this.state.basket, page: this.state.basket.page + 1 },
                 });
             }
+        }
+    }
+
+    addPromoCode(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+
+        const type = e.target.dataset?.type;
+
+        if (type) {
+            this.getState();
+            if (!this.state.basket.promo.includes(type)) {
+                this.model.updateState({
+                    type: IActionType.basket,
+                    payload: { ...this.state.basket, promo: [...this.state.basket.promo, type] },
+                });
+            }
+        }
+    }
+
+    removePromoCode(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+        const type = e.target.dataset?.type;
+
+        if (type) {
+            this.getState();
+            const promo = this.state.basket.promo.filter((el) => el !== type);
+            this.model.updateState({
+                type: IActionType.basket,
+                payload: { ...this.state.basket, promo: promo },
+            });
         }
     }
 }
