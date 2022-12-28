@@ -55,6 +55,9 @@ class BasketPage {
                 <div class="basket__details-promo-text">Promo for test: 'RS', 'EPM'</div>
                 <div class="basket__details-button"></div>
             </div>
+            <div class="basket__modal">
+                <div class="basket__modal-content"></div>
+            </div>
         </div>`;
 
         this.container.innerHTML = basket;
@@ -89,6 +92,16 @@ class BasketPage {
 
         this.renderBasketList();
         this.renderBasketDetailsButton();
+
+        const modalButton = document.querySelector('.button');
+        if (modalButton) {
+            modalButton.addEventListener('click', () => {
+                const modal = document.querySelector('.basket__modal');
+                if (modal) {
+                    modal.classList.toggle('active');
+                }
+            });
+        }
 
         const promoButtonNodes = document.querySelectorAll('.basket__promo-button');
 
