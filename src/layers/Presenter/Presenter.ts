@@ -138,6 +138,8 @@ class Presenter {
             type: IActionType.basket,
             payload: { ...this.state.basket, limit: Number(newLimit), page: 1 },
         });
+        this.getState();
+        window.location.hash = `#basket?limit=${this.state.basket.limit}&page=${this.state.basket.page}`;
     }
 
     addNavigationPage(e: Event | IModelData) {
@@ -160,6 +162,8 @@ class Presenter {
                     payload: { ...this.state.basket, page: this.state.basket.page + 1 },
                 });
             }
+            this.getState();
+            window.location.hash = `#basket?limit=${this.state.basket.limit}&page=${this.state.basket.page}`;
         }
     }
 
