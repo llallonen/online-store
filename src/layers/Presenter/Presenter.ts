@@ -40,6 +40,7 @@ class Presenter {
             eventName: EventName.changeNavigationPage,
             function: this.addNavigationPage.bind(this),
         });
+        this.observer.subscribe({ eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) });
         this.observer.subscribe({ eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) });
         this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
     }
