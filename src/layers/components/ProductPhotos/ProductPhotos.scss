@@ -2,7 +2,7 @@
     &__photos {
         display: flex;
         flex-wrap: nowrap;
-        width: 400px;
+        width: 70%;
         height: 400px;
     }
 
@@ -14,12 +14,12 @@
     }
 
     &__slide {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 
     &__thumbnail {
-        width: 200px;
+        width: 400px;
         height: 400px;
     }
 }

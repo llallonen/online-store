@@ -48,7 +48,11 @@ class ProductPhotos {
     public renderThumbnail() {
         const productThumbnail = document.createElement('img');
         productThumbnail.classList.add('product__thumbnail');
-        productThumbnail.src = `${this.currImg}`;
+        this.currImg !== ''
+            ? (productThumbnail.src = `${this.currImg}`)
+            : (productThumbnail.src = `${data.products[1].images[0]}`);
+
+        console.log(productThumbnail.src);
         const productPhotos = document.querySelector('.product__photos');
         if (productPhotos) {
             productPhotos.append(productThumbnail);
