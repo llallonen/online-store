@@ -11,6 +11,7 @@
     "author": "Valeria Sycheva, Andrey Lapin",
     "license": "MIT",
     "dependencies": {
+        "nouislider": "^15.6.1",
         "sass": "^1.56.2",
         "style-loader": "^3.3.1"
     },
