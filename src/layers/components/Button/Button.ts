@@ -6,9 +6,13 @@ import { EventName } from '../../Observer/Observer.types';
 class Button {
     private container: HTMLElement;
     private observer: Observer;
-    constructor({ container, observer }: IButtonProps) {
+    private event: EventName | undefined;
+    constructor({ container, observer, event }: IButtonProps) {
         this.container = container;
         this.observer = observer;
+        if (event) {
+            this.event = event;
+        }
     }
 
     public render() {
@@ -16,10 +20,13 @@ class Button {
         button.textContent = 'Кнопка';
         button.classList.add('button');
 
-        button.addEventListener('click', (e: Event) => {
-            const eventObject = { eventName: EventName.clickButton, eventPayload: e };
-            this.observer.notify(eventObject);
-        });
+        if (this.event) {
+            const event = this.event as EventName;
+            button.addEventListener('click', (e: Event) => {
+                const eventObject = { eventName: event, eventPayload: e };
+                this.observer.notify(eventObject);
+            });
+        }
         this.container.append(button);
     }
 }

@@ -3,6 +3,12 @@ import { IModelData } from '../Model/Model.types';
 enum EventName {
     clickButton = 'clickButton',
     updateState = 'updateState',
+    addGoods = 'addGoods',
+    removeGoods = 'removeGoods',
+    changeItemsLimit = 'changeItemsLimit',
+    changeNavigationPage = 'changeNavigationPage',
+    addPromoCode = 'addPromoCode',
+    removePromoCode = 'removePromoCode',
 }
 
 interface ISubscriber {
