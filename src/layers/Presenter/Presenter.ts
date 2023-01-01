@@ -5,6 +5,7 @@ import { EventName } from '../Observer/Observer.types';
 import { View } from '../View/View';
 import { ILocalStorageData, IPresenterProps } from './Presenter.types';
 import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket';
+import data from '../../data.json';
 
 class Presenter {
     private view: View;
@@ -19,6 +20,7 @@ class Presenter {
         this.model = new Model({ observer: this.observer });
         this.state = this.model.getState();
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
+        this.fetchGoods();
         this.subscribe();
         this.listenPopState();
         // this.setHash();
@@ -43,6 +45,8 @@ class Presenter {
         this.observer.subscribe({ eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) });
         this.observer.subscribe({ eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) });
         this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterBrand, function: this.filterBrand.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterCategory, function: this.filterCategory.bind(this) });
     }
 
     handleStateUpdate(data: Event | IModelData): void {
@@ -50,7 +54,6 @@ class Presenter {
             return;
         }
         this.getState();
-        console.log(data);
         this.view.update(data);
     }
 
@@ -200,6 +203,50 @@ class Presenter {
                 payload: { ...this.state.basket, promo: promo },
             });
         }
+    }
+
+    fetchGoods() {
+        this.model.updateState({ type: IActionType.goods, payload: { products: [...data.products] } });
+    }
+
+    filterBrand(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
+            return;
+        }
+        this.getState();
+        const brandFilter: string[] = [];
+        const brandNodes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filterList__input.brand');
+        brandNodes.forEach((el) => {
+            if (el.checked) {
+                brandFilter.push(el.id);
+            }
+        });
+
+        this.model.updateState({
+            type: IActionType.filter,
+            payload: { ...this.state.filter, brand: brandFilter },
+        });
+        this.getState();
+        console.log(this.state);
+    }
+
+    filterCategory(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
+            return;
+        }
+        this.getState();
+        const categoryFilter: string[] = [];
+        const categoryNodes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filterList__input.category');
+        categoryNodes.forEach((el) => {
+            if (el.checked) {
+                categoryFilter.push(el.id);
+            }
+        });
+
+        this.model.updateState({
+            type: IActionType.filter,
+            payload: { ...this.state.filter, category: categoryFilter },
+        });
     }
 }
 

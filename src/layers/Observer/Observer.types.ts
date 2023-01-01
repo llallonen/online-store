@@ -9,6 +9,8 @@ enum EventName {
     changeNavigationPage = 'changeNavigationPage',
     addPromoCode = 'addPromoCode',
     removePromoCode = 'removePromoCode',
+    filterBrand = 'filterBrand',
+    filterCategory = 'filterCategory',
 }
 
 interface ISubscriber {

@@ -1,0 +1,11 @@
+.filterList {
+  &__item {
+
+    &.disabled {
+      & span, & label {
+        color: bisque;
+      }
+
+    }
+  }
+}

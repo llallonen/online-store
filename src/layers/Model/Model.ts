@@ -1,6 +1,6 @@
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
-import { IAction, IActionType, IModelData, IModelProps } from './Model.types';
+import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter } from './Model.types';
 
 class Model {
     private observer: Observer;
@@ -14,6 +14,12 @@ class Model {
         goods: {
             products: [],
         },
+        filter: {
+            brand: [],
+            category: [],
+            price: [],
+            stock: [],
+        },
     };
 
     constructor({ observer }: IModelProps) {
@@ -26,6 +32,12 @@ class Model {
             case IActionType.basket:
                 this.data.basket = { ...this.data.basket, ...payload };
                 localStorage.setItem('online-store2023', JSON.stringify({ basketData: { ...this.data.basket } }));
+                break;
+            case IActionType.goods:
+                this.data.goods = payload as IGoods;
+                break;
+            case IActionType.filter:
+                this.data.filter = payload as IFilter;
                 break;
             default:
                 break;

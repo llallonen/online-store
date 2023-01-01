@@ -6,16 +6,19 @@ interface IModelProps {
 
 interface IAction {
     type: IActionType;
-    payload: IBasket;
+    payload: IBasket | IGoods | IFilter;
 }
 
 enum IActionType {
     basket = 'basket',
+    goods = 'goods',
+    filter = 'filter',
 }
 
 interface IModelData {
     basket: IBasket;
     goods: IGoods;
+    filter: IFilter;
 }
 
 interface IBasket {
@@ -45,4 +48,11 @@ interface IGoods {
     products: IBasketProduct[];
 }
 
-export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods };
+interface IFilter {
+    category: string[];
+    brand: string[];
+    price: number[];
+    stock: number[];
+}
+
+export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods, IFilter };
