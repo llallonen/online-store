@@ -6,6 +6,7 @@ import { View } from '../View/View';
 import { ILocalStorageData, IPresenterProps } from './Presenter.types';
 import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket';
 import data from '../../data.json';
+import { RangeSlider } from 'toolcool-range-slider';
 
 class Presenter {
     private view: View;
@@ -256,28 +257,44 @@ class Presenter {
         if (!(e instanceof CustomEvent)) {
             return;
         }
+        const target = e.target as RangeSlider;
         this.getState();
-        this.model.updateState({
-            type: IActionType.filter,
-            payload: {
-                ...this.state.filter,
-                price: [e.detail.nativeEvent.target.value1, e.detail.nativeEvent.target.value2],
-            },
-        });
+        if (
+            typeof target.value1 == 'number' &&
+            typeof target.value2 == 'number' &&
+            !Number.isNaN(target.value1) &&
+            !Number.isNaN(target.value2)
+        ) {
+            this.model.updateState({
+                type: IActionType.filter,
+                payload: {
+                    ...this.state.filter,
+                    price: [target.value1, target.value2],
+                },
+            });
+        }
     }
 
     filterStock(e: Event | IModelData) {
-        if (!(e instanceof CustomEvent)) {
+        if (!(e instanceof CustomEvent) || !(e.target instanceof HTMLElement)) {
             return;
         }
+        const target = e.target as RangeSlider;
         this.getState();
-        this.model.updateState({
-            type: IActionType.filter,
-            payload: {
-                ...this.state.filter,
-                stock: [e.detail.nativeEvent.target.value1, e.detail.nativeEvent.target.value2],
-            },
-        });
+        if (
+            typeof target.value1 == 'number' &&
+            typeof target.value2 == 'number' &&
+            !Number.isNaN(target.value1) &&
+            !Number.isNaN(target.value2)
+        ) {
+            this.model.updateState({
+                type: IActionType.filter,
+                payload: {
+                    ...this.state.filter,
+                    stock: [target.value1, target.value2],
+                },
+            });
+        }
     }
 }
 

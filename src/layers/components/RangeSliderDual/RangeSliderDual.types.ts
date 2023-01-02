@@ -1,4 +1,5 @@
 import Observer from '../../Observer/Observer';
+import { EventName } from '../../Observer/Observer.types';
 
 export interface IRangeSliderProps {
     observer: Observer;
@@ -8,10 +9,5 @@ export interface IRangeSliderProps {
     max: number;
     to: number;
     from: number;
-    type: RangeSliderType;
-}
-
-export enum RangeSliderType {
-    price = 'price',
-    stock = 'stock',
+    eventName: EventName;
 }

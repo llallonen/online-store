@@ -9,19 +9,22 @@ class FilterItem {
     private filteredCount: number;
     private item: HTMLElement | undefined;
     private eventName: EventName;
-    constructor({ container, observer, product, filteredCount, eventName }: IFilterItemProps) {
+    private filterArr: string[];
+    constructor({ container, observer, product, filteredCount, eventName, filterArr }: IFilterItemProps) {
         this.container = container;
         this.observer = observer;
         this.product = product;
         this.filteredCount = filteredCount;
         this.eventName = eventName;
+        this.filterArr = filterArr;
     }
-
+    // ${this.filteredCount !== 0 ? 'checked' : ''}
     public render() {
         const layout = `
             <input class="filterList__input ${
                 this.eventName === EventName.filterCategory ? 'brand' : 'category'
-            }" type="checkbox" ${this.filteredCount !== 0 ? 'checked' : ''}
+            }" type="checkbox" 
+            ${this.filterArr.indexOf(this.product.name) !== -1 ? 'checked' : ''}
             id="${this.product.name}">
             <label for="${this.product.name}">${this.product.name}</label>
             <span>(${this.filteredCount}/${this.product.count})</span>`;

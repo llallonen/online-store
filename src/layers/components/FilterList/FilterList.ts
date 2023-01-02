@@ -1,6 +1,6 @@
 import { getListBrand } from '../../../utils/getListBrand';
 import { getListCategory } from '../../../utils/getListCategory';
-import { IBasketProduct } from '../../Model/Model.types';
+import { IBasketProduct, IFilter } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { FilterItem } from '../FilterItem/FilterItem';
 import { IFilterListProps, IFilterListType } from './FilterList.types';
@@ -14,13 +14,15 @@ class FilterList {
     private filteredProducts: IBasketProduct[];
     private title: string;
     private type: IFilterListType;
-    constructor({ container, observer, allProducts, filteredProducts, title, type }: IFilterListProps) {
+    private filter: IFilter;
+    constructor({ container, observer, allProducts, filteredProducts, title, type, filter }: IFilterListProps) {
         this.container = container;
         this.observer = observer;
         this.allProducts = allProducts;
         this.filteredProducts = filteredProducts;
         this.title = title;
         this.type = type;
+        this.filter = filter;
     }
 
     public render() {
@@ -48,6 +50,7 @@ class FilterList {
                         product: brand,
                         filteredCount: filteredProducts || 0,
                         eventName: EventName.filterCategory,
+                        filterArr: this.filter.brand,
                     }).render();
                 });
             }
@@ -64,6 +67,7 @@ class FilterList {
                         product: category,
                         filteredCount: filteredProducts || 0,
                         eventName: EventName.filterBrand,
+                        filterArr: this.filter.category,
                     }).render();
                 });
             }

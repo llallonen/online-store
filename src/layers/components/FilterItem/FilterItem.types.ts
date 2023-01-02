@@ -7,6 +7,7 @@ export interface IFilterItemProps {
     product: IAllProducts;
     filteredCount: number;
     eventName: EventName;
+    filterArr: string[];
 }
 
 export interface IAllProducts {

@@ -1,9 +1,9 @@
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
-import { IRangeSliderProps, RangeSliderType } from './RangeSlider.types';
+import { IRangeSliderProps } from './RangeSliderDual.types';
 import 'toolcool-range-slider';
 
-class RangeSlider {
+class RangeSliderDual {
     private container: HTMLElement;
     private observer: Observer;
     private name: string;
@@ -11,8 +11,8 @@ class RangeSlider {
     private to: number;
     private min: number;
     private max: number;
-    private type: RangeSliderType;
-    constructor({ container, observer, name, from, max, min, to, type }: IRangeSliderProps) {
+    private eventName: EventName;
+    constructor({ container, observer, name, from, max, min, to, eventName }: IRangeSliderProps) {
         this.container = container;
         this.observer = observer;
         this.name = name;
@@ -20,7 +20,7 @@ class RangeSlider {
         this.to = to;
         this.min = min;
         this.max = max;
-        this.type = type;
+        this.eventName = eventName;
     }
 
     public render() {
@@ -31,8 +31,8 @@ class RangeSlider {
             max="${this.max}"
             value1="${this.from}"
             value2="${this.to}"
-            max="${this.max}"
             step="1"
+            keyboard-disabled="true"
           ></tc-range-slider>
         `;
 
@@ -44,20 +44,15 @@ class RangeSlider {
     }
 
     private subscribe() {
-        const slider = document.getElementById(this.name);
+        const slider = document.getElementById(`${this.name}`);
         if (slider) {
-            slider.addEventListener('onMouseUp', (e: Event) => {
+            slider.addEventListener('onPointerClicked', (e: Event) => {
                 if (e instanceof CustomEvent) {
-                    if (this.type === RangeSliderType.price) {
-                        this.observer.notify({ eventName: EventName.filterPrice, eventPayload: e });
-                    }
-                    if (this.type === RangeSliderType.stock) {
-                        this.observer.notify({ eventName: EventName.filterStock, eventPayload: e });
-                    }
+                    this.observer.notify({ eventName: this.eventName, eventPayload: e });
                 }
             });
         }
     }
 }
 
-export { RangeSlider };
+export { RangeSliderDual };

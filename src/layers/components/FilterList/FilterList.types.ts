@@ -1,4 +1,4 @@
-import { IBasketProduct } from '../../Model/Model.types';
+import { IBasketProduct, IFilter } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 
 export interface IFilterListProps {
@@ -8,6 +8,7 @@ export interface IFilterListProps {
     filteredProducts: IBasketProduct[];
     title: string;
     type: IFilterListType;
+    filter: IFilter;
 }
 
 export enum IFilterListType {

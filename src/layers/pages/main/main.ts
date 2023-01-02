@@ -1,28 +1,29 @@
 import { filterProducts } from '../../../utils/filterProducts';
+import { getMaxMinPrice } from '../../../utils/getMaxMinPrice';
+import { getMaxMinStock } from '../../../utils/getMaxMinStock';
 import { FilterList } from '../../components/FilterList/FilterList';
 import { IFilterListType } from '../../components/FilterList/FilterList.types';
 import { IMain } from '../../components/Main/Main.types';
-import { RangeSlider } from '../../components/RangeSlider/RangeSlider';
-import { RangeSliderType } from '../../components/RangeSlider/RangeSlider.types';
+import { RangeSliderDual } from '../../components/RangeSliderDual/RangeSliderDual';
 import { IBasketProduct, IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
-// import 'toolcool-range-slider';
 
 class MainPage {
     private container: HTMLElement;
     private observer: Observer;
     private data: IModelData;
+    private filterProducts: IBasketProduct[];
 
     constructor({ container, observer, data }: IMain) {
         this.container = container;
         this.observer = observer;
         this.data = data;
+        this.filterProducts = filterProducts(this.data.filter, this.data.goods.products);
     }
 
     public render() {
-        const filterProduct = filterProducts(this.data.filter, this.data.goods.products);
-        this.renderStockFilterList(filterProduct);
+        this.renderStockFilterList(this.filterProducts);
         this.renderRangeSliders();
     }
 
@@ -34,15 +35,17 @@ class MainPage {
             filteredProducts: filteredProducts,
             title: 'Brand',
             type: IFilterListType.brand,
+            filter: this.data.filter,
         });
 
         const filterListCategory = new FilterList({
             container: this.container,
             observer: this.observer,
             allProducts: this.data.goods.products,
-            filteredProducts: this.data.basket.products,
+            filteredProducts: filteredProducts,
             title: 'Category',
             type: IFilterListType.category,
+            filter: this.data.filter,
         });
 
         filterListBrand.render();
@@ -70,25 +73,28 @@ class MainPage {
     }
 
     private renderRangeSliders() {
-        const priceRangeSlide = new RangeSlider({
+        const maxMinPriceAllProducts = getMaxMinPrice(this.data.goods.products);
+        const maxMinStockAllProducts = getMaxMinStock(this.data.goods.products);
+
+        const priceRangeSlide = new RangeSliderDual({
             container: this.container,
             observer: this.observer,
             name: 'priceRangeSlider',
-            from: 0,
-            to: 100,
-            max: 100,
+            from: this.data.filter.price.length === 0 ? 0 : this.data.filter.price[0],
+            to: this.data.filter.price.length === 0 ? maxMinPriceAllProducts.max : this.data.filter.price[1],
+            max: maxMinPriceAllProducts.max,
             min: 0,
-            type: RangeSliderType.price,
+            eventName: EventName.filterPrice,
         });
-        const stockRangeSlide = new RangeSlider({
+        const stockRangeSlide = new RangeSliderDual({
             container: this.container,
             observer: this.observer,
             name: 'stockRangeSlider',
-            from: 10,
-            to: 30,
-            max: 50,
+            from: this.data.filter.stock.length === 0 ? 0 : this.data.filter.stock[0],
+            to: this.data.filter.stock.length === 0 ? maxMinStockAllProducts.max : this.data.filter.stock[1],
+            max: maxMinStockAllProducts.max,
             min: 0,
-            type: RangeSliderType.stock,
+            eventName: EventName.filterStock,
         });
 
         priceRangeSlide.render();
