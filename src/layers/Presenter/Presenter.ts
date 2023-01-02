@@ -47,6 +47,8 @@ class Presenter {
         this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterBrand, function: this.filterBrand.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterCategory, function: this.filterCategory.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterPrice, function: this.filterPrice.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterStock, function: this.filterStock.bind(this) });
     }
 
     handleStateUpdate(data: Event | IModelData): void {
@@ -54,6 +56,7 @@ class Presenter {
             return;
         }
         this.getState();
+        console.log(this.state);
         this.view.update(data);
     }
 
@@ -246,6 +249,34 @@ class Presenter {
         this.model.updateState({
             type: IActionType.filter,
             payload: { ...this.state.filter, category: categoryFilter },
+        });
+    }
+
+    filterPrice(e: Event | IModelData) {
+        if (!(e instanceof CustomEvent)) {
+            return;
+        }
+        this.getState();
+        this.model.updateState({
+            type: IActionType.filter,
+            payload: {
+                ...this.state.filter,
+                price: [e.detail.nativeEvent.target.value1, e.detail.nativeEvent.target.value2],
+            },
+        });
+    }
+
+    filterStock(e: Event | IModelData) {
+        if (!(e instanceof CustomEvent)) {
+            return;
+        }
+        this.getState();
+        this.model.updateState({
+            type: IActionType.filter,
+            payload: {
+                ...this.state.filter,
+                stock: [e.detail.nativeEvent.target.value1, e.detail.nativeEvent.target.value2],
+            },
         });
     }
 }

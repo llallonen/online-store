@@ -11,6 +11,8 @@ enum EventName {
     removePromoCode = 'removePromoCode',
     filterBrand = 'filterBrand',
     filterCategory = 'filterCategory',
+    filterPrice = 'filterPrice',
+    filterStock = 'filterStock',
 }
 
 interface ISubscriber {
