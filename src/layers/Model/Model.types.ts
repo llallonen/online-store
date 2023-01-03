@@ -1,3 +1,4 @@
+import { ProductListType } from '../components/ProductList/ProductList.types';
 import Observer from '../Observer/Observer';
 
 interface IModelProps {
@@ -19,6 +20,7 @@ interface IModelData {
     basket: IBasket;
     goods: IGoods;
     filter: IFilter;
+    sort: ISort;
 }
 
 interface IBasket {
@@ -53,6 +55,10 @@ interface IFilter {
     brand: string[];
     price: number[];
     stock: number[];
+}
+
+interface ISort {
+    type: ProductListType;
 }
 
 export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods, IFilter };

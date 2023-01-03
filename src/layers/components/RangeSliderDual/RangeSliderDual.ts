@@ -2,6 +2,7 @@ import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
 import { IRangeSliderProps } from './RangeSliderDual.types';
 import 'toolcool-range-slider';
+import './RangeSliderDual.scss';
 
 class RangeSliderDual {
     private container: HTMLElement;
@@ -37,7 +38,7 @@ class RangeSliderDual {
         `;
 
         const sliderWrapper = document.createElement('div');
-        sliderWrapper.classList.add(`range-slider`);
+        sliderWrapper.classList.add(`RangeSlider`);
         sliderWrapper.innerHTML = slider;
         this.container.append(sliderWrapper);
         this.subscribe();

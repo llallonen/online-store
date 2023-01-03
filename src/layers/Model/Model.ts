@@ -1,3 +1,4 @@
+import { ProductListType } from '../components/ProductList/ProductList.types';
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
 import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter } from './Model.types';
@@ -19,6 +20,9 @@ class Model {
             category: [],
             price: [],
             stock: [],
+        },
+        sort: {
+            type: ProductListType.small,
         },
     };
 
