@@ -9,7 +9,8 @@ class Router {
     private path: string;
     private routes: IRoutes = [
         { path: '404', class: Page404 },
-        { path: '#/', class: MainPage },
+        { path: '#', class: MainPage },
+        { path: '', class: MainPage },
         { path: '#basket', class: BasketPage },
         { path: '#product', class: ProductPage },
     ];
@@ -22,7 +23,15 @@ class Router {
     }
 
     setPath() {
-        this.path = location.hash;
+        const hash = location.hash.match(/^[#]\w*/g);
+        if (hash) {
+            if (hash[0]) {
+                this.path = hash[0];
+            }
+        } else {
+            this.path = '';
+        }
+
         console.log('hash', this.path);
     }
 

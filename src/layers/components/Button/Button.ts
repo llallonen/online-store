@@ -8,12 +8,16 @@ class Button {
     private observer: Observer;
     private typeButton?: string | null;
     private textButton?: string | null;
+    private event: EventName | undefined;
 
-    constructor({ container, observer, typeButton, textButton }: IButtonProps) {
+    constructor({ container, observer, typeButton, textButton, event }: IButtonProps) {
         this.container = container;
         this.observer = observer;
         this.typeButton = typeButton;
         this.textButton = textButton;
+        if (event) {
+            this.event = event;
+        }
     }
 
     public render() {
@@ -21,10 +25,13 @@ class Button {
         button.textContent = `${this.textButton}`;
         button.classList.add('button', `${this.typeButton}`);
 
-        button.addEventListener('click', (e: Event) => {
-            const eventObject = { eventName: EventName.clickButton, eventPayload: e };
-            this.observer.notify(eventObject);
-        });
+        if (this.event) {
+            const event = this.event as EventName;
+            button.addEventListener('click', (e: Event) => {
+                const eventObject = { eventName: event, eventPayload: e };
+                this.observer.notify(eventObject);
+            });
+        }
         this.container.append(button);
     }
 }

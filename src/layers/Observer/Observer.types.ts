@@ -4,6 +4,12 @@ enum EventName {
     clickButton = 'clickButton',
     updateState = 'updateState',
     clickImg = 'clickImg',
+    addGoods = 'addGoods',
+    removeGoods = 'removeGoods',
+    changeItemsLimit = 'changeItemsLimit',
+    changeNavigationPage = 'changeNavigationPage',
+    addPromoCode = 'addPromoCode',
+    removePromoCode = 'removePromoCode',
 }
 
 interface ISubscriber {

@@ -1,0 +1,33 @@
+.basketItem {
+  display: flex;
+  padding: 5px 10px;
+  justify-content: space-between;
+  align-items: center;
+
+  &__id {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+    border: 3px solid black;
+  }
+
+  &__image {
+    &-wrapper {
+      position: relative;
+      background-color: rgba(0, 0, 0, .07);
+      padding-bottom: calc(150px/100%*100%);
+    }
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    
+  }
+
+  &__product-stock {
+    display: flex;
+  }
+}
