@@ -68,7 +68,7 @@ class ProductPhotos {
         }
 
         const trigger = document.querySelector('.product__thumbnail-img');
-        const paneContainer = document.querySelector('.product__description');
+        const paneContainer = document.querySelector('.product__info');
 
         if (trigger && paneContainer) {
             const options = {

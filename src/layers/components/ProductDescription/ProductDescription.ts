@@ -31,15 +31,22 @@ class ProductDescription {
                     const productDescriptionItem = document.createElement('li');
                     productDescriptionItem.classList.add('product__info-item');
 
-                    const productDescriptionTop = document.createElement('div');
-                    productDescriptionTop.classList.add('product__info-top');
-                    productDescriptionTop.textContent = field;
-                    productDescriptionItem.append(productDescriptionTop);
-
-                    const productDescriptionBottom = document.createElement('div');
-                    productDescriptionBottom.classList.add('product__info-bottom');
-                    productDescriptionBottom.textContent = `${t[k]}`;
-                    productDescriptionItem.append(productDescriptionBottom);
+                    switch (field) {
+                        case 'title':
+                            productDescriptionItem.innerHTML = `<div class="product__info-head">${t[k]}</div>`;
+                            break;
+                        case 'price':
+                            productDescriptionItem.innerHTML = `<div>${t[k]}$</div>`;
+                            break;
+                        case 'stock':
+                            productDescriptionItem.innerHTML = `<div>${t[k]} in stock</div>`;
+                            break;
+                        case 'brand':
+                            productDescriptionItem.innerHTML = `<div class="product__info-brand">${t[k]}</div>`;
+                            break;
+                        default:
+                            productDescriptionItem.innerHTML = `${t[k]}`;
+                    }
 
                     productDescriptionList.append(productDescriptionItem);
                 }

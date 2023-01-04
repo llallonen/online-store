@@ -6,14 +6,30 @@
 
     &__info {
         height: 400px;
-        width: 300px;
-        // display: flex;
+        width: 500px;
+        display: flex;
         position: relative;
-        // flex-direction: column;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__info-head {
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    &__info-brand {
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    &__info-item:not(:last-of-type) {
+        margin-bottom: 7px;
     }
 
     &__btns {
         display: flex;
         justify-content: space-between;
+        padding: 40px;
     }
 }
