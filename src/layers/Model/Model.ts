@@ -72,7 +72,6 @@ class Model {
 
     public changeImg(imgUrl: string) {
         this.data.currImg = imgUrl;
-        console.log('отработал changeImg');
         this.notify();
     }
 }
