@@ -7,6 +7,8 @@ import { ILocalStorageData, IPresenterProps } from './Presenter.types';
 import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket';
 import data from '../../data.json';
 import { RangeSlider } from 'toolcool-range-slider';
+import { ProductListType } from '../components/ProductList/ProductList.types';
+import { SortType } from '../components/SotrPanel/SortPanel.styles';
 
 class Presenter {
     private view: View;
@@ -50,6 +52,12 @@ class Presenter {
         this.observer.subscribe({ eventName: EventName.filterCategory, function: this.filterCategory.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterPrice, function: this.filterPrice.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterStock, function: this.filterStock.bind(this) });
+        this.observer.subscribe({
+            eventName: EventName.changeViewList,
+            function: this.changeViewListProducts.bind(this),
+        });
+        this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
+        this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
     }
 
     handleStateUpdate(data: Event | IModelData): void {
@@ -295,6 +303,64 @@ class Presenter {
                 },
             });
         }
+    }
+
+    changeViewListProducts(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+        this.getState();
+
+        const type = e.target.dataset.type;
+        if (type && type === ProductListType.small) {
+            this.model.updateState({
+                type: IActionType.sort,
+                payload: { ...this.state.sort, type: ProductListType.small },
+            });
+        } else {
+            this.model.updateState({
+                type: IActionType.sort,
+                payload: { ...this.state.sort, type: ProductListType.big },
+            });
+        }
+    }
+
+    setSort(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+
+        const selectedOption = e.target.querySelectorAll('option');
+        selectedOption.forEach((option) => {
+            if (option.selected) {
+                this.getState();
+                const sort = option.dataset.type;
+                if (sort) {
+                    let sortOption = SortType.priceASC;
+
+                    if (sort === SortType.priceDESC) {
+                        sortOption = SortType.priceDESC;
+                    }
+                    if (sort === SortType.ratingASC) {
+                        sortOption = SortType.ratingASC;
+                    }
+                    if (sort === SortType.ratingDESC) {
+                        sortOption = SortType.ratingDESC;
+                    }
+                    this.model.updateState({
+                        type: IActionType.sort,
+                        payload: { ...this.state.sort, sort: sortOption },
+                    });
+                }
+            }
+        });
+    }
+
+    clearFilter() {
+        this.model.updateState({
+            type: IActionType.filter,
+            payload: { ...this.state.filter, category: [], brand: [], stock: [], price: [] },
+        });
     }
 }
 

@@ -1,11 +1,13 @@
 import { filterProducts } from '../../../utils/filterProducts';
 import { getMaxMinPrice } from '../../../utils/getMaxMinPrice';
 import { getMaxMinStock } from '../../../utils/getMaxMinStock';
+import { sortProducts } from '../../../utils/sortProducts';
 import { FilterList } from '../../components/FilterList/FilterList';
 import { IFilterListType } from '../../components/FilterList/FilterList.types';
 import { IMain } from '../../components/Main/Main.types';
 import { ProductList } from '../../components/ProductList/ProductList';
 import { RangeSliderDual } from '../../components/RangeSliderDual/RangeSliderDual';
+import { SortPanel } from '../../components/SotrPanel/SortPanel';
 import { IBasketProduct, IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
@@ -21,7 +23,10 @@ class MainPage {
         this.container = container;
         this.observer = observer;
         this.data = data;
-        this.filterProducts = filterProducts(this.data.filter, this.data.goods.products);
+        this.filterProducts = sortProducts(
+            filterProducts(this.data.filter, this.data.goods.products),
+            this.data.sort.sort
+        );
     }
 
     public render() {
@@ -29,7 +34,12 @@ class MainPage {
         main.classList.add('MainPage');
 
         const mainContent = `
-            <div class="MainPage__sidebar"></div>
+            <div class="MainPage__sidebar">
+                <div class="MainPage__buttons">
+                    <button class="MainPage__button--reset">Reset Filters</button>
+                    <button class="MainPage__button--copy">Copy Link</button>
+                </div>
+            </div>
             <div class="MainPage__content"></div>
         `;
 
@@ -41,10 +51,12 @@ class MainPage {
         if (sidebar) {
             this.renderStockFilterList(sidebar);
             this.renderRangeSliders(sidebar);
+            this.listenSidebarButtons();
         }
 
         const contentBlock: HTMLElement | null = document.querySelector('.MainPage__content');
         if (contentBlock) {
+            this.sortPanel(contentBlock);
             this.renderProductList(contentBlock);
         }
     }
@@ -131,6 +143,44 @@ class MainPage {
             products: this.filterProducts,
             basket: this.data.basket.products,
         }).render();
+    }
+
+    private sortPanel(container: HTMLElement) {
+        new SortPanel({
+            container: container,
+            observer: this.observer,
+            countProduct: this.filterProducts.length,
+            sortType: this.data.sort.sort,
+        }).render();
+    }
+
+    private listenSidebarButtons() {
+        const buttonReset = document.querySelector('.MainPage__button--reset');
+        if (buttonReset) {
+            buttonReset.addEventListener('click', (e) => {
+                this.observer.notify({ eventName: EventName.clearFilter, eventPayload: e });
+            });
+        }
+
+        const buttonCopy = document.querySelector('.MainPage__button--copy');
+        if (buttonCopy) {
+            buttonCopy.addEventListener('click', () => {
+                const tempSpan = document.createElement('span');
+                tempSpan.textContent = window.location.href;
+
+                this.container.append(tempSpan);
+                const range = document.createRange();
+                range.selectNode(tempSpan);
+                window.getSelection()?.addRange(range);
+                document.execCommand('copy');
+                window.getSelection()?.removeAllRanges();
+                buttonCopy.textContent = 'Copied';
+                setTimeout(() => {
+                    buttonCopy.textContent = 'Copy Link';
+                }, 1000);
+                tempSpan.remove();
+            });
+        }
     }
 }
 

@@ -22,6 +22,9 @@ class ProductList {
     public render() {
         const productList = document.createElement('div');
         productList.classList.add('ProductList');
+        if (this.products.length === 0) {
+            productList.innerHTML = `<div class="ProductList__not-found">No products found 😏</div>`;
+        }
         if (this.type === ProductListType.big) {
             this.products.forEach((product) => {
                 const inBasket = this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;

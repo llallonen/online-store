@@ -13,6 +13,9 @@ enum EventName {
     filterCategory = 'filterCategory',
     filterPrice = 'filterPrice',
     filterStock = 'filterStock',
+    clearFilter = 'clearFilter',
+    changeViewList = 'changeViewList',
+    setSorting = 'setSorting',
 }
 
 interface ISubscriber {

@@ -1,7 +1,8 @@
 import { ProductListType } from '../components/ProductList/ProductList.types';
+import { SortType } from '../components/SotrPanel/SortPanel.styles';
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
-import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter } from './Model.types';
+import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort } from './Model.types';
 
 class Model {
     private observer: Observer;
@@ -23,6 +24,7 @@ class Model {
         },
         sort: {
             type: ProductListType.small,
+            sort: SortType.priceASC,
         },
     };
 
@@ -42,6 +44,9 @@ class Model {
                 break;
             case IActionType.filter:
                 this.data.filter = payload as IFilter;
+                break;
+            case IActionType.sort:
+                this.data.sort = payload as ISort;
                 break;
             default:
                 break;

@@ -1,4 +1,5 @@
 import { ProductListType } from '../components/ProductList/ProductList.types';
+import { SortType } from '../components/SotrPanel/SortPanel.styles';
 import Observer from '../Observer/Observer';
 
 interface IModelProps {
@@ -7,13 +8,14 @@ interface IModelProps {
 
 interface IAction {
     type: IActionType;
-    payload: IBasket | IGoods | IFilter;
+    payload: IBasket | IGoods | IFilter | ISort;
 }
 
 enum IActionType {
     basket = 'basket',
     goods = 'goods',
     filter = 'filter',
+    sort = 'sort',
 }
 
 interface IModelData {
@@ -59,6 +61,7 @@ interface IFilter {
 
 interface ISort {
     type: ProductListType;
+    sort: SortType;
 }
 
-export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods, IFilter };
+export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods, IFilter, ISort };
