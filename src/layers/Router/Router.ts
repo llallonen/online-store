@@ -32,13 +32,12 @@ class Router {
             this.path = '';
         }
 
-        console.log('hash', this.path);
+        //console.log('hash', this.path);
     }
 
     getPage({ container, observer, data }: IMain) {
         this.setPath();
         const className = this.routes.find((route) => route.path === this.path)?.class;
-        console.log(className);
         return className
             ? new className({ container, observer, data })
             : new this.routes[0].class({ container, observer, data });
