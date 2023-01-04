@@ -57,13 +57,12 @@ class ProductCard {
             });
         }
 
+        if (productDescription) {
+            productDescription.render();
+        }
         if (productPhotos) {
             productPhotos.render();
             productPhotos.renderThumbnail();
-        }
-
-        if (productDescription) {
-            productDescription.render();
         }
 
         if (addButton) {

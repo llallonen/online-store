@@ -5,15 +5,15 @@
     border: 1px solid rgb(205, 205, 205);
 
     &__info {
-        display: flex;
-        flex-direction: column;
-        width: 30%;
-        order: 2;
+        height: 400px;
+        width: 300px;
+        // display: flex;
+        position: relative;
+        // flex-direction: column;
     }
 
     &__btns {
         display: flex;
         justify-content: space-between;
-        order: 2;
     }
 }

@@ -13,9 +13,13 @@ class ProductDescription {
     }
 
     public render() {
-        const productDescription = document.createElement('ul');
+        const productDescription = document.createElement('div');
         productDescription.classList.add('product__description');
-        this.container.append(productDescription);
+        this.container.prepend(productDescription);
+
+        const productDescriptionList = document.createElement('ul');
+        productDescriptionList.classList.add('product__description-list');
+        productDescription.append(productDescriptionList);
 
         const productDescriptionItems = data.products[1];
 
@@ -23,14 +27,24 @@ class ProductDescription {
             for (const k in t) {
                 const fields = ['title', 'description', 'price', 'stock', 'color', 'brand'];
                 if (fields.includes(k)) {
+                    const field = `${k}`;
                     const productDescriptionItem = document.createElement('li');
                     productDescriptionItem.classList.add('product__info-item');
-                    productDescriptionItem.textContent = `${k} - ${t[k]}`;
-                    productDescription.append(productDescriptionItem);
+
+                    const productDescriptionTop = document.createElement('div');
+                    productDescriptionTop.classList.add('product__info-top');
+                    productDescriptionTop.textContent = field;
+                    productDescriptionItem.append(productDescriptionTop);
+
+                    const productDescriptionBottom = document.createElement('div');
+                    productDescriptionBottom.classList.add('product__info-bottom');
+                    productDescriptionBottom.textContent = `${t[k]}`;
+                    productDescriptionItem.append(productDescriptionBottom);
+
+                    productDescriptionList.append(productDescriptionItem);
                 }
             }
         }
-
         genForObj(productDescriptionItems);
     }
 }

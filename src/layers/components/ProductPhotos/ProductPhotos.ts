@@ -3,6 +3,7 @@ import data from '../../../data.json';
 import { IProductPhotos } from './ProductPhotos.types';
 import './ProductPhotos.scss';
 import { EventName } from '../../Observer/Observer.types';
+import Drift from 'drift-zoom';
 
 class ProductPhotos {
     private container: HTMLElement;
@@ -18,7 +19,7 @@ class ProductPhotos {
     public render() {
         const productPhotos = document.createElement('div');
         productPhotos.classList.add('product__photos');
-        this.container.append(productPhotos);
+        this.container.prepend(productPhotos);
 
         const productSlider = document.createElement('div');
         productSlider.classList.add('product__slider');
@@ -37,7 +38,6 @@ class ProductPhotos {
 
             slides.forEach((slide) => {
                 slide.addEventListener('click', (e: Event) => {
-                    console.log('click on photo');
                     const eventObject = { eventName: EventName.clickImg, eventPayload: e };
                     this.observer.notify(eventObject);
                 });
@@ -46,16 +46,36 @@ class ProductPhotos {
     }
 
     public renderThumbnail() {
-        const productThumbnail = document.createElement('img');
+        const productThumbnail = document.createElement('div');
         productThumbnail.classList.add('product__thumbnail');
-        this.currImg !== ''
-            ? (productThumbnail.src = `${this.currImg}`)
-            : (productThumbnail.src = `${data.products[1].images[0]}`);
 
-        console.log(productThumbnail.src);
+        const productThumbnailImg = document.createElement('img');
+        productThumbnailImg.classList.add('product__thumbnail-img');
+
+        if (this.currImg) {
+            productThumbnailImg.src = `${this.currImg}`;
+            productThumbnailImg.dataset.zoom = `${this.currImg}`;
+        } else {
+            productThumbnailImg.src = `${data.products[1].images[0]}`;
+            productThumbnailImg.dataset.zoom = `${data.products[1].images[0]}`;
+        }
+
+        productThumbnail.append(productThumbnailImg);
+
         const productPhotos = document.querySelector('.product__photos');
         if (productPhotos) {
             productPhotos.append(productThumbnail);
+        }
+
+        const trigger = document.querySelector('.product__thumbnail-img');
+        const paneContainer = document.querySelector('.product__description');
+
+        if (trigger && paneContainer) {
+            const options = {
+                paneContainer: paneContainer as HTMLElement,
+            };
+
+            new Drift(trigger as HTMLElement, options);
         }
     }
 }
