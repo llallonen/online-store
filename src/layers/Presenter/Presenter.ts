@@ -76,8 +76,19 @@ class Presenter {
 
     listenPopState() {
         window.addEventListener('popstate', () => {
+            this.model.setQueryParams();
             this.getState();
             this.view.update(this.state);
+            if (window.location.hash === '#/') {
+                this.model.updateState({
+                    type: IActionType.sort,
+                    payload: { sort: SortType.priceASC, type: ProductListType.big },
+                });
+                this.model.updateState({
+                    type: IActionType.filter,
+                    payload: { category: [], brand: [], price: [], stock: [] },
+                });
+            }
         });
     }
 

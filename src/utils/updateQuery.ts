@@ -12,7 +12,7 @@ export const updateQuery = (filters: IFilter, sort: ISort): void => {
         sort.sort === SortType.priceASC &&
         sort.type === ProductListType.big
     ) {
-        console.log('');
+        window.location.hash = '/';
     }
 
     if (filters.brand.length !== 0) {
@@ -33,7 +33,5 @@ export const updateQuery = (filters: IFilter, sort: ISort): void => {
     if (sort.type && sort.type !== ProductListType.big) {
         query += `type=${sort.type}&`;
     }
-
-    console.log(query.slice(0, -1));
     window.location.hash = query.slice(0, -1);
 };
