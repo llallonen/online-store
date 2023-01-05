@@ -64,4 +64,15 @@ interface ISort {
     sort: SortType;
 }
 
-export { IModelProps, IAction, IActionType, IModelData, IBasket, IBasketProduct, IGoods, IFilter, ISort };
+export {
+    IModelProps,
+    IAction,
+    IActionType,
+    IModelData,
+    IBasket,
+    IBasketProduct,
+    IGoods,
+    IFilter,
+    ISort,
+    ProductListType,
+};

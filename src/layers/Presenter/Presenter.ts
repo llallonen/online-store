@@ -9,6 +9,7 @@ import data from '../../data.json';
 import { RangeSlider } from 'toolcool-range-slider';
 import { ProductListType } from '../components/ProductList/ProductList.types';
 import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { updateQuery } from '../../utils/updateQuery';
 
 class Presenter {
     private view: View;
@@ -239,6 +240,7 @@ class Presenter {
             payload: { ...this.state.filter, brand: brandFilter },
         });
         this.getState();
+        this.updateUrl();
         console.log(this.state);
     }
 
@@ -259,6 +261,8 @@ class Presenter {
             type: IActionType.filter,
             payload: { ...this.state.filter, category: categoryFilter },
         });
+        this.getState();
+        this.updateUrl();
     }
 
     filterPrice(e: Event | IModelData) {
@@ -280,6 +284,9 @@ class Presenter {
                     price: [target.value1, target.value2],
                 },
             });
+
+            this.getState();
+            this.updateUrl();
         }
     }
 
@@ -302,6 +309,9 @@ class Presenter {
                     stock: [target.value1, target.value2],
                 },
             });
+
+            this.getState();
+            this.updateUrl();
         }
     }
 
@@ -323,6 +333,9 @@ class Presenter {
                 payload: { ...this.state.sort, type: ProductListType.big },
             });
         }
+
+        this.getState();
+        this.updateUrl();
     }
 
     setSort(e: Event | IModelData) {
@@ -354,6 +367,9 @@ class Presenter {
                 }
             }
         });
+
+        this.getState();
+        this.updateUrl();
     }
 
     clearFilter() {
@@ -361,6 +377,13 @@ class Presenter {
             type: IActionType.filter,
             payload: { ...this.state.filter, category: [], brand: [], stock: [], price: [] },
         });
+
+        this.getState();
+        this.updateUrl();
+    }
+
+    updateUrl() {
+        updateQuery(this.state.filter, this.state.sort);
     }
 }
 

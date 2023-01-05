@@ -64,7 +64,7 @@ class Model {
 
     public setQueryParams() {
         const hash = location.hash;
-        const query = hash.match(/\?[a-zA-Z=&0-9]{0,}/g);
+        const query = hash.match(/\?[a-zA-Z=&0-9,]{0,}/g);
         if (query && query[0]) {
             const urlParams = new URLSearchParams(query[0]);
             const params = Object.fromEntries(urlParams.entries());
@@ -77,6 +77,42 @@ class Model {
                 }
                 if (query[0] === 'page' && /\d*/g.test(query[1])) {
                     this.data.basket.page = Number(query[1]);
+                }
+                if (query[0] === 'type' && query[1] === ProductListType.small) {
+                    this.data.sort.type = ProductListType.small;
+                }
+                if (
+                    query[0] === 'sort' &&
+                    (query[1] === SortType.priceDESC ||
+                        query[1] === SortType.priceASC ||
+                        query[1] === SortType.ratingASC ||
+                        query[1] === SortType.ratingDESC)
+                ) {
+                    this.data.sort.sort = query[1];
+                }
+                if (query[0] === 'category' && query[1].length !== 0) {
+                    const categories = query[1].split(',');
+                    categories.forEach((category) => {
+                        this.data.filter.category.push(category);
+                    });
+                }
+                if (query[0] === 'brand' && query[1].length !== 0) {
+                    const brands = query[1].split(',');
+                    brands.forEach((brand) => {
+                        this.data.filter.brand.push(brand);
+                    });
+                }
+                if (query[0] === 'price' && query[1].length !== 0 && /\d*/g.test(query[1])) {
+                    const priceArr = query[1].split(',');
+                    if (!Number.isNaN(Number(priceArr[0])) && !Number.isNaN(Number(priceArr[1]))) {
+                        this.data.filter.price = [Number(priceArr[0]), Number(priceArr[1])];
+                    }
+                }
+                if (query[0] === 'stock' && query[1].length !== 0 && /\d*/g.test(query[1])) {
+                    const stockArr = query[1].split(',');
+                    if (!Number.isNaN(Number(stockArr[0])) && !Number.isNaN(Number(stockArr[1]))) {
+                        this.data.filter.stock = [Number(stockArr[0]), Number(stockArr[1])];
+                    }
                 }
             });
             this.notify();
