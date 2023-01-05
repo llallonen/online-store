@@ -76,9 +76,9 @@ class Presenter {
 
     listenPopState() {
         window.addEventListener('popstate', () => {
-            this.model.setQueryParams();
             this.getState();
             this.view.update(this.state);
+            this.model.setQueryParams();
             if (window.location.hash === '#/') {
                 this.model.updateState({
                     type: IActionType.sort,

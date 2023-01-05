@@ -92,12 +92,14 @@ class Model {
                 }
                 if (query[0] === 'category' && query[1].length !== 0) {
                     const categories = query[1].split(',');
+                    this.data.filter.category = [];
                     categories.forEach((category) => {
                         this.data.filter.category.push(category);
                     });
                 }
                 if (query[0] === 'brand' && query[1].length !== 0) {
                     const brands = query[1].split(',');
+                    this.data.filter.brand = [];
                     brands.forEach((brand) => {
                         this.data.filter.brand.push(brand);
                     });
