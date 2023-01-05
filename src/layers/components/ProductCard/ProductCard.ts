@@ -4,19 +4,26 @@ import { ProductPhotos } from '../ProductPhotos/ProductPhotos';
 import { IProductCard } from './ProductCard.types';
 import { Button } from '../Button/Button';
 import { ProductDescription } from '../ProductDescription/ProductDescription';
+import { IModelData } from '../../Model/Model.types';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 
 class ProductCard {
     private container: HTMLElement;
     private observer: Observer;
     private currImg?: string;
+    private data: IModelData;
 
-    constructor({ container, observer, currImg }: IProductCard) {
+    constructor({ container, observer, data, currImg }: IProductCard) {
         this.container = container;
         this.observer = observer;
+        this.data = data;
         this.currImg = currImg;
     }
 
     public render() {
+        const product = `${this.data.currProduct.category}`;
+        console.log(product);
+
         const productCard = document.createElement('section');
         productCard.classList.add('product');
         this.container.append(productCard);
@@ -35,6 +42,7 @@ class ProductCard {
                 container: productCard,
                 observer: this.observer,
                 currImg: this.currImg,
+                data: this.data,
             });
             productDescription = new ProductDescription({ container: productInfo, observer: this.observer });
 
@@ -56,7 +64,9 @@ class ProductCard {
                 textButton: 'Buy now',
             });
         }
-
+        if (productCard) {
+            new Breadcrumbs({ container: productCard, observer: this.observer, breadData: this.data }).render();
+        }
         if (productDescription) {
             productDescription.render();
         }
@@ -64,11 +74,9 @@ class ProductCard {
             productPhotos.render();
             productPhotos.renderThumbnail();
         }
-
         if (addButton) {
             addButton.render();
         }
-
         if (buyNowButton) {
             buyNowButton.render();
         }
