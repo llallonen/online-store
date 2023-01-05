@@ -39,19 +39,20 @@ class Model {
                 this.data.basket = { ...this.data.basket, ...payload };
                 localStorage.setItem('online-store2023', JSON.stringify({ basketData: { ...this.data.basket } }));
                 break;
-            case IActionType.goods:
-                this.data.goods = payload as IGoods;
-                break;
-            case IActionType.filter:
-                this.data.filter = payload as IFilter;
-                break;
-            case IActionType.sort:
-                this.data.sort = payload as ISort;
-                break;
             default:
                 break;
         }
         this.notify();
+    }
+
+    public updateFilter(payload: IFilter) {
+        this.data.filter = payload;
+    }
+    public updateSort(payload: ISort) {
+        this.data.sort = payload;
+    }
+    public updateGoods(payload: IGoods) {
+        this.data.goods = payload;
     }
 
     private notify() {
@@ -68,9 +69,7 @@ class Model {
         if (query && query[0]) {
             const urlParams = new URLSearchParams(query[0]);
             const params = Object.fromEntries(urlParams.entries());
-            console.log(query, params); //http://localhost:8080/#basket?ss=2&dd=3  {ss: '2', dd: '3'}
             const queryArray = Object.entries(params);
-            console.log('zzzz', queryArray);
             queryArray.forEach((query) => {
                 if (query[0] === 'limit' && /\d*/g.test(query[1])) {
                     this.data.basket.limit = Number(query[1]);

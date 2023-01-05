@@ -8,7 +8,7 @@ interface IModelProps {
 
 interface IAction {
     type: IActionType;
-    payload: IBasket | IGoods | IFilter | ISort;
+    payload: IBasket;
 }
 
 enum IActionType {

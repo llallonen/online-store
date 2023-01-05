@@ -66,7 +66,6 @@ class Presenter {
             return;
         }
         this.getState();
-        console.log(this.state);
         this.view.update(data);
     }
 
@@ -80,14 +79,8 @@ class Presenter {
             this.view.update(this.state);
             this.model.setQueryParams();
             if (window.location.hash === '#/') {
-                this.model.updateState({
-                    type: IActionType.sort,
-                    payload: { sort: SortType.priceASC, type: ProductListType.big },
-                });
-                this.model.updateState({
-                    type: IActionType.filter,
-                    payload: { category: [], brand: [], price: [], stock: [] },
-                });
+                this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
+                this.model.updateFilter({ category: [], brand: [], price: [], stock: [] });
             }
         });
     }
@@ -230,7 +223,7 @@ class Presenter {
     }
 
     fetchGoods() {
-        this.model.updateState({ type: IActionType.goods, payload: { products: [...data.products] } });
+        this.model.updateGoods({ products: [...data.products] });
     }
 
     filterBrand(e: Event | IModelData) {
@@ -246,10 +239,7 @@ class Presenter {
             }
         });
 
-        this.model.updateState({
-            type: IActionType.filter,
-            payload: { ...this.state.filter, brand: brandFilter },
-        });
+        this.model.updateFilter({ ...this.state.filter, brand: brandFilter });
         this.getState();
         this.updateUrl();
         console.log(this.state);
@@ -268,10 +258,7 @@ class Presenter {
             }
         });
 
-        this.model.updateState({
-            type: IActionType.filter,
-            payload: { ...this.state.filter, category: categoryFilter },
-        });
+        this.model.updateFilter({ ...this.state.filter, category: categoryFilter });
         this.getState();
         this.updateUrl();
     }
@@ -288,12 +275,9 @@ class Presenter {
             !Number.isNaN(target.value1) &&
             !Number.isNaN(target.value2)
         ) {
-            this.model.updateState({
-                type: IActionType.filter,
-                payload: {
-                    ...this.state.filter,
-                    price: [target.value1, target.value2],
-                },
+            this.model.updateFilter({
+                ...this.state.filter,
+                price: [target.value1, target.value2],
             });
 
             this.getState();
@@ -313,12 +297,9 @@ class Presenter {
             !Number.isNaN(target.value1) &&
             !Number.isNaN(target.value2)
         ) {
-            this.model.updateState({
-                type: IActionType.filter,
-                payload: {
-                    ...this.state.filter,
-                    stock: [target.value1, target.value2],
-                },
+            this.model.updateFilter({
+                ...this.state.filter,
+                stock: [target.value1, target.value2],
             });
 
             this.getState();
@@ -334,15 +315,9 @@ class Presenter {
 
         const type = e.target.dataset.type;
         if (type && type === ProductListType.small) {
-            this.model.updateState({
-                type: IActionType.sort,
-                payload: { ...this.state.sort, type: ProductListType.small },
-            });
+            this.model.updateSort({ ...this.state.sort, type: ProductListType.small });
         } else {
-            this.model.updateState({
-                type: IActionType.sort,
-                payload: { ...this.state.sort, type: ProductListType.big },
-            });
+            this.model.updateSort({ ...this.state.sort, type: ProductListType.big });
         }
 
         this.getState();
@@ -371,10 +346,7 @@ class Presenter {
                     if (sort === SortType.ratingDESC) {
                         sortOption = SortType.ratingDESC;
                     }
-                    this.model.updateState({
-                        type: IActionType.sort,
-                        payload: { ...this.state.sort, sort: sortOption },
-                    });
+                    this.model.updateSort({ ...this.state.sort, sort: sortOption });
                 }
             }
         });
@@ -384,10 +356,7 @@ class Presenter {
     }
 
     clearFilter() {
-        this.model.updateState({
-            type: IActionType.filter,
-            payload: { ...this.state.filter, category: [], brand: [], stock: [], price: [] },
-        });
+        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [] });
 
         this.getState();
         this.updateUrl();
