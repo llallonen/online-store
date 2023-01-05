@@ -7,7 +7,6 @@ import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort }
 class Model {
     private observer: Observer;
     private data: IModelData = {
-        count: 1,
         currImg: '',
         basket: {
             limit: 3,

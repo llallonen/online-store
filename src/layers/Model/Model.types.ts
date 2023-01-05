@@ -12,7 +12,6 @@ interface IAction {
 }
 
 enum IActionType {
-    count = 'count',
     currImg = 'currImg',
     currProduct = 'currProduct',
     basket = 'basket',
@@ -22,7 +21,6 @@ enum IActionType {
 }
 
 interface IModelData {
-    count?: number;
     currImg?: string;
     currProduct: IBasketProduct;
     basket: IBasket;

@@ -107,143 +107,15 @@ class Presenter {
     }
 
     fetchLocalStorage() {
-        const localData = {
-            basketData: {
-                limit: 1,
-                page: 3,
-                products: [
-                    {
-                        id: 23,
-                        title: 'Leather backpack',
-                        description: 'Monochrome leather backpack with decorative element',
-                        price: 399,
-                        discountPercentage: 12.96,
-                        rating: 3.9,
-                        color: 'gray',
-                        size: 'midi',
-                        stock: 6,
-                        brand: "D'oro",
-                        category: 'backpacks',
-                        count: 3,
-                        images: [
-                            'https://images.unsplash.com/photo-1560892000-4a61808f1940?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
-                        ],
-                    },
-                    {
-                        id: 24,
-                        title: 'Leather backpack',
-                        description: 'Bright monochrome leather backpack with cotrast zip closure',
-                        price: 469,
-                        discountPercentage: 12.96,
-                        rating: 4,
-                        color: 'blue',
-                        size: 'midi',
-                        stock: 6,
-                        brand: 'David Jones',
-                        category: 'backpacks',
-                        count: 6,
-                        images: [
-                            'https://images.unsplash.com/photo-1532697057284-bbe526e18cdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
-                        ],
-                    },
-                    {
-                        id: 25,
-                        title: 'Work Bag',
-                        description: 'Leather crossbody laptop case & tablet day bag',
-                        price: 659,
-                        discountPercentage: 12.96,
-                        rating: 4.6,
-                        color: 'brown',
-                        size: 'maxi',
-                        stock: 6,
-                        count: 2,
-                        brand: 'David Jones',
-                        category: 'backpacks',
-                        images: [
-                            'https://images.unsplash.com/photo-1608731267464-c0c889c2ff92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80',
-                        ],
-                    },
-                    {
-                        id: 26,
-                        title: 'Backpack',
-                        description: 'Monochrome minimal backpack',
-                        price: 659,
-                        discountPercentage: 12.96,
-                        rating: 4.6,
-                        color: 'black',
-                        size: 'midi',
-                        stock: 6,
-                        count: 2,
-                        brand: 'Aldo',
-                        category: 'backpacks',
-                        images: [
-                            'https://burst.shopifycdn.com/photos/backpack-in-black.jpg?width=1850&format=pjpg&exif=1&iptc=1',
-                        ],
-                    },
-                    {
-                        id: 27,
-                        title: 'Clutch',
-                        description: 'Mini cluthc with decorative element',
-                        price: 359,
-                        discountPercentage: 12.96,
-                        rating: 3.8,
-                        color: 'pink',
-                        size: 'mini',
-                        stock: 2,
-                        count: 1,
-                        brand: "D'oro",
-                        category: 'bags',
-                        images: [
-                            'https://burst.shopifycdn.com/photos/light-brown-clutch.jpg?width=2880&format=pjpg&exif=0&iptc=0',
-                        ],
-                    },
-                    {
-                        id: 28,
-                        title: 'Clutch',
-                        description: 'Mini cluthc with decorative element',
-                        price: 359,
-                        discountPercentage: 12.96,
-                        rating: 3.8,
-                        color: 'pink',
-                        size: 'mini',
-                        count: 1,
-                        stock: 2,
-                        brand: "D'oro",
-                        category: 'bags',
-                        images: [
-                            'https://burst.shopifycdn.com/photos/light-brown-clutch.jpg?width=2880&format=pjpg&exif=0&iptc=0',
-                        ],
-                    },
-                ],
-                promo: [],
-                currProduct: {
-                    id: 2,
-                    title: 'Leather backpack',
-                    description: 'A city backpack middle size made of genuine leather',
-                    price: 479,
-                    discountPercentage: 12.96,
-                    rating: 4.5,
-                    color: 'brown',
-                    size: 'midi',
-                    stock: 2,
-                    brand: 'Hedgren',
-                    category: 'backpacks',
-                    images: [
-                        'https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg',
-                        'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG',
-                        'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG',
-                        'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_03_800.JPG',
-                    ],
-                },
-            },
-        };
+        const localData = localStorage.getItem('online-store2023');
         let data: ILocalStorageData;
         if (localData) {
-            data = localData as ILocalStorageData;
+            data = JSON.parse(localData) as ILocalStorageData;
             if (data?.basketData) {
                 this.model.updateState({ type: IActionType.basket, payload: data.basketData });
             }
         }
+        console.log(this.model.getState());
     }
 
     addGoodToBasket(e: Event | IModelData) {

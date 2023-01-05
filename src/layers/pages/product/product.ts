@@ -27,7 +27,6 @@ class ProductPage {
                 observer: this.observer,
                 data: this.data,
                 currImg: this.data.currImg,
-                data: this.data,
             });
             productCard.render();
         }
