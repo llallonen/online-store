@@ -25,6 +25,7 @@ class ProductPage {
             const productCard = new ProductCard({
                 container: main,
                 observer: this.observer,
+                data: this.data,
                 currImg: this.data.currImg,
                 data: this.data,
             });

@@ -216,6 +216,25 @@ class Presenter {
                     },
                 ],
                 promo: [],
+                currProduct: {
+                    id: 2,
+                    title: 'Leather backpack',
+                    description: 'A city backpack middle size made of genuine leather',
+                    price: 479,
+                    discountPercentage: 12.96,
+                    rating: 4.5,
+                    color: 'brown',
+                    size: 'midi',
+                    stock: 2,
+                    brand: 'Hedgren',
+                    category: 'backpacks',
+                    images: [
+                        'https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg',
+                        'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG',
+                        'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG',
+                        'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_03_800.JPG',
+                    ],
+                },
             },
         };
         let data: ILocalStorageData;
