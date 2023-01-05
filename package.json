@@ -13,7 +13,8 @@
     "dependencies": {
         "drift-zoom": "^1.5.1",
         "sass": "^1.56.2",
-        "style-loader": "^3.3.1"
+        "style-loader": "^3.3.1",
+        "toolcool-range-slider": "^4.0.19"
     },
     "devDependencies": {
         "@types/drift-zoom": "^1.5.0",

@@ -1,0 +1,10 @@
+.ProductList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  &__not-found {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+}

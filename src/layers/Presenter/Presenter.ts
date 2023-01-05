@@ -5,6 +5,11 @@ import { EventName } from '../Observer/Observer.types';
 import { View } from '../View/View';
 import { ILocalStorageData, IPresenterProps } from './Presenter.types';
 import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket';
+import data from '../../data.json';
+import { RangeSlider } from 'toolcool-range-slider';
+import { ProductListType } from '../components/ProductList/ProductList.types';
+import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { updateQuery } from '../../utils/updateQuery';
 
 class Presenter {
     private view: View;
@@ -19,6 +24,7 @@ class Presenter {
         this.model = new Model({ observer: this.observer });
         this.state = this.model.getState();
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
+        this.fetchGoods();
         this.subscribe();
         this.listenPopState();
         // this.setHash();
@@ -44,6 +50,16 @@ class Presenter {
         this.observer.subscribe({ eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) });
         this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
         this.observer.subscribe({ eventName: EventName.clickImg, function: this.handleImgChange.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterBrand, function: this.filterBrand.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterCategory, function: this.filterCategory.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterPrice, function: this.filterPrice.bind(this) });
+        this.observer.subscribe({ eventName: EventName.filterStock, function: this.filterStock.bind(this) });
+        this.observer.subscribe({
+            eventName: EventName.changeViewList,
+            function: this.changeViewListProducts.bind(this),
+        });
+        this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
+        this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
     }
 
     handleImgChange(e: Event | IModelData): void {
@@ -77,6 +93,11 @@ class Presenter {
         window.addEventListener('popstate', () => {
             this.getState();
             this.view.update(this.state);
+            this.model.setQueryParams();
+            if (window.location.hash === '#/') {
+                this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
+                this.model.updateFilter({ category: [], brand: [], price: [], stock: [] });
+            }
         });
     }
 
@@ -324,6 +345,150 @@ class Presenter {
                 payload: { ...this.state.basket, promo: promo },
             });
         }
+    }
+
+    fetchGoods() {
+        this.model.updateGoods({ products: [...data.products] });
+    }
+
+    filterBrand(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
+            return;
+        }
+        this.getState();
+        const brandFilter: string[] = [];
+        const brandNodes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filterList__input.brand');
+        brandNodes.forEach((el) => {
+            if (el.checked) {
+                brandFilter.push(el.id);
+            }
+        });
+
+        this.model.updateFilter({ ...this.state.filter, brand: brandFilter });
+        this.getState();
+        this.updateUrl();
+        console.log(this.state);
+    }
+
+    filterCategory(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
+            return;
+        }
+        this.getState();
+        const categoryFilter: string[] = [];
+        const categoryNodes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filterList__input.category');
+        categoryNodes.forEach((el) => {
+            if (el.checked) {
+                categoryFilter.push(el.id);
+            }
+        });
+
+        this.model.updateFilter({ ...this.state.filter, category: categoryFilter });
+        this.getState();
+        this.updateUrl();
+    }
+
+    filterPrice(e: Event | IModelData) {
+        if (!(e instanceof CustomEvent)) {
+            return;
+        }
+        const target = e.target as RangeSlider;
+        this.getState();
+        if (
+            typeof target.value1 == 'number' &&
+            typeof target.value2 == 'number' &&
+            !Number.isNaN(target.value1) &&
+            !Number.isNaN(target.value2)
+        ) {
+            this.model.updateFilter({
+                ...this.state.filter,
+                price: [target.value1, target.value2],
+            });
+
+            this.getState();
+            this.updateUrl();
+        }
+    }
+
+    filterStock(e: Event | IModelData) {
+        if (!(e instanceof CustomEvent) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+        const target = e.target as RangeSlider;
+        this.getState();
+        if (
+            typeof target.value1 == 'number' &&
+            typeof target.value2 == 'number' &&
+            !Number.isNaN(target.value1) &&
+            !Number.isNaN(target.value2)
+        ) {
+            this.model.updateFilter({
+                ...this.state.filter,
+                stock: [target.value1, target.value2],
+            });
+
+            this.getState();
+            this.updateUrl();
+        }
+    }
+
+    changeViewListProducts(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+        this.getState();
+
+        const type = e.target.dataset.type;
+        if (type && type === ProductListType.small) {
+            this.model.updateSort({ ...this.state.sort, type: ProductListType.small });
+        } else {
+            this.model.updateSort({ ...this.state.sort, type: ProductListType.big });
+        }
+
+        this.getState();
+        this.updateUrl();
+    }
+
+    setSort(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
+            return;
+        }
+
+        const selectedOption = e.target.querySelectorAll('option');
+        selectedOption.forEach((option) => {
+            if (option.selected) {
+                this.getState();
+                const sort = option.dataset.type;
+                if (sort) {
+                    let sortOption = SortType.priceASC;
+
+                    if (sort === SortType.priceDESC) {
+                        sortOption = SortType.priceDESC;
+                    }
+                    if (sort === SortType.ratingASC) {
+                        sortOption = SortType.ratingASC;
+                    }
+                    if (sort === SortType.ratingDESC) {
+                        sortOption = SortType.ratingDESC;
+                    }
+                    this.model.updateSort({ ...this.state.sort, sort: sortOption });
+                }
+            }
+        });
+
+        this.getState();
+        this.updateUrl();
+    }
+
+    clearFilter() {
+        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [] });
+
+        this.getState();
+        this.updateUrl();
+    }
+
+    updateUrl() {
+        updateQuery(this.state.filter, this.state.sort);
     }
 }
 

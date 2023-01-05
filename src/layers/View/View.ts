@@ -4,6 +4,8 @@ import { Main } from '../components/Main/Main';
 import { IModelData } from '../Model/Model.types';
 import Observer from '../Observer/Observer';
 import { IViewProps } from './View.types';
+import { countTotalPrice } from '../../utils/countTotalPrice';
+import { countQuantityProducts } from '../../utils/countQuantityProducts';
 
 class View {
     private container: HTMLElement;
@@ -45,6 +47,9 @@ class View {
     public update(data: IModelData) {
         this.state = data;
         this.main.update(this.state);
+        const totalPrice = countTotalPrice(this.state.basket.products);
+        const countQuantity = countQuantityProducts(this.state.basket.products);
+        this.header.update(totalPrice, countQuantity);
     }
 }
 
