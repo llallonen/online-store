@@ -3,6 +3,7 @@ import { IModelData } from '../Model/Model.types';
 enum EventName {
     clickButton = 'clickButton',
     updateState = 'updateState',
+    clickImg = 'clickImg',
     addGoods = 'addGoods',
     removeGoods = 'removeGoods',
     changeItemsLimit = 'changeItemsLimit',

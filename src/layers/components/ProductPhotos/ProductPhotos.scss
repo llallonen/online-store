@@ -1,0 +1,30 @@
+.product {
+    &__photos {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 70%;
+        height: 400px;
+        gap: 20px;
+    }
+
+    &__slider {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__slide {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    &__thumbnail {
+        width: 400px;
+        height: 400px;
+
+        &-img {
+            object-fit: cover;
+        }
+    }
+}

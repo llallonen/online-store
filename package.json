@@ -11,11 +11,13 @@
     "author": "Valeria Sycheva, Andrey Lapin",
     "license": "MIT",
     "dependencies": {
+        "drift-zoom": "^1.5.1",
         "sass": "^1.56.2",
         "style-loader": "^3.3.1",
         "toolcool-range-slider": "^4.0.19"
     },
     "devDependencies": {
+        "@types/drift-zoom": "^1.5.0",
         "@typescript-eslint/eslint-plugin": "^5.46.1",
         "@typescript-eslint/parser": "^5.46.1",
         "clean-webpack-plugin": "^4.0.0",

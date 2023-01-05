@@ -1,3 +1,4 @@
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { IProductProps } from './product.types';
@@ -15,10 +16,20 @@ class ProductPage {
 
     public render() {
         const header = document.createElement('h1');
-        header.classList.add('page404__header');
         header.textContent = 'Product Page';
-
         this.container.append(header);
+
+        const main = document.querySelector('main');
+
+        if (main) {
+            const productCard = new ProductCard({
+                container: main,
+                observer: this.observer,
+                data: this.data,
+                currImg: this.data.currImg,
+            });
+            productCard.render();
+        }
     }
 }
 

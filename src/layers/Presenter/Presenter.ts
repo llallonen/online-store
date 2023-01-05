@@ -49,6 +49,7 @@ class Presenter {
         this.observer.subscribe({ eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) });
         this.observer.subscribe({ eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) });
         this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
+        this.observer.subscribe({ eventName: EventName.clickImg, function: this.handleImgChange.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterBrand, function: this.filterBrand.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterCategory, function: this.filterCategory.bind(this) });
         this.observer.subscribe({ eventName: EventName.filterPrice, function: this.filterPrice.bind(this) });
@@ -59,6 +60,21 @@ class Presenter {
         });
         this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
         this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
+    }
+
+    handleImgChange(e: Event | IModelData): void {
+        if (!(e instanceof PointerEvent)) {
+            return;
+        }
+        if (!(e.target instanceof HTMLImageElement)) {
+            return;
+        }
+
+        this.getState();
+        const imgUrl: string = e.target.src;
+
+        this.model.changeImg(imgUrl);
+        this.getState();
     }
 
     handleStateUpdate(data: Event | IModelData): void {

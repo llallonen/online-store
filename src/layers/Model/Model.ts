@@ -7,6 +7,7 @@ import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort }
 class Model {
     private observer: Observer;
     private data: IModelData = {
+        currImg: '',
         basket: {
             limit: 3,
             page: 1,
@@ -26,6 +27,25 @@ class Model {
             type: ProductListType.big,
             sort: SortType.priceASC,
         },
+        currProduct: {
+            id: 2,
+            title: 'Leather backpack',
+            description: 'A city backpack middle size made of genuine leather',
+            price: 479,
+            discountPercentage: 12.96,
+            rating: 4.5,
+            color: 'brown',
+            size: 'midi',
+            stock: 2,
+            brand: 'Hedgren',
+            category: 'backpacks',
+            images: [
+                'https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg',
+                'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG',
+                'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG',
+                'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_03_800.JPG',
+            ],
+        },
     };
 
     constructor({ observer }: IModelProps) {
@@ -38,6 +58,10 @@ class Model {
             case IActionType.basket:
                 this.data.basket = { ...this.data.basket, ...payload };
                 localStorage.setItem('online-store2023', JSON.stringify({ basketData: { ...this.data.basket } }));
+                break;
+            case IActionType.currProduct:
+                this.data.currProduct = { ...this.data.currProduct, ...payload };
+                localStorage.setItem('currentProduct', JSON.stringify({ currProduct: { ...this.data.currProduct } }));
                 break;
             default:
                 break;
@@ -118,6 +142,11 @@ class Model {
             });
             this.notify();
         }
+    }
+
+    public changeImg(imgUrl: string) {
+        this.data.currImg = imgUrl;
+        this.notify();
     }
 }
 

@@ -2,6 +2,7 @@ import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import Router from '../../Router/Router';
 import { IMain } from './Main.types';
+import './Main.scss';
 
 class Main {
     private container: HTMLElement;

@@ -137,6 +137,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/drift-zoom@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@types/drift-zoom/-/drift-zoom-1.5.0.tgz#d6a5440e9dddaec24a93b4a256940848f6d04805"
+  integrity sha512-stwiDeRmAv5vvg+R491eZde5Gg2zAoTwiuDhRE9UfbzBSRcLWm/N9PpmT0gxhfKkGG1E2m7uFoClZ0zbk72qyw==
+
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
   resolved "https://registry.npmjs.org/@types/eslint-scope/-/eslint-scope-3.7.4.tgz"
@@ -1106,6 +1111,11 @@ dot-case@^3.0.4:
   dependencies:
     no-case "^3.0.4"
     tslib "^2.0.3"
+
+drift-zoom@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/drift-zoom/-/drift-zoom-1.5.1.tgz#1f815c34590f4c8adda31a437d681c5b62f5d70d"
+  integrity sha512-GNLWl0ydTkgyFxfPouKvAZXvJhTt2dqUGkXCqENe+Y1OlQuQ+nUNKgvSpNvjp3nrbcij75GbJR/iMf/qdZbgPw==
 
 ee-first@1.1.1:
   version "1.1.1"
