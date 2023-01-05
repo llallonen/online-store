@@ -1,19 +1,21 @@
 import Observer from '../../Observer/Observer';
-import data from '../../../data.json';
 import { IProductPhotos } from './ProductPhotos.types';
 import './ProductPhotos.scss';
 import { EventName } from '../../Observer/Observer.types';
 import Drift from 'drift-zoom';
+import { IModelData } from '../../Model/Model.types';
 
 class ProductPhotos {
     private container: HTMLElement;
     private observer: Observer;
     private currImg?: string;
+    private data: IModelData;
 
-    constructor({ container, observer, currImg }: IProductPhotos) {
+    constructor({ container, observer, currImg, data }: IProductPhotos) {
         this.container = container;
         this.observer = observer;
         this.currImg = currImg;
+        this.data = data;
     }
 
     public render() {
@@ -25,7 +27,7 @@ class ProductPhotos {
         productSlider.classList.add('product__slider');
         productPhotos.append(productSlider);
 
-        const productSlides = data.products[1].images;
+        const productSlides = this.data.currProduct.images;
         productSlides.map((item) => {
             const slide = document.createElement('img');
             slide.classList.add('product__slide');
@@ -56,8 +58,8 @@ class ProductPhotos {
             productThumbnailImg.src = `${this.currImg}`;
             productThumbnailImg.dataset.zoom = `${this.currImg}`;
         } else {
-            productThumbnailImg.src = `${data.products[1].images[0]}`;
-            productThumbnailImg.dataset.zoom = `${data.products[1].images[0]}`;
+            productThumbnailImg.src = `${this.data.currProduct.images[0]}`;
+            productThumbnailImg.dataset.zoom = `${this.data.currProduct.images[0]}`;
         }
 
         productThumbnail.append(productThumbnailImg);
