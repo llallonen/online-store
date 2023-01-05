@@ -9,6 +9,13 @@ enum EventName {
     changeNavigationPage = 'changeNavigationPage',
     addPromoCode = 'addPromoCode',
     removePromoCode = 'removePromoCode',
+    filterBrand = 'filterBrand',
+    filterCategory = 'filterCategory',
+    filterPrice = 'filterPrice',
+    filterStock = 'filterStock',
+    clearFilter = 'clearFilter',
+    changeViewList = 'changeViewList',
+    setSorting = 'setSorting',
 }
 
 interface ISubscriber {

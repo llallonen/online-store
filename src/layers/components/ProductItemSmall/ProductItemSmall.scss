@@ -1,0 +1,15 @@
+.ProductItemSmall {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__image {
+    width: 150px;
+    height: 150px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+  }
+}

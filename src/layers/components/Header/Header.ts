@@ -44,6 +44,18 @@ class Header {
             window.location.hash = '/';
         });
     }
+
+    public update(totalCount: number, bagCount: number) {
+        const totalCountNode = document.querySelector('.total');
+        if (totalCountNode) {
+            totalCountNode.textContent = `${totalCount}`;
+        }
+
+        const bagCountNode = document.querySelector('.bag__count');
+        if (bagCountNode) {
+            bagCountNode.textContent = `${bagCount}`;
+        }
+    }
 }
 
 export { Header };
