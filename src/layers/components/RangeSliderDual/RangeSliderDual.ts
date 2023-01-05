@@ -26,6 +26,9 @@ class RangeSliderDual {
 
     public render() {
         const slider = `
+        <div class="RangeSlider__counters" id="${this.name}-counters">
+            <span class="RangeSlider__counter-from">${this.from}</span><span class="RangeSlider__counter-to">${this.to}</span>
+        </div>
           <tc-range-slider 
             id="${this.name}"
             min="${this.min}"
@@ -52,6 +55,26 @@ class RangeSliderDual {
                     this.observer.notify({ eventName: this.eventName, eventPayload: e });
                 }
             });
+            slider.addEventListener('change', (e: Event) => {
+                if (e instanceof CustomEvent) {
+                    if (!Number.isNaN(e.detail.values[0]) && !Number.isNaN(e.detail.values[1])) {
+                        this.updateCounter(e.detail.values[0], e.detail.values[1]);
+                    }
+                }
+            });
+        }
+    }
+
+    private updateCounter(from: number, to: number) {
+        const sliderNode = document.getElementById(`${this.name}-counters`);
+        const fromNode = sliderNode?.querySelector('.RangeSlider__counter-from');
+        const toNode = sliderNode?.querySelector('.RangeSlider__counter-to');
+        if (fromNode) {
+            fromNode.textContent = `${from}`;
+        }
+
+        if (toNode) {
+            toNode.textContent = `${to}`;
         }
     }
 }

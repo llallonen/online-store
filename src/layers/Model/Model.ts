@@ -23,7 +23,7 @@ class Model {
             stock: [],
         },
         sort: {
-            type: ProductListType.small,
+            type: ProductListType.big,
             sort: SortType.priceASC,
         },
     };
