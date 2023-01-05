@@ -50,7 +50,7 @@ class RangeSliderDual {
     private subscribe() {
         const slider = document.getElementById(`${this.name}`);
         if (slider) {
-            slider.addEventListener('onPointerClicked', (e: Event) => {
+            slider.addEventListener('onMouseUp', (e: Event) => {
                 if (e instanceof CustomEvent) {
                     this.observer.notify({ eventName: this.eventName, eventPayload: e });
                 }
