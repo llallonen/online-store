@@ -165,20 +165,19 @@ class MainPage {
         const buttonCopy = document.querySelector('.MainPage__button--copy');
         if (buttonCopy) {
             buttonCopy.addEventListener('click', () => {
-                const tempSpan = document.createElement('span');
-                tempSpan.textContent = window.location.href;
+                const tempSpan = document.createElement('textarea');
+                tempSpan.value = window.location.href;
 
                 this.container.append(tempSpan);
-                const range = document.createRange();
-                range.selectNode(tempSpan);
-                window.getSelection()?.addRange(range);
+                tempSpan.select();
+                tempSpan.setSelectionRange(0, 99999);
                 document.execCommand('copy');
-                window.getSelection()?.removeAllRanges();
+                tempSpan.parentNode?.removeChild(tempSpan);
                 buttonCopy.textContent = 'Copied';
+                tempSpan.remove();
                 setTimeout(() => {
                     buttonCopy.textContent = 'Copy Link';
                 }, 1000);
-                tempSpan.remove();
             });
         }
     }
