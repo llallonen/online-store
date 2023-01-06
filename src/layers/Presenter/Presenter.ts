@@ -60,6 +60,7 @@ class Presenter {
         });
         this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
         this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
+        this.observer.subscribe({ eventName: EventName.clearBasket, function: this.clearBasket.bind(this) });
     }
 
     handleImgChange(e: Event | IModelData): void {
@@ -380,6 +381,14 @@ class Presenter {
 
     updateUrl() {
         updateQuery(this.state.filter, this.state.sort);
+    }
+
+    clearBasket() {
+        this.getState();
+        this.model.updateState({
+            type: IActionType.basket,
+            payload: { ...this.state.basket, promo: [], products: [] },
+        });
     }
 }
 
