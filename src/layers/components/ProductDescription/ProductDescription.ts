@@ -1,15 +1,18 @@
 import Observer from '../../Observer/Observer';
-import data from '../../../data.json';
+// import data from '../../../data.json';
 import { IProductDescription } from './ProductDescription.types';
 import './ProductDescription.scss';
+import { IBasketProduct } from '../../Model/Model.types';
 
 class ProductDescription {
     private container: HTMLElement;
     private observer: Observer;
+    private product: IBasketProduct;
 
-    constructor({ container, observer }: IProductDescription) {
+    constructor({ container, observer, product }: IProductDescription) {
         this.container = container;
         this.observer = observer;
+        this.product = product;
     }
 
     public render() {
@@ -20,8 +23,7 @@ class ProductDescription {
         const productDescriptionList = document.createElement('ul');
         productDescriptionList.classList.add('product__description-list');
         productDescription.append(productDescriptionList);
-
-        const productDescriptionItems = data.products[1];
+        // const productDescriptionItems = data.products[1];
 
         function genForObj<T>(t: T) {
             for (const k in t) {
@@ -52,7 +54,7 @@ class ProductDescription {
                 }
             }
         }
-        genForObj(productDescriptionItems);
+        genForObj(this.product);
     }
 }
 

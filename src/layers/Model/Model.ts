@@ -2,7 +2,7 @@ import { ProductListType } from '../components/ProductList/ProductList.types';
 import { SortType } from '../components/SotrPanel/SortPanel.styles';
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
-import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort } from './Model.types';
+import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort, IBasketProduct } from './Model.types';
 
 class Model {
     private observer: Observer;
@@ -50,7 +50,7 @@ class Model {
 
     constructor({ observer }: IModelProps) {
         this.observer = observer;
-        this.setQueryParams();
+        // this.setQueryParams();
     }
 
     public updateState({ type, payload }: IAction) {
@@ -77,6 +77,9 @@ class Model {
     }
     public updateGoods(payload: IGoods) {
         this.data.goods = payload;
+    }
+    public updateCurrProduct(payload: IBasketProduct) {
+        this.data.currProduct = payload;
     }
 
     private notify() {
@@ -137,6 +140,16 @@ class Model {
                     const stockArr = query[1].split(',');
                     if (!Number.isNaN(Number(stockArr[0])) && !Number.isNaN(Number(stockArr[1]))) {
                         this.data.filter.stock = [Number(stockArr[0]), Number(stockArr[1])];
+                    }
+                }
+                if (query[0] === 'id' && !Number.isNaN(Number(query[1]))) {
+                    const item = this.data.goods.products.find((el) => el.id === Number(query[1]));
+                    console.log(query[1], item);
+                    if (item) {
+                        this.data.currImg = item.images[0];
+                        this.data.currProduct = { ...this.data.currProduct, ...item };
+                        console.log('ssssssssssssssss');
+                        console.log('z', this.data);
                     }
                 }
             });

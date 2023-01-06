@@ -7,6 +7,7 @@ interface IButtonProps {
     typeButton?: string | null;
     textButton?: string | null;
     event?: EventName;
+    id?: number;
 }
 
 export { IButtonProps };

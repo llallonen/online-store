@@ -60,6 +60,10 @@ class Presenter {
         });
         this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
         this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
+        this.observer.subscribe({
+            eventName: EventName.setCurrentProduct,
+            function: this.setCurrentProduct.bind(this),
+        });
     }
 
     handleImgChange(e: Event | IModelData): void {
@@ -240,6 +244,7 @@ class Presenter {
 
     fetchGoods() {
         this.model.updateGoods({ products: [...data.products] });
+        this.model.setQueryParams();
     }
 
     filterBrand(e: Event | IModelData) {
@@ -380,6 +385,20 @@ class Presenter {
 
     updateUrl() {
         updateQuery(this.state.filter, this.state.sort);
+    }
+
+    setCurrentProduct(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLButtonElement)) {
+            return;
+        }
+
+        const id = Number(e.target.dataset.idProduct);
+        this.getState();
+        const product = this.state.goods.products.find((el) => el.id === id);
+        if (product) {
+            this.model.updateCurrProduct({ ...this.state.currProduct, ...product });
+            this.model.changeImg(product.images[0]);
+        }
     }
 }
 
