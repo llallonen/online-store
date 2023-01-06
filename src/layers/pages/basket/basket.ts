@@ -9,6 +9,7 @@ import { countTotalPriceWithPromo } from '../../../utils/countTotalPriceWithProm
 import { countQuantityProducts } from '../../../utils/countQuantityProducts';
 import { EventName } from '../../Observer/Observer.types';
 import { promo } from './promo/promo';
+import { BasketModal } from '../../components/BasketModal/BasketModal';
 
 class BasketPage {
     private container: HTMLElement;
@@ -70,6 +71,9 @@ class BasketPage {
             <div class="basket__modal">
                 <div class="basket__modal-content"></div>
             </div>
+            <div class="basket__success">
+                <div class="basket__success-text">Order is processed</div>
+            </div>
         </div>`;
 
         this.container.innerHTML = basket;
@@ -113,6 +117,15 @@ class BasketPage {
             });
         }
 
+        const modalWrapper = document.querySelector('.basket__modal');
+        modalWrapper?.addEventListener('click', (e: Event) => {
+            if (e.target instanceof HTMLDivElement) {
+                if (e.target === modalWrapper) {
+                    modalWrapper.classList.toggle('active');
+                }
+            }
+        });
+
         const promoButtonNodes = document.querySelectorAll('.basket__promo-button');
         promoButtonNodes.forEach((node) => {
             node.addEventListener('click', (e: Event) => {
@@ -143,6 +156,8 @@ class BasketPage {
                 this.observer.notify({ eventName: EventName.removePromoCode, eventPayload: e });
             });
         });
+
+        this.renderBasketModal();
     }
 
     private renderBasketList() {
@@ -151,7 +166,7 @@ class BasketPage {
             new BasketList({ container: basketList, observer: this.observer, basketData: this.data.basket }).render();
         } else {
             const basket = `<div class="basket__empty-header">
-                <h1>Cart is Empty</h1>
+                <h1 class="basket__empty-header-text">Cart is Empty</h1>
             </div>`;
             this.container.innerHTML = basket;
         }
@@ -175,6 +190,14 @@ class BasketPage {
 
     private countQuantityProducts() {
         return countQuantityProducts(this.data.basket.products);
+    }
+
+    private renderBasketModal() {
+        const basketModalNode: HTMLElement | null = document.querySelector('.basket__modal-content');
+
+        if (basketModalNode) {
+            new BasketModal({ container: basketModalNode, observer: this.observer }).render();
+        }
     }
 }
 

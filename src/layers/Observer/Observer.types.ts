@@ -18,6 +18,7 @@ enum EventName {
     changeViewList = 'changeViewList',
     setSorting = 'setSorting',
     setCurrentProduct = 'setCurrentProduct',
+    clearBasket = 'clearBasket',
 }
 
 interface ISubscriber {
