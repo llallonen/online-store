@@ -2,7 +2,7 @@ import { ProductListType } from '../components/ProductList/ProductList.types';
 import { SortType } from '../components/SotrPanel/SortPanel.styles';
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
-import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort } from './Model.types';
+import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort, IBasketProduct } from './Model.types';
 
 class Model {
     private observer: Observer;
@@ -78,6 +78,9 @@ class Model {
     public updateGoods(payload: IGoods) {
         this.data.goods = payload;
     }
+    public updateCurrProduct(payload: IBasketProduct) {
+        this.data.currProduct = payload;
+    }
 
     private notify() {
         this.observer.notify({ eventName: EventName.updateState, eventPayload: this.data });
@@ -124,7 +127,13 @@ class Model {
                     const brands = query[1].split(',');
                     this.data.filter.brand = [];
                     brands.forEach((brand) => {
-                        this.data.filter.brand.push(brand);
+                        if (brand === 'David') {
+                            this.data.filter.brand.push('David Jones');
+                        } else if (brand === 'D') {
+                            this.data.filter.brand.push("D'oro");
+                        } else {
+                            this.data.filter.brand.push(brand);
+                        }
                     });
                 }
                 if (query[0] === 'price' && query[1].length !== 0 && /\d*/g.test(query[1])) {
@@ -137,6 +146,16 @@ class Model {
                     const stockArr = query[1].split(',');
                     if (!Number.isNaN(Number(stockArr[0])) && !Number.isNaN(Number(stockArr[1]))) {
                         this.data.filter.stock = [Number(stockArr[0]), Number(stockArr[1])];
+                    }
+                }
+                if (query[0] === 'id' && !Number.isNaN(Number(query[1]))) {
+                    const item = this.data.goods.products.find((el) => el.id === Number(query[1]));
+                    console.log(query[1], item);
+                    if (item) {
+                        this.data.currImg = item.images[0];
+                        this.data.currProduct = { ...this.data.currProduct, ...item };
+                        console.log('ssssssssssssssss');
+                        console.log('z', this.data);
                     }
                 }
             });

@@ -6,6 +6,7 @@ import { Button } from '../Button/Button';
 import { ProductDescription } from '../ProductDescription/ProductDescription';
 import { IModelData } from '../../Model/Model.types';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { EventName } from '../../Observer/Observer.types';
 
 class ProductCard {
     private container: HTMLElement;
@@ -21,8 +22,8 @@ class ProductCard {
     }
 
     public render() {
-        const product = `${this.data.currProduct.category}`;
-        console.log(product);
+        // const product = `${this.data.currProduct.category}`;
+        // console.log(product);
 
         const productCard = document.createElement('section');
         productCard.classList.add('product');
@@ -36,27 +37,48 @@ class ProductCard {
         let productDescription;
         let addButton;
         let buyNowButton;
+        let removeButton;
 
+        const productData = this.data.goods.products.find((el) => el.id === this.data.currProduct.id);
         if (productCard instanceof HTMLElement) {
-            productPhotos = new ProductPhotos({
-                container: productCard,
-                observer: this.observer,
-                currImg: this.currImg,
-                data: this.data,
-            });
-            productDescription = new ProductDescription({ container: productInfo, observer: this.observer });
+            if (productData) {
+                productPhotos = new ProductPhotos({
+                    container: productCard,
+                    observer: this.observer,
+                    currImg: this.currImg,
+                    data: this.data,
+                });
+
+                productDescription = new ProductDescription({
+                    container: productInfo,
+                    observer: this.observer,
+                    product: productData,
+                });
+            }
 
             const productBtns = document.createElement('div');
             productBtns.classList.add('product__btns');
             productInfo.append(productBtns);
 
-            addButton = new Button({
-                container: productBtns,
-                observer: this.observer,
-                typeButton: 'button--product',
-                textButton: 'Add to cart',
-            });
-
+            if (this.data.basket.products.find((el) => el.id === this.data.currProduct.id)) {
+                removeButton = new Button({
+                    container: productBtns,
+                    observer: this.observer,
+                    typeButton: 'button--product',
+                    textButton: 'Drop from cart',
+                    id: this.data.currProduct.id,
+                    event: EventName.removeGoods,
+                });
+            } else {
+                addButton = new Button({
+                    container: productBtns,
+                    observer: this.observer,
+                    typeButton: 'button--product',
+                    textButton: 'Add to cart',
+                    id: this.data.currProduct.id,
+                    event: EventName.addGoods,
+                });
+            }
             buyNowButton = new Button({
                 container: productBtns,
                 observer: this.observer,
@@ -64,8 +86,13 @@ class ProductCard {
                 textButton: 'Buy now',
             });
         }
-        if (productCard) {
-            new Breadcrumbs({ container: productCard, observer: this.observer, breadData: this.data }).render();
+        if (productCard && productData) {
+            new Breadcrumbs({
+                container: productCard,
+                observer: this.observer,
+                breadData: this.data,
+                product: productData,
+            }).render();
         }
         if (productDescription) {
             productDescription.render();
@@ -76,6 +103,9 @@ class ProductCard {
         }
         if (addButton) {
             addButton.render();
+        }
+        if (removeButton) {
+            removeButton.render();
         }
         if (buyNowButton) {
             buyNowButton.render();
