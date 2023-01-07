@@ -1,8 +1,7 @@
-import { IBasketProduct } from '../../layers/Model/Model.types';
-import { IAllProducts } from '../../layers/components/FilterItem/FilterItem.types';
-import { getListBrand } from '../getListBrand';
+import { IBasketProduct, IFilter } from '../../layers/Model/Model.types';
+import { filterProducts } from '../filterProducts';
 
-describe('getListBrand function', () => {
+describe('filterProducts function', () => {
     const product: IBasketProduct[] = [
         {
             id: 5,
@@ -33,7 +32,7 @@ describe('getListBrand function', () => {
             size: 'xxl',
             stock: 30,
             brand: 'BingoBongo2',
-            category: 'Bags',
+            category: 'Bags2',
             images: [
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
@@ -52,7 +51,7 @@ describe('getListBrand function', () => {
             size: 'xxl',
             stock: 30,
             brand: 'BingoBongo2',
-            category: 'Bags',
+            category: 'Bags2',
             images: [
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
@@ -61,33 +60,57 @@ describe('getListBrand function', () => {
         },
     ];
 
-    const result: IAllProducts[] = [
-        {
-            count: 1,
-            name: 'BingoBongo',
-        },
-        {
-            count: 2,
-            name: 'BingoBongo2',
-        },
-    ];
+    const filter: IFilter = {
+        brand: ['BingoBongo2'],
+        category: ['Bags2'],
+        price: [0, 300],
+        stock: [0, 40],
+    };
 
-    const result2: IAllProducts[] = [
+    const result = [
         {
-            count: 1,
-            name: 'BingoBongo',
+            id: 5,
+            title: 'Bag',
+            description: 'Bag cool',
+            price: 200,
+            discountPercentage: 12,
+            rating: 1,
+            color: 'red',
+            size: 'xxl',
+            stock: 30,
+            brand: 'BingoBongo2',
+            category: 'Bags2',
+            images: [
+                'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
+                'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
+            ],
+            count: 4,
         },
         {
-            count: 1,
-            name: 'BingoBongo2',
+            id: 5,
+            title: 'Bag',
+            description: 'Bag cool',
+            price: 200,
+            discountPercentage: 12,
+            rating: 1,
+            color: 'red',
+            size: 'xxl',
+            stock: 30,
+            brand: 'BingoBongo2',
+            category: 'Bags2',
+            images: [
+                'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
+                'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
+            ],
+            count: 4,
         },
     ];
 
     test('Should be equal result', () => {
-        expect(getListBrand(product)).toEqual(result);
+        expect(filterProducts(filter, product)).toEqual(result);
     });
 
-    test('Should be equal result2', () => {
-        expect(getListBrand([product[0], product[1]])).toEqual(result2);
+    test('Should be equal [] if filter get 0 products', () => {
+        expect(filterProducts(filter, [product[0]])).toEqual([]);
     });
 });

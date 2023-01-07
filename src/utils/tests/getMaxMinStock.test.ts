@@ -1,8 +1,7 @@
 import { IBasketProduct } from '../../layers/Model/Model.types';
-import { IAllProducts } from '../../layers/components/FilterItem/FilterItem.types';
-import { getListBrand } from '../getListBrand';
+import { getMaxMinStock, IMaxMin } from '../getMaxMinStock';
 
-describe('getListBrand function', () => {
+describe('getMaxMinStock function', () => {
     const product: IBasketProduct[] = [
         {
             id: 5,
@@ -13,7 +12,7 @@ describe('getListBrand function', () => {
             rating: 1,
             color: 'red',
             size: 'xxl',
-            stock: 30,
+            stock: 15,
             brand: 'BingoBongo',
             category: 'Bags',
             images: [
@@ -26,12 +25,12 @@ describe('getListBrand function', () => {
             id: 5,
             title: 'Bag',
             description: 'Bag cool',
-            price: 200,
+            price: 50,
             discountPercentage: 12,
             rating: 1,
             color: 'red',
             size: 'xxl',
-            stock: 30,
+            stock: 2,
             brand: 'BingoBongo2',
             category: 'Bags',
             images: [
@@ -45,7 +44,7 @@ describe('getListBrand function', () => {
             id: 5,
             title: 'Bag',
             description: 'Bag cool',
-            price: 200,
+            price: 100,
             discountPercentage: 12,
             rating: 1,
             color: 'red',
@@ -61,33 +60,21 @@ describe('getListBrand function', () => {
         },
     ];
 
-    const result: IAllProducts[] = [
-        {
-            count: 1,
-            name: 'BingoBongo',
-        },
-        {
-            count: 2,
-            name: 'BingoBongo2',
-        },
-    ];
+    const result: IMaxMin = {
+        max: 30,
+        min: 2,
+    };
 
-    const result2: IAllProducts[] = [
-        {
-            count: 1,
-            name: 'BingoBongo',
-        },
-        {
-            count: 1,
-            name: 'BingoBongo2',
-        },
-    ];
+    const result2: IMaxMin = {
+        max: 15,
+        min: 2,
+    };
 
     test('Should be equal result', () => {
-        expect(getListBrand(product)).toEqual(result);
+        expect(getMaxMinStock(product)).toEqual(result);
     });
 
     test('Should be equal result2', () => {
-        expect(getListBrand([product[0], product[1]])).toEqual(result2);
+        expect(getMaxMinStock([product[0], product[1]])).toEqual(result2);
     });
 });

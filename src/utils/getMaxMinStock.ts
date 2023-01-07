@@ -17,3 +17,4 @@ export const getMaxMinStock = (products: IBasketProduct[]): IMaxMin => {
     });
     return maxMinStock;
 };
+export { IMaxMin };

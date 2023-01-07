@@ -1,8 +1,7 @@
 import { IBasketProduct } from '../../layers/Model/Model.types';
-import { IAllProducts } from '../../layers/components/FilterItem/FilterItem.types';
-import { getListBrand } from '../getListBrand';
+import { countTotalPriceWithPromo } from '../countTotalPriceWithPromo';
 
-describe('getListBrand function', () => {
+describe('countTotalPriceWithPromo function', () => {
     const product: IBasketProduct[] = [
         {
             id: 5,
@@ -33,7 +32,7 @@ describe('getListBrand function', () => {
             size: 'xxl',
             stock: 30,
             brand: 'BingoBongo2',
-            category: 'Bags',
+            category: 'Bags2',
             images: [
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
@@ -52,7 +51,7 @@ describe('getListBrand function', () => {
             size: 'xxl',
             stock: 30,
             brand: 'BingoBongo2',
-            category: 'Bags',
+            category: 'Bags2',
             images: [
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
                 'https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg',
@@ -61,33 +60,18 @@ describe('getListBrand function', () => {
         },
     ];
 
-    const result: IAllProducts[] = [
-        {
-            count: 1,
-            name: 'BingoBongo',
-        },
-        {
-            count: 2,
-            name: 'BingoBongo2',
-        },
-    ];
+    const dis1 = ['RS', 'EPM'];
+    const dis2 = ['RS'];
 
-    const result2: IAllProducts[] = [
-        {
-            count: 1,
-            name: 'BingoBongo',
-        },
-        {
-            count: 1,
-            name: 'BingoBongo2',
-        },
-    ];
-
-    test('Should be equal result', () => {
-        expect(getListBrand(product)).toEqual(result);
+    test('Should return correct value 1600 - 20%', () => {
+        expect(countTotalPriceWithPromo(product, dis1)).toBe(1600);
     });
 
-    test('Should be equal result2', () => {
-        expect(getListBrand([product[0], product[1]])).toEqual(result2);
+    test('Should return correct value 1600 - 10%', () => {
+        expect(countTotalPriceWithPromo(product, dis2)).toBe(1800);
+    });
+
+    test('Should return correct value 2000 - 0%', () => {
+        expect(countTotalPriceWithPromo(product, [])).toBe(2000);
     });
 });
