@@ -2,13 +2,10 @@
   width: 120px;
   height: 40px;
   border: none;
-  background-color: rgb(67, 62, 60);
-  color: white;
   text-transform: uppercase;
   font-weight: 500;
 
   &:hover {
-    background-color: rgb(91, 84, 80);
     cursor: pointer;
   }
 }
