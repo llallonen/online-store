@@ -34,10 +34,10 @@ class ProductItemSmall {
                 <span class="ProductItemSmall__item">Stock: ${this.product.stock}</span>
             </div>
             <div class="ProductItemSmall__buttons">
-                <button class="ProductItemSmall__button--add" data-id="${this.product.id}">
+                <button class="ProductItemSmall__button--add button button--basic" data-id="${this.product.id}">
                     ${this.inBasket ? 'Drop from cart' : 'Add to cart'}
                 </button>
-                <button class="ProductItemSmall__button--detail">Details</button>
+                <button class="ProductItemSmall__button--detail button button--basic">Details</button>
             </div>
         `;
 
