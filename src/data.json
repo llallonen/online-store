@@ -4,7 +4,7 @@
             "id": 1,
             "title": "Leather backpack",
             "description": "A city backpack made of genuine leather",
-            "price": 549,
+            "price": 219,
             "discountPercentage": 12.96,
             "rating": 5,
             "color": "black",
@@ -13,16 +13,15 @@
             "brand": "Vinta",
             "category": "backpacks",
             "images": [
-                "https://marketplace.canva.com/MADGyQNaWhg/4/screen_2x/canva-woman-wearing-parka-and-carrying-backpack-during-winter-MADGyQNaWhg.jpg",
-                "https://m.media-amazon.com/images/I/71CTOt7l2pL._SL1500_.jpg",
-                "https://m.media-amazon.com/images/I/81gNp-0RMKL._SL1500_.jpg"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/1/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/1/02.jpeg"
             ]
         },
         {
             "id": 2,
             "title": "Leather backpack",
             "description": "A city backpack middle size made of genuine leather",
-            "price": 479,
+            "price": 229,
             "discountPercentage": 12.96,
             "rating": 4.5,
             "color": "brown",
@@ -31,17 +30,16 @@
             "brand": "Hedgren",
             "category": "backpacks",
             "images": [
-                "https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg",
-                "https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG",
-                "https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG",
-                "https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_03_800.JPG"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/2/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/2/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/2/03.jpeg"
             ]
         },
         {
             "id": 3,
             "title": "Leather backpack",
-            "description": "A city backpack made of genuine leather",
-            "price": 569,
+            "description": "A city backpack made of genuine leather with contrast decorative elements",
+            "price": 269,
             "discountPercentage": 12.96,
             "rating": 4.3,
             "color": "black",
@@ -49,41 +47,54 @@
             "stock": 1,
             "brand": "Vinta",
             "category": "backpacks",
-            "images": ["https://images.pexels.com/photos/842956/pexels-photo-842956.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/3/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/3/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/3/03.jpeg"
+            ]
         },
         {
             "id": 4,
             "title": "Leather bag",
-            "description": "A city backpack made of genuine leather",
-            "price": 459,
+            "description": "Bright pink shoulder bag",
+            "price": 259,
             "discountPercentage": 12.96,
             "rating": 4.5,
-            "color": "black",
+            "color": "pink",
             "size": "midi",
             "stock": 4,
             "brand": "Aldo",
             "category": "bags",
-            "images": ["https://images.pexels.com/photos/1228624/pexels-photo-1228624.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/4/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/4/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/4/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/4/04.jpeg"
+            ]
         },
         {
             "id": 5,
             "title": "Leather bag",
             "description": "Small bag with colorful print",
-            "price": 729,
+            "price": 99,
             "discountPercentage": 12.96,
             "rating": 5,
             "color": "multicolor",
-            "size": "mini",
+            "size": "midi",
             "stock": 2,
             "brand": "Aldo",
             "category": "bags",
-            "images": ["https://images.pexels.com/photos/3689164/pexels-photo-3689164.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/5/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/5/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/5/03.jpeg"
+            ]
         },
         {
             "id": 6,
             "title": "Leather bag",
             "description": "Medium bag with handle",
-            "price": 529,
+            "price": 149,
             "discountPercentage": 12.96,
             "rating": 4,
             "color": "brown",
@@ -91,13 +102,16 @@
             "stock": 2,
             "brand": "Light",
             "category": "bags",
-            "images": ["https://images.pexels.com/photos/4830926/pexels-photo-4830926.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/6/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/6/02.jpeg"
+            ]
         },
         {
             "id": 7,
             "title": "Leather bag",
             "description": "Medium bag with handle",
-            "price": 529,
+            "price": 189,
             "discountPercentage": 12.96,
             "rating": 5,
             "color": "blue",
@@ -105,13 +119,18 @@
             "stock": 4,
             "brand": "Light",
             "category": "bags",
-            "images": ["https://images.pexels.com/photos/4830923/pexels-photo-4830923.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/7/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/7/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/7/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/7/04.jpeg"
+            ]
         },
         {
             "id": 8,
             "title": "Quilted bag",
             "description": "Medium bag with handle",
-            "price": 529,
+            "price": 199,
             "discountPercentage": 12.96,
             "rating": 4.7,
             "color": "beige",
@@ -119,27 +138,35 @@
             "stock": 10,
             "brand": "Light",
             "category": "bags",
-            "images": ["https://images.pexels.com/photos/3908800/pexels-photo-3908800.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/8/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/8/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/8/03.jpeg"
+            ]
         },
         {
             "id": 9,
             "title": "Сhain clutch",
-            "description": "Mini clutch with chained handle",
-            "price": 649,
+            "description": "Mini clutch with chained handle and animalistic texture",
+            "price": 269,
             "discountPercentage": 12.96,
             "rating": 4.2,
             "color": "brown",
-            "size": "mini",
+            "size": "midi",
             "stock": 6,
             "brand": "Light",
             "category": "bags",
-            "images": ["https://images.pexels.com/photos/7747108/pexels-photo-7747108.jpeg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/9/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/9/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/9/03.jpeg"
+            ]
         },
         {
             "id": 10,
             "title": "Midi wallet",
             "description": "Midi wallet",
-            "price": 299,
+            "price": 79,
             "discountPercentage": 12.96,
             "rating": 4.8,
             "color": "brown",
@@ -147,13 +174,18 @@
             "stock": 10,
             "brand": "Ronlach",
             "category": "wallets",
-            "images": ["https://cdn.pixabay.com/photo/2015/12/07/20/02/wallet-1081310_1280.jpg"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/10/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/10/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/10/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/10/04.jpeg"
+            ]
         },
         {
             "id": 11,
             "title": "Midi wallet",
-            "description": "Midi wallet",
-            "price": 299,
+            "description": "Spacious midi wallet",
+            "price": 99,
             "discountPercentage": 12.96,
             "rating": 4.7,
             "color": "black",
@@ -162,14 +194,16 @@
             "brand": "Ronlach",
             "category": "wallets",
             "images": [
-                "https://burst.shopifycdn.com/photos/black-wallet-with-money-on-a-grey-wood-grain-surface.jpg?width=1850&format=pjpg&exif=1&iptc=1"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/11/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/11/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/11/03.jpeg"
             ]
         },
         {
             "id": 12,
             "title": "Midi wallet",
-            "description": "Midi wallet",
-            "price": 189,
+            "description": "Compact wallet with zip",
+            "price": 109,
             "discountPercentage": 12.96,
             "rating": 4.6,
             "color": "black",
@@ -178,30 +212,34 @@
             "brand": "Ronlach",
             "category": "wallets",
             "images": [
-                "https://img.freepik.com/free-photo/business-and-financial-concept-with-dollars-in-wallet-on-grey-surface-flat-lay_176474-6552.jpg?w=826&t=st=1671550541~exp=1671551141~hmac=758c6cf6d21812225d3bdd918410492571fadf9ec8c5b25421fe8a3a9d139a75"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/12/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/12/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/12/03.jpeg"
             ]
         },
         {
             "id": 13,
             "title": "Midi wallet",
-            "description": "Midi wallet",
-            "price": 299,
+            "description": "Classic midi wallet with cardholder",
+            "price": 59,
             "discountPercentage": 12.96,
             "rating": 4.8,
-            "color": "red",
+            "color": "violet",
             "size": "midi",
             "stock": 10,
             "brand": "Siraphol",
             "category": "wallets",
             "images": [
-                "https://img.freepik.com/free-photo/red-leather-women-wallet_1203-8071.jpg?w=1380&t=st=1671541624~exp=1671542224~hmac=503f7a05d6e671ec3e71af0617675eee8e0566c808e65b752051c96db8530546"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/13/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/13/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/13/03.jpeg"
             ]
         },
         {
             "id": 14,
-            "title": "City backpack",
-            "description": "Midi wallet",
-            "price": 729,
+            "title": "Midi wallet",
+            "description": "Wallet with animalistic print",
+            "price": 89,
             "discountPercentage": 12.96,
             "rating": 4.8,
             "color": "black",
@@ -210,14 +248,16 @@
             "brand": "Siraphol",
             "category": "backpacks",
             "images": [
-                "https://img.freepik.com/free-photo/tourist-walking-into-the-village-for-rearview_53876-123609.jpg?w=1060&t=st=1671550873~exp=1671551473~hmac=82b67c0b0480bbb7eae26f96d2da4eabd4278dbd7f5e7d55d914cac0feb43c0b"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/14/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/14/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/14/03.jpeg"
             ]
         },
         {
             "id": 15,
             "title": "Cross-body bag",
             "description": "Long handle crossbody bag",
-            "price": 579,
+            "price": 179,
             "discountPercentage": 12.96,
             "rating": 4.3,
             "color": "brown",
@@ -226,14 +266,17 @@
             "brand": "Ronlach",
             "category": "bags",
             "images": [
-                "https://burst.shopifycdn.com/photos/leather-handbag-on-bed.jpg?width=1850&format=pjpg&exif=1&iptc=1"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/15/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/15/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/15/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/15/04.jpeg"
             ]
         },
         {
             "id": 16,
             "title": "Shoulder bag",
-            "description": "Leather shoulder bag",
-            "price": 899,
+            "description": "Leather crossbody bag with metallic decorative element",
+            "price": 139,
             "discountPercentage": 12.96,
             "rating": 5,
             "color": "red",
@@ -242,14 +285,16 @@
             "brand": "Sernoner",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2535&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/16/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/16/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/16/03.jpeg"
             ]
         },
         {
             "id": 17,
             "title": "Shoulder bag",
-            "description": "Leather shoulder bag",
-            "price": 899,
+            "description": "Bright smooth leather crossbody",
+            "price": 219,
             "discountPercentage": 12.96,
             "rating": 5,
             "color": "orange",
@@ -258,14 +303,15 @@
             "brand": "Sernoner",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2538&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/17/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/17/02.jpeg"
             ]
         },
         {
             "id": 18,
             "title": "Tote bag",
             "description": "Big tote bag",
-            "price": 899,
+            "price": 299,
             "discountPercentage": 12.96,
             "rating": 4.7,
             "color": "brown",
@@ -274,14 +320,17 @@
             "brand": "Sernoner",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2563&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/18/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/18/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/18/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/18/04.jpeg"
             ]
         },
         {
             "id": 19,
             "title": "Cross-body bag",
-            "description": "Cross-body bag with chained handle",
-            "price": 789,
+            "description": "Mettalic gray cross-body bag",
+            "price": 159,
             "discountPercentage": 12.96,
             "rating": 4.9,
             "color": "gray",
@@ -290,14 +339,16 @@
             "brand": "Umbro",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1566150902887-9679ecc155ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/19/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/19/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/19/03.jpeg"
             ]
         },
         {
             "id": 20,
             "title": "Clutch",
-            "description": "Mini clutch",
-            "price": 579,
+            "description": "Cute mini clutch",
+            "price": 179,
             "discountPercentage": 12.96,
             "rating": 4.7,
             "color": "blue",
@@ -306,7 +357,9 @@
             "brand": "D'oro",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1632282003890-020318a49e62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2573&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/20/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/20/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/20/03.jpeg"
             ]
         },
         {
@@ -316,20 +369,23 @@
             "price": 729,
             "discountPercentage": 12.96,
             "rating": 4.9,
-            "color": "red",
+            "color": "green",
             "size": "mini",
             "stock": 2,
             "brand": "D'oro",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1575032617751-6ddec2089882?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2564&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/21/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/21/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/21/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/21/04.jpeg"
             ]
         },
         {
             "id": 22,
             "title": "Leather backpack",
             "description": "Leather backpack with antique effect",
-            "price": 639,
+            "price": 239,
             "discountPercentage": 12.96,
             "rating": 4.9,
             "color": "red",
@@ -338,14 +394,16 @@
             "brand": "Mile",
             "category": "backpacks",
             "images": [
-                "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/22/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/22/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/22/03.jpeg"
             ]
         },
         {
             "id": 23,
             "title": "Leather backpack",
             "description": "Monochrome leather backpack with decorative element",
-            "price": 399,
+            "price": 199,
             "discountPercentage": 12.96,
             "rating": 3.9,
             "color": "gray",
@@ -354,14 +412,16 @@
             "brand": "D'oro",
             "category": "backpacks",
             "images": [
-                "https://images.unsplash.com/photo-1560892000-4a61808f1940?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/23/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/23/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/23/03.jpeg"
             ]
         },
         {
             "id": 24,
             "title": "Leather backpack",
             "description": "Bright monochrome leather backpack with cotrast zip closure",
-            "price": 469,
+            "price": 209,
             "discountPercentage": 12.96,
             "rating": 4,
             "color": "blue",
@@ -370,14 +430,16 @@
             "brand": "David Jones",
             "category": "backpacks",
             "images": [
-                "https://images.unsplash.com/photo-1532697057284-bbe526e18cdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/24/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/24/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/24/03.jpeg"
             ]
         },
         {
             "id": 25,
             "title": "Work Bag",
             "description": "Leather crossbody laptop case & tablet day bag",
-            "price": 659,
+            "price": 229,
             "discountPercentage": 12.96,
             "rating": 4.6,
             "color": "brown",
@@ -386,14 +448,17 @@
             "brand": "David Jones",
             "category": "backpacks",
             "images": [
-                "https://images.unsplash.com/photo-1608731267464-c0c889c2ff92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/25/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/25/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/25/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/25/04.jpeg"
             ]
         },
         {
             "id": 26,
             "title": "Backpack",
             "description": "Monochrome minimal backpack",
-            "price": 659,
+            "price": 199,
             "discountPercentage": 12.96,
             "rating": 4.6,
             "color": "black",
@@ -401,13 +466,17 @@
             "stock": 6,
             "brand": "Aldo",
             "category": "backpacks",
-            "images": ["https://burst.shopifycdn.com/photos/backpack-in-black.jpg?width=1850&format=pjpg&exif=1&iptc=1"]
+            "images": [
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/26/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/26/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/26/03.jpeg"
+            ]
         },
         {
             "id": 27,
             "title": "Clutch",
             "description": "Mini cluthc with decorative element",
-            "price": 359,
+            "price": 199,
             "discountPercentage": 12.96,
             "rating": 3.8,
             "color": "pink",
@@ -416,55 +485,64 @@
             "brand": "D'oro",
             "category": "bags",
             "images": [
-                "https://burst.shopifycdn.com/photos/light-brown-clutch.jpg?width=2880&format=pjpg&exif=0&iptc=0"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/27/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/27/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/27/03.jpeg"
             ]
         },
         {
             "id": 28,
-            "title": "Clutch",
-            "description": "Mini cluthc with decorative element",
-            "price": 359,
+            "title": "Tote bag",
+            "description": "Red tote bag for all needs",
+            "price": 179,
             "discountPercentage": 12.96,
             "rating": 3.8,
-            "color": "pink",
-            "size": "mini",
+            "color": "red",
+            "size": "maxi",
             "stock": 2,
             "brand": "D'oro",
             "category": "bags",
             "images": [
-                "https://burst.shopifycdn.com/photos/light-brown-clutch.jpg?width=2880&format=pjpg&exif=0&iptc=0"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/28/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/28/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/28/03.jpeg"
             ]
         },
         {
             "id": 29,
             "title": "Cross-body bag",
-            "description": "Colorful cross-body with chained strap",
-            "price": 629,
+            "description": "Classic everyday cross-body",
+            "price": 149,
             "discountPercentage": 12.96,
             "rating": 4.7,
-            "color": "red",
+            "color": "white",
             "size": "mini",
             "stock": 3,
             "brand": "D'oro",
             "category": "bags",
             "images": [
-                "https://burst.shopifycdn.com/photos/light-brown-clutch.jpg?width=2880&format=pjpg&exif=0&iptc=0"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/29/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/29/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/29/03.jpeg"
             ]
         },
         {
             "id": 30,
             "title": "Clutch",
-            "description": "Minimalistic clutch",
+            "description": "Classic hard stitched bag",
             "price": 599,
             "discountPercentage": 12.96,
             "rating": 4.9,
-            "color": "beige",
+            "color": "yellow",
             "size": "mini",
             "stock": 3,
             "brand": "LEISARÀ",
             "category": "bags",
             "images": [
-                "https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=842&q=80"
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/30/01.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/30/02.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/30/03.jpeg",
+                "https://raw.githubusercontent.com/llallonen/online-store-src/main/30/04.jpeg"
             ]
         }
     ]
