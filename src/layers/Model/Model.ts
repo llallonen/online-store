@@ -92,7 +92,7 @@ class Model {
 
     public setQueryParams() {
         const hash = location.hash;
-        const query = hash.match(/\?[a-zA-Z=&0-9,]{0,}/g);
+        const query = hash.match(/\?[a-zA-Z=&%'0-9,]{0,}/g);
         if (query && query[0]) {
             const urlParams = new URLSearchParams(query[0]);
             const params = Object.fromEntries(urlParams.entries());
@@ -127,13 +127,7 @@ class Model {
                     const brands = query[1].split(',');
                     this.data.filter.brand = [];
                     brands.forEach((brand) => {
-                        if (brand === 'David') {
-                            this.data.filter.brand.push('David Jones');
-                        } else if (brand === 'D') {
-                            this.data.filter.brand.push("D'oro");
-                        } else {
-                            this.data.filter.brand.push(brand);
-                        }
+                        this.data.filter.brand.push(brand);
                     });
                 }
                 if (query[0] === 'price' && query[1].length !== 0 && /\d*/g.test(query[1])) {

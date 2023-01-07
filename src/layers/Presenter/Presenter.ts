@@ -117,7 +117,11 @@ class Presenter {
         if (localData) {
             data = JSON.parse(localData) as ILocalStorageData;
             if (data?.basketData) {
-                this.model.updateState({ type: IActionType.basket, payload: data.basketData });
+                this.getState();
+                this.model.updateState({
+                    type: IActionType.basket,
+                    payload: { ...this.state.basket, products: data.basketData.products },
+                });
             }
         }
         console.log(this.model.getState());
@@ -245,7 +249,7 @@ class Presenter {
 
     fetchGoods() {
         this.model.updateGoods({ products: [...data.products] });
-        this.model.setQueryParams();
+        // this.model.setQueryParams();
     }
 
     filterBrand(e: Event | IModelData) {
