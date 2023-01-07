@@ -11,10 +11,14 @@
     "author": "Valeria Sycheva, Andrey Lapin",
     "license": "MIT",
     "dependencies": {
+        "@types/jest": "^29.2.5",
         "drift-zoom": "^1.5.1",
+        "jest": "^29.3.1",
+        "jest-environment-jsdom": "^29.3.1",
         "sass": "^1.56.2",
         "style-loader": "^3.3.1",
-        "toolcool-range-slider": "^4.0.19"
+        "toolcool-range-slider": "^4.0.19",
+        "ts-jest": "^29.0.3"
     },
     "devDependencies": {
         "@types/drift-zoom": "^1.5.0",
