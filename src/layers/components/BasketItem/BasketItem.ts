@@ -35,7 +35,7 @@ class BasketItem {
                 <div class="basketItem__product-stock">
                     <button class="basketItem__increment" data-id=${this.data.id}>+</button> 
                     <div class="basketItem__increment">${this.data.count}</div>
-                    <button class="basketItem__decrement" data-id=${this.data.id}>-</button>
+                    <button class="basketItem__decrement" data-id=${this.data.id} data-type="prev">-</button>
                 </div>
                 <div class="basketItem__totalPrice">${this.countTotalPrice()}</div>
             </div>
@@ -55,6 +55,10 @@ class BasketItem {
         basketItemDec.forEach((element) => {
             element.addEventListener('click', (e: MouseEvent) => {
                 this.observer.notify({ eventName: EventName.removeGoods, eventPayload: e });
+                const decButton = document.querySelectorAll('.basketItem__decrement');
+                if (decButton.length === 0) {
+                    this.observer.notify({ eventName: EventName.changeNavigationPage, eventPayload: e });
+                }
             });
         });
     }

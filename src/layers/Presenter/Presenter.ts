@@ -197,10 +197,12 @@ class Presenter {
         this.getState();
         if (typeButton) {
             if (typeButton === 'prev') {
-                this.model.updateState({
-                    type: IActionType.basket,
-                    payload: { ...this.state.basket, page: this.state.basket.page - 1 },
-                });
+                if (this.state.basket.page !== 1) {
+                    this.model.updateState({
+                        type: IActionType.basket,
+                        payload: { ...this.state.basket, page: this.state.basket.page - 1 },
+                    });
+                }
             }
             if (typeButton === 'next') {
                 this.model.updateState({

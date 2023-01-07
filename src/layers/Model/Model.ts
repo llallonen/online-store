@@ -150,6 +150,9 @@ class Model {
                         this.data.currProduct = { ...this.data.currProduct, ...item };
                         console.log('ssssssssssssssss');
                         console.log('z', this.data);
+                    } else {
+                        this.data.currProduct.id = Number(query[1]);
+                        console.log('azazz', this.data.currProduct);
                     }
                 }
             });
