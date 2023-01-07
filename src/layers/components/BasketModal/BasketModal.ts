@@ -175,6 +175,9 @@ class BasketModal {
     }
 
     private isPhoneValid(str: string) {
+        if (/\s/gm.test(str)) {
+            return false;
+        }
         // eslint-disable-next-line no-useless-escape
         if (/^((\+))(\(?\d{3}\)?[\- ]?)?[\d\- ]{9,}$/g.test(str)) {
             return true;
@@ -207,16 +210,33 @@ class BasketModal {
     }
 
     private isCardNumberValid(str: string) {
-        if (str.trim().length === 19) {
-            return true;
+        let result = true;
+        const arr = str.trim().split(' ');
+        arr.forEach((el) => {
+            if (el.trim().length !== 4) {
+                result = false;
+            }
+            if (Number.isNaN(Number(el))) {
+                result = false;
+            }
+        });
+        if (str.trim().length !== 19) {
+            result = false;
+            return result;
         } else {
-            return false;
+            return result;
         }
     }
 
     private dateCardValid(str: string) {
         const arr = str.trim().split('/');
-        if (Number(arr[0]) > 12) {
+        if (
+            arr[0].trim().length !== 2 ||
+            Number.isNaN(Number(arr[0])) ||
+            Number(arr[0].trim()) > 12 ||
+            arr[1].trim().length !== 2 ||
+            Number.isNaN(Number(arr[1]))
+        ) {
             return false;
         } else {
             return true;
@@ -224,10 +244,13 @@ class BasketModal {
     }
 
     private isCCVValid(str: string) {
-        if (str.trim().length === 3) {
-            return true;
+        let result = true;
+
+        if (str.trim().length !== 3 || Number.isNaN(Number(str.trim()))) {
+            result = false;
+            return result;
         } else {
-            return false;
+            return result;
         }
     }
 
