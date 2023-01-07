@@ -39,7 +39,7 @@ class ProductItem {
                 <button class="ProductItem__button--add" data-id="${this.product.id}">
                     ${this.inBasket ? 'Drop from cart' : 'Add to cart'}
                 </button>
-                <button class="ProductItem__button--detail">Details</button>
+                <button class="ProductItem__button--detail" data-id-product="${this.product.id}">Details</button>
                 </div>
             </div>
         `;
@@ -56,8 +56,9 @@ class ProductItem {
         if (item) {
             const buttons = item.querySelectorAll('.ProductItem__button--detail');
             buttons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    window.location.hash = 'product';
+                button.addEventListener('click', (e: Event) => {
+                    this.observer.notify({ eventName: EventName.setCurrentProduct, eventPayload: e });
+                    window.location.hash = `product?id=${this.product.id}`;
                 });
             });
 

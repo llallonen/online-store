@@ -6,6 +6,7 @@ import { Button } from '../Button/Button';
 import { ProductDescription } from '../ProductDescription/ProductDescription';
 import { IModelData } from '../../Model/Model.types';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { EventName } from '../../Observer/Observer.types';
 
 class ProductCard {
     private container: HTMLElement;
@@ -21,64 +22,100 @@ class ProductCard {
     }
 
     public render() {
-        const product = `${this.data.currProduct.category}`;
-        console.log(product);
+        // const product = `${this.data.currProduct.category}`;
+        // console.log(product);
 
         const productCard = document.createElement('section');
         productCard.classList.add('product');
         this.container.append(productCard);
 
-        const productInfo = document.createElement('div');
-        productInfo.classList.add('product__info');
-        productCard.append(productInfo);
+        const productData = this.data.goods.products.find((el) => el.id === this.data.currProduct.id);
 
-        let productPhotos;
-        let productDescription;
-        let addButton;
-        let buyNowButton;
+        if (productData) {
+            const productInfo = document.createElement('div');
+            productInfo.classList.add('product__info');
+            productCard.append(productInfo);
 
-        if (productCard instanceof HTMLElement) {
-            productPhotos = new ProductPhotos({
-                container: productCard,
-                observer: this.observer,
-                currImg: this.currImg,
-                data: this.data,
-            });
-            productDescription = new ProductDescription({ container: productInfo, observer: this.observer });
+            let productPhotos;
+            let productDescription;
+            let addButton;
+            let buyNowButton;
+            let removeButton;
 
-            const productBtns = document.createElement('div');
-            productBtns.classList.add('product__btns');
-            productInfo.append(productBtns);
+            if (productCard instanceof HTMLElement) {
+                if (productData) {
+                    productPhotos = new ProductPhotos({
+                        container: productCard,
+                        observer: this.observer,
+                        currImg: this.currImg,
+                        data: this.data,
+                    });
 
-            addButton = new Button({
-                container: productBtns,
-                observer: this.observer,
-                typeButton: 'button--product',
-                textButton: 'Add to cart',
-            });
+                    productDescription = new ProductDescription({
+                        container: productInfo,
+                        observer: this.observer,
+                        product: productData,
+                    });
+                }
 
-            buyNowButton = new Button({
-                container: productBtns,
-                observer: this.observer,
-                typeButton: 'button--product',
-                textButton: 'Buy now',
-            });
-        }
-        if (productCard) {
-            new Breadcrumbs({ container: productCard, observer: this.observer, breadData: this.data }).render();
-        }
-        if (productDescription) {
-            productDescription.render();
-        }
-        if (productPhotos) {
-            productPhotos.render();
-            productPhotos.renderThumbnail();
-        }
-        if (addButton) {
-            addButton.render();
-        }
-        if (buyNowButton) {
-            buyNowButton.render();
+                const productBtns = document.createElement('div');
+                productBtns.classList.add('product__btns');
+                productInfo.append(productBtns);
+
+                if (this.data.basket.products.find((el) => el.id === this.data.currProduct.id)) {
+                    removeButton = new Button({
+                        container: productBtns,
+                        observer: this.observer,
+                        typeButton: 'button--product',
+                        textButton: 'Drop from cart',
+                        id: this.data.currProduct.id,
+                        event: EventName.removeGoods,
+                    });
+                } else {
+                    addButton = new Button({
+                        container: productBtns,
+                        observer: this.observer,
+                        typeButton: 'button--product',
+                        textButton: 'Add to cart',
+                        id: this.data.currProduct.id,
+                        event: EventName.addGoods,
+                    });
+                }
+                buyNowButton = new Button({
+                    container: productBtns,
+                    observer: this.observer,
+                    typeButton: 'button--product',
+                    textButton: 'Buy now',
+                });
+            }
+            if (productCard && productData) {
+                new Breadcrumbs({
+                    container: productCard,
+                    observer: this.observer,
+                    breadData: this.data,
+                    product: productData,
+                }).render();
+            }
+            if (productDescription) {
+                productDescription.render();
+            }
+            if (productPhotos) {
+                productPhotos.render();
+                productPhotos.renderThumbnail();
+            }
+            if (addButton) {
+                addButton.render();
+            }
+            if (removeButton) {
+                removeButton.render();
+            }
+            if (buyNowButton) {
+                buyNowButton.render();
+            }
+        } else {
+            const header = document.createElement('h2');
+            header.textContent = 'Product not found';
+            productCard.append(header);
         }
     }
 }

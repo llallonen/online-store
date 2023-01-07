@@ -54,7 +54,7 @@ class ProductItemSmall {
             const buttonDetail = item.querySelectorAll('.ProductItemSmall__button--detail');
             buttonDetail.forEach((button) => {
                 button.addEventListener('click', () => {
-                    window.location.hash = 'product';
+                    window.location.hash = `product?id=${this.product.id}`;
                 });
             });
 

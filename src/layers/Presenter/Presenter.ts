@@ -61,6 +61,10 @@ class Presenter {
         this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
         this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
         this.observer.subscribe({ eventName: EventName.clearBasket, function: this.clearBasket.bind(this) });
+        this.observer.subscribe({
+            eventName: EventName.setCurrentProduct,
+            function: this.setCurrentProduct.bind(this),
+        });
     }
 
     handleImgChange(e: Event | IModelData): void {
@@ -113,7 +117,11 @@ class Presenter {
         if (localData) {
             data = JSON.parse(localData) as ILocalStorageData;
             if (data?.basketData) {
-                this.model.updateState({ type: IActionType.basket, payload: data.basketData });
+                this.getState();
+                this.model.updateState({
+                    type: IActionType.basket,
+                    payload: { ...this.state.basket, products: data.basketData.products },
+                });
             }
         }
         console.log(this.model.getState());
@@ -189,10 +197,12 @@ class Presenter {
         this.getState();
         if (typeButton) {
             if (typeButton === 'prev') {
-                this.model.updateState({
-                    type: IActionType.basket,
-                    payload: { ...this.state.basket, page: this.state.basket.page - 1 },
-                });
+                if (this.state.basket.page !== 1) {
+                    this.model.updateState({
+                        type: IActionType.basket,
+                        payload: { ...this.state.basket, page: this.state.basket.page - 1 },
+                    });
+                }
             }
             if (typeButton === 'next') {
                 this.model.updateState({
@@ -241,6 +251,7 @@ class Presenter {
 
     fetchGoods() {
         this.model.updateGoods({ products: [...data.products] });
+        // this.model.setQueryParams();
     }
 
     filterBrand(e: Event | IModelData) {
@@ -381,6 +392,20 @@ class Presenter {
 
     updateUrl() {
         updateQuery(this.state.filter, this.state.sort);
+    }
+
+    setCurrentProduct(e: Event | IModelData) {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLButtonElement)) {
+            return;
+        }
+
+        const id = Number(e.target.dataset.idProduct);
+        this.getState();
+        const product = this.state.goods.products.find((el) => el.id === id);
+        if (product) {
+            this.model.updateCurrProduct({ ...this.state.currProduct, ...product });
+            this.model.changeImg(product.images[0]);
+        }
     }
 
     clearBasket() {

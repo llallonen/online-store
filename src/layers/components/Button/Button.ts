@@ -9,8 +9,9 @@ class Button {
     private typeButton?: string | null;
     private textButton?: string | null;
     private event: EventName | undefined;
+    private id: number | undefined;
 
-    constructor({ container, observer, typeButton, textButton, event }: IButtonProps) {
+    constructor({ container, observer, typeButton, textButton, event, id }: IButtonProps) {
         this.container = container;
         this.observer = observer;
         this.typeButton = typeButton;
@@ -18,12 +19,19 @@ class Button {
         if (event) {
             this.event = event;
         }
+
+        if (id) {
+            this.id = id;
+        }
     }
 
     public render() {
         const button = document.createElement('button');
         button.textContent = `${this.textButton}`;
         button.classList.add('button', `${this.typeButton}`);
+        if (this.id) {
+            button.dataset.id = `${this.id}`;
+        }
 
         if (this.event) {
             const event = this.event as EventName;
