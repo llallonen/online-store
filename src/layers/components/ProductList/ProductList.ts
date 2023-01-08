@@ -26,6 +26,7 @@ class ProductList {
             productList.innerHTML = `<div class="ProductList__not-found">No products found 😏</div>`;
         }
         if (this.type === ProductListType.big) {
+            productList.classList.remove('ProductList--inLine');
             this.products.forEach((product) => {
                 const inBasket = this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;
                 new ProductItem({
@@ -38,6 +39,7 @@ class ProductList {
         }
         if (this.type === ProductListType.small) {
             this.products.forEach((product) => {
+                productList.classList.add('ProductList--inLine');
                 const inBasket = this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;
                 new ProductItemSmall({
                     container: productList,

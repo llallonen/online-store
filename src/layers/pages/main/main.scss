@@ -1,4 +1,9 @@
 .MainPage {
   display: flex;
   gap: 50px;
+
+  &__content {
+    max-width: 75%
+  }
 }
+

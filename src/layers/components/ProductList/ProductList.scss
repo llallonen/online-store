@@ -1,11 +1,17 @@
 .ProductList {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    row-gap: 70px;
 
-  &__not-found {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-  }
+    &.ProductList--inLine {
+      row-gap: 0;
+    }
+
+    &__not-found {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
 }

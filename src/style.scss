@@ -39,7 +39,7 @@ img {
     flex-grow: 1;
     max-width: 85%;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 0 100px;
 
     @media screen and (min-width: 1378px) {
         max-width: 75%;
@@ -73,29 +73,5 @@ img {
         &:first-of-type {
             filter: invert(84%) sepia(51%) saturate(1344%) hue-rotate(286deg) brightness(87%) contrast(93%);
         }
-    }
-}
-
-.button {
-    &--basic {
-        height: 40px;
-        font-size: 12px;
-        border: none;
-        color: white;
-        background-color: gray;
-        transition: all 0.3s;
-
-        &:hover,
-        &:focus {
-            background-color: rgb(64, 63, 63);
-            cursor: pointer;
-        }
-
-        &:active {
-            background-color: rgb(75, 67, 54);
-        }
-    }
-
-    &--constrast {
     }
 }
