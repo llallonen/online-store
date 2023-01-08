@@ -34,9 +34,9 @@ class BasketPage {
                         </div>
                         <div class="basket__pagination-page">
                             <span class="basket__pagination-text">PAGE:</span>
-                            <button class="basket__pagination-prev" data-type="prev"> &lt; </button>
+                            <button class="basket__pagination-prev button button--xs" data-type="prev"> &lt; </button>
                             <div class="basket__pagination-count">${this.data.basket.page}</div>
-                            <button class="basket__pagination-next" data-type="next"> &gt; </button>
+                            <button class="basket__pagination-next button button--xs" data-type="next"> &gt; </button>
                         </div>
                     </div>
                 </div>
