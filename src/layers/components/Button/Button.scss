@@ -9,6 +9,12 @@
     cursor: pointer;
     transition: all 0.3s;
 
+    &:hover,
+    &:focus {
+        background-color: rgb(64, 63, 63);
+        cursor: pointer;
+    }
+
     &--basic {
         height: 40px;
         font-size: 12px;
