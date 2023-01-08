@@ -56,7 +56,7 @@ class BasketModal {
             <span class="BasketModal__cardNumber-error"></span>
             <span class="BasketModal__cardValid-error"></span>
             <span class="BasketModal__cardCVV-error"></span>
-            <button class="BasketModal__button">Confirm</button>
+            <button class="BasketModal__button button button-basic">Confirm</button>
           </div>
         `;
 

@@ -1,69 +1,82 @@
 .BasketModal {
+  padding: 25px 30px;
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+        &-header {
+          text-transform: lowercase;
+          letter-spacing: 2px;
+        }
+    }
 
-  &__form-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+    &__form-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 60%;
+        
+        &:not(:last-of-type) {
+          margin-bottom: 15px;
+        }
+    }
 
-  &__card-block {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    &__input {
+      width: 100%;
+      height: 30px;
+    }
 
-  &__card-header {
-    text-align: center;
-  }
+    &__card-block {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-  &__card {
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 55%;
-    height: 150px;
-    margin: 15px auto 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+    &__card-header {
+        text-align: center;
+    }
 
-  &__firstLine {
-    display: flex;
-    justify-content: center;
-  }
+    &__card {
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 55%;
+        height: 150px;
+        margin: 15px auto 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-  &__cardImg {
-    width: 30px;
-    height: 20px;
-    margin-right: 20px;
-  }
+    &__firstLine {
+        display: flex;
+        justify-content: center;
+    }
 
-  &__secondLine {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-  }
+    &__cardImg {
+        width: 30px;
+        height: 20px;
+        margin-right: 20px;
+    }
 
-  &__valid-input {
-    width: 60px;
-  }
+    &__secondLine {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+    }
 
-  &__cvv-input {
-    width: 80px;
-  }
+    &__valid-input {
+        width: 60px;
+    }
 
-  &__button {
-    margin-top: 20px;
-  }
+    &__cvv-input {
+        width: 80px;
+    }
 
-  
+    &__button {
+        margin-top: 20px;
+    }
 }
