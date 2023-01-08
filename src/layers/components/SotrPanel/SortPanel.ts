@@ -17,7 +17,7 @@ class SortPanel {
 
     public render() {
         const sortPanel = document.createElement('div');
-        sortPanel.classList.add('SortPanel');
+        sortPanel.classList.add('SortPanel', 'SortPanel--marg');
 
         const sortPanelContent = `
         <div class="SortPanel__found">Found: ${this.countProduct}</div>
