@@ -45,10 +45,10 @@ class BasketPage {
             </div>
             <div class="basket__right">
                 <h2 class="basket__header-title">Products In Cart</h2>
-                <div class="basket__details-count">Products: ${this.countQuantityProducts()}</div>
+                <div class="basket__details-count"><span>Products:</span> ${this.countQuantityProducts()}</div>
                 <div class="basket__details-total ${
                     this.data.basket.promo.length === 0 ? '' : 'old'
-                }">Total: ${this.countTotalPrice()}$</div>
+                }"><span>Total:</span> ${this.countTotalPrice()}$</div>
                 <div class="basket__details-total-promo ${
                     this.data.basket.promo.length === 0 ? '' : 'active'
                 }">Total: ${this.countTotalPriceWithDiscount()}$</div>
@@ -58,7 +58,7 @@ class BasketPage {
                 <div class="basket__res-promo-active ${
                     this.data.basket.promo.includes('EPM') ? '' : 'hide'
                 }" data-type="EPM">EPAM Systems - 10% <span class="basket__promo-active-button" data-type="EPM">Drop</span></div>
-                <input class="basket__details-promo" type="text"/>
+                <input class="basket__details-promo" type="text" placeholder="Enter promocode" />
                 <div class="basket__res-promo" data-type="RS">Rolling Scopes School - 10% <span class="basket__promo-button ${
                     this.data.basket.promo.includes('RS') ? 'active' : ''
                 }" data-type="RS">ADD</span></div>
@@ -176,7 +176,7 @@ class BasketPage {
         const basketDetailsButton: HTMLElement | null = document.querySelector('.basket__details-button');
 
         if (basketDetailsButton) {
-            new Button({ container: basketDetailsButton, observer: this.observer }).render();
+            new Button({ container: basketDetailsButton, observer: this.observer, textButton: 'Confirm' }).render();
         }
     }
 

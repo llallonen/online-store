@@ -24,7 +24,7 @@ class Header {
         header.classList.add('header');
         header.innerHTML += `<div class="logo"></div>
         <div class="order-info">
-            <div class="total">${this.totalSum ? this.totalSum : 0} $$$$</div>
+            <div class="total">${this.totalSum ? this.totalSum : 0} $</div>
                 <div class="bag">
                     <span class="bag__count">${this.bagCount ? this.bagCount : 0}<span>
                 </div>
