@@ -37,6 +37,12 @@ class RangeSliderDual {
             value2="${this.to}"
             step="1"
             keyboard-disabled="true"
+            pointer1-width="10px"
+            pointer1-height="10px"
+            pointer2-width="15px"
+            pointer2-height="15px"
+            pointer-bg="#d4d3d3"
+            slider-bg-fill="#7b647b"
           ></tc-range-slider>
         `;
 
