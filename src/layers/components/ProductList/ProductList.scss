@@ -1,9 +1,9 @@
 .ProductList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     width: 100%;
     row-gap: 70px;
+    column-gap: 19px;
 
     &.ProductList--inLine {
       row-gap: 0;
