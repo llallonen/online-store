@@ -22,9 +22,10 @@ class Presenter {
         this.observer = new Observer();
         this.container = container;
         this.model = new Model({ observer: this.observer });
+        this.fetchGoods();
+        this.model.setQueryParams();
         this.state = this.model.getState();
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
-        this.fetchGoods();
         this.subscribe();
         this.listenPopState();
         // this.setHash();
