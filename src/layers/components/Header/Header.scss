@@ -23,13 +23,15 @@
 
     &__count {
         position: relative;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         top: 23px;
         left: 23px;
-        width: 20px;
-        height: 20px;
+        width: 23px;
+        height: 23px;
         text-align: center;
         border-radius: 50%;
-        background-color: #f4e1d0;
+        background-color: #d2bed2;
     }
 }
