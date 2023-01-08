@@ -36,8 +36,8 @@ class MainPage {
         const mainContent = `
             <div class="MainPage__sidebar">
                 <div class="MainPage__buttons">
-                    <button class="MainPage__button--reset">Reset Filters</button>
-                    <button class="MainPage__button--copy">Copy Link</button>
+                    <button class="MainPage__button--reset button">Reset Filters</button>
+                    <button class="MainPage__button--copy button">Copy Link</button>
                 </div>
             </div>
             <div class="MainPage__content"></div>
