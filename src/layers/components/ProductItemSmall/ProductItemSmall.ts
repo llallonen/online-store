@@ -23,15 +23,16 @@ class ProductItemSmall {
 
         const product = `
             <div class="ProductItemSmall__image-block">
+            <div class="ProductItemSmall__name">${this.product.title}</div>
                 <img class="ProductItemSmall__image" src="${this.product.images[0]}" />
             </div>
             <div class="ProductItemSmall__description">
-                <span class="ProductItemSmall__item">Category: ${this.product.category}</span>
-                <span class="ProductItemSmall__item">Brand: ${this.product.brand}</span>
-                <span class="ProductItemSmall__item">Price: ${this.product.price}$</span>
-                <span class="ProductItemSmall__item">Discount: ${this.product.discountPercentage}%</span>
-                <span class="ProductItemSmall__item">Rating: ${this.product.rating}</span>
-                <span class="ProductItemSmall__item">Stock: ${this.product.stock}</span>
+                <span class="ProductItemSmall__item">Category: <span>${this.product.category}</span></span>
+                <span class="ProductItemSmall__item">Brand: <span>${this.product.brand}</span></span>
+                <span class="ProductItemSmall__item">Price: <span>${this.product.price}$</span></span>
+                <span class="ProductItemSmall__item">Discount: <span>${this.product.discountPercentage}%</span></span>
+                <span class="ProductItemSmall__item">Rating: <span>${this.product.rating}</span></span>
+                <span class="ProductItemSmall__item">Stock: <span>${this.product.stock}</span></span>
             </div>
             <div class="ProductItemSmall__buttons">
                 <button class="ProductItemSmall__button--add button button--basic" data-id="${this.product.id}">

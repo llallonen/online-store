@@ -27,19 +27,21 @@ class ProductItem {
                 <img class="ProductItem__image" src="${this.product.images[0]}" />
                 <div class="ProductItem__description">
                     <ul class="ProductItem__list">
-                        <li class="ProductItem__item">Category: ${this.product.category}</li>
-                        <li class="ProductItem__item">Brand: ${this.product.brand}</li>
-                        <li class="ProductItem__item">Price: ${this.product.price}$</li>
-                        <li class="ProductItem__item">Discount: ${this.product.discountPercentage}%</li>
-                        <li class="ProductItem__item">Rating: ${this.product.rating}</li>
-                        <li class="ProductItem__item">Stock: ${this.product.stock}</li>
+                        <li class="ProductItem__item">Category: <span>${this.product.category}</span></li>
+                        <li class="ProductItem__item">Brand: <span>${this.product.brand}</span></li>
+                        <li class="ProductItem__item">Price: <span>${this.product.price}$</span></li>
+                        <li class="ProductItem__item">Discount: <span>${this.product.discountPercentage}%</span></li>
+                        <li class="ProductItem__item">Rating: <span>${this.product.rating}</span></li>
+                        <li class="ProductItem__item">Stock: <span>${this.product.stock}</span></li>
                     </ul>
                 </div>
                 <div class="ProductItem__buttons">
-                <button class="ProductItem__button--add" data-id="${this.product.id}">
+                <button class="ProductItem__button--add button button--small" data-id="${this.product.id}">
                     ${this.inBasket ? 'Drop from cart' : 'Add to cart'}
                 </button>
-                <button class="ProductItem__button--detail" data-id-product="${this.product.id}">Details</button>
+                <button class="ProductItem__button--detail button button--small" data-id-product="${
+                    this.product.id
+                }">Details</button>
                 </div>
             </div>
         `;
