@@ -59,10 +59,6 @@ class Model {
                 this.data.basket = { ...this.data.basket, ...payload };
                 localStorage.setItem('online-store2023', JSON.stringify({ basketData: { ...this.data.basket } }));
                 break;
-            case IActionType.currProduct:
-                this.data.currProduct = { ...this.data.currProduct, ...payload };
-                localStorage.setItem('currentProduct', JSON.stringify({ currProduct: { ...this.data.currProduct } }));
-                break;
             default:
                 break;
         }
