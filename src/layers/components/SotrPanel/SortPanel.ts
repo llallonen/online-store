@@ -20,7 +20,10 @@ class SortPanel {
         sortPanel.classList.add('SortPanel', 'SortPanel--marg');
 
         const sortPanelContent = `
-        <input class="SortPanel__search" /><button class="button button__search">OK</button>
+        <div class="SortPanel__search-container">
+            <input class="SortPanel__search" placeholder="Search"/>
+            <button class="button button__search">OK</button>
+        </div>
         <div class="SortPanel__found">Found: ${this.countProduct}</div>
         <div class="SortPanel__bottom">
           <select class="SortPanel__select">
