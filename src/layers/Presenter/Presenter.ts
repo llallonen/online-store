@@ -132,22 +132,11 @@ class Presenter {
     }
 
     public setHash(): void {
-        const hash = window.location.hash;
-        if (hash === '' || hash === '#' || hash === '#/') {
+        if (window.location.hash === '' || window.location.hash === '#' || window.location.hash === '#/') {
             window.location.hash = '';
             window.location.hash = '#/';
             window.location.hash = '#basket';
             window.location.hash = '#/';
-        }
-        if (hash.includes('#basket')) {
-            window.location.hash = '#/';
-            window.location.hash = '#basket';
-            window.location.hash = hash;
-        }
-        if (hash.includes('#product')) {
-            window.location.hash = '#/';
-            window.location.hash = '#product';
-            window.location.hash = hash;
         }
     }
 
