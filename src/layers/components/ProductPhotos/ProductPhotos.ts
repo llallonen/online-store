@@ -18,7 +18,7 @@ class ProductPhotos {
         this.data = data;
     }
 
-    public render() {
+    public render(): void {
         const productPhotos = document.createElement('div');
         productPhotos.classList.add('product__photos');
         this.container.prepend(productPhotos);
@@ -47,7 +47,7 @@ class ProductPhotos {
         });
     }
 
-    public renderThumbnail() {
+    public renderThumbnail(): void {
         const productThumbnail = document.createElement('div');
         productThumbnail.classList.add('product__thumbnail');
 
@@ -69,15 +69,15 @@ class ProductPhotos {
             productPhotos.append(productThumbnail);
         }
 
-        const trigger = document.querySelector('.product__thumbnail-img');
-        const paneContainer = document.querySelector('.product__info');
+        const trigger: HTMLElement | null = document.querySelector('.product__thumbnail-img');
+        const paneContainer: HTMLElement | null = document.querySelector('.product__info');
 
         if (trigger && paneContainer) {
             const options = {
-                paneContainer: paneContainer as HTMLElement,
+                paneContainer: paneContainer,
             };
 
-            new Drift(trigger as HTMLElement, options);
+            new Drift(trigger, options);
         }
     }
 }

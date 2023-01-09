@@ -1,6 +1,6 @@
 import { IBasketProduct } from '../layers/Model/Model.types';
 
-export const countTotalPrice = (products: IBasketProduct[]) => {
+export const countTotalPrice = (products: IBasketProduct[]): number => {
     let totalPrice = 0;
 
     products.forEach((product) => {

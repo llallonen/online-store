@@ -11,7 +11,7 @@ class BasketModal {
         this.observer = observer;
     }
 
-    public render() {
+    public render(): void {
         const modal = `
           <div class="BasketModal__form">
             <div class="BasketModal__form-item">
@@ -156,7 +156,7 @@ class BasketModal {
         }
     }
 
-    private isNameValid(str: string) {
+    private isNameValid(str: string): boolean {
         let result = true;
         const arr = str.trim().split(' ');
         if (arr.length < 2) {
@@ -174,7 +174,7 @@ class BasketModal {
         return result;
     }
 
-    private isPhoneValid(str: string) {
+    private isPhoneValid(str: string): boolean {
         if (/\s/gm.test(str)) {
             return false;
         }
@@ -186,7 +186,7 @@ class BasketModal {
         }
     }
 
-    private isAddressValid(str: string) {
+    private isAddressValid(str: string): boolean {
         let result = true;
         const arr = str.trim().split(' ');
         if (arr.length < 3) {
@@ -201,7 +201,7 @@ class BasketModal {
         return result;
     }
 
-    private isEmailValid(str: string) {
+    private isEmailValid(str: string): boolean {
         if (/.+@.+\..+/g.test(str)) {
             return true;
         } else {
@@ -209,7 +209,7 @@ class BasketModal {
         }
     }
 
-    private isCardNumberValid(str: string) {
+    private isCardNumberValid(str: string): boolean {
         let result = true;
         const arr = str.trim().split(' ');
         arr.forEach((el) => {
@@ -228,7 +228,7 @@ class BasketModal {
         }
     }
 
-    private dateCardValid(str: string) {
+    private dateCardValid(str: string): boolean {
         const arr = str.trim().split('/');
         if (
             arr[0].trim().length !== 2 ||
@@ -243,7 +243,7 @@ class BasketModal {
         }
     }
 
-    private isCCVValid(str: string) {
+    private isCCVValid(str: string): boolean {
         let result = true;
 
         if (str.trim().length !== 3 || Number.isNaN(Number(str.trim()))) {
@@ -254,7 +254,7 @@ class BasketModal {
         }
     }
 
-    private confirm() {
+    private confirm(): void {
         let confirm = true;
         const basketModalName: HTMLInputElement | null = document.querySelector('.BasketModal__input.name');
         const basketModalNameError = document.querySelector('.BasketModal__error.name');

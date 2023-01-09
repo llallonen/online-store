@@ -21,10 +21,7 @@ class ProductCard {
         this.currImg = currImg;
     }
 
-    public render() {
-        // const product = `${this.data.currProduct.category}`;
-        // console.log(product);
-
+    public render(): void {
         const productCard = document.createElement('section');
         productCard.classList.add('product');
         this.container.append(productCard);

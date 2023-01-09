@@ -11,5 +11,6 @@ type IRoute = {
 };
 
 type classNames = typeof Page404 | typeof MainPage | typeof BasketPage | typeof ProductPage;
+export type className = Page404 | MainPage | BasketPage | ProductPage;
 
 export default IRoutes;

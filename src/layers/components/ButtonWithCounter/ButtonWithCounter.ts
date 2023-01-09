@@ -18,12 +18,12 @@ class ButtonWithCounter {
         }
     }
 
-    public render() {
+    public render(): void {
         this.renderCounter();
         this.renderButton();
     }
 
-    private renderCounter() {
+    private renderCounter(): void {
         const div = document.createElement('div');
         div.classList.add('counter');
         div.textContent = `${this.count}`;
@@ -31,12 +31,12 @@ class ButtonWithCounter {
         this.counter = div;
     }
 
-    private renderButton() {
+    private renderButton(): void {
         this.button = new Button({ container: this.container, observer: this.observer });
         this.button.render();
     }
 
-    public updateCounter(count: number) {
+    public updateCounter(count: number): void {
         this.count = count;
         if (this.counter) {
             this.counter.textContent = `${this.count}`;

@@ -25,7 +25,7 @@ class FilterList {
         this.filter = filter;
     }
 
-    public render() {
+    public render(): void {
         const layout = `
           <div class="filterList">
             <h3 class="filterList__header">${this.title}</h3>
@@ -36,7 +36,7 @@ class FilterList {
         this.renderList();
     }
 
-    private renderList() {
+    private renderList(): void {
         const list = document.getElementById(`${this.title}`);
         if (list instanceof HTMLElement) {
             if (this.type === IFilterListType.brand) {

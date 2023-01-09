@@ -16,7 +16,7 @@ class Breadcrumbs {
         this.product = product;
     }
 
-    public render() {
+    public render(): void {
         const BreadcrumbsContent = document.createElement('ul');
         BreadcrumbsContent.classList.add('breadcrumbs');
         BreadcrumbsContent.innerHTML = `
