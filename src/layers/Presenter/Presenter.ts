@@ -8,7 +8,7 @@ import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket
 import data from '../../data.json';
 import { RangeSlider } from 'toolcool-range-slider';
 import { ProductListType } from '../components/ProductList/ProductList.types';
-import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { SortType } from '../components/SortPanel/SortPanel.types';
 import { updateQuery } from '../../utils/updateQuery';
 
 class Presenter {

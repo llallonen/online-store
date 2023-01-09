@@ -1,5 +1,5 @@
 import { ProductListType } from '../components/ProductList/ProductList.types';
-import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { SortType } from '../components/SortPanel/SortPanel.types';
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
 import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort, IBasketProduct } from './Model.types';

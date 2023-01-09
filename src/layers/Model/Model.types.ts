@@ -1,5 +1,5 @@
 import { ProductListType } from '../components/ProductList/ProductList.types';
-import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { SortType } from '../components/SortPanel/SortPanel.types';
 import Observer from '../Observer/Observer';
 
 interface IModelProps {

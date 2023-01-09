@@ -1,4 +1,4 @@
-import { SortType } from '../layers/components/SotrPanel/SortPanel.styles';
+import { SortType } from '../layers/components/SortPanel/SortPanel.types';
 import { IBasketProduct } from '../layers/Model/Model.types';
 
 export const sortProducts = (products: IBasketProduct[], sort: SortType): IBasketProduct[] => {

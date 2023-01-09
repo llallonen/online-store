@@ -1,6 +1,6 @@
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
-import { ISortPanelProps, SortType } from './SortPanel.styles';
+import { ISortPanelProps, SortType } from './SortPanel.types';
 import './SortPanel.scss';
 
 class SortPanel {

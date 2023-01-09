@@ -1,4 +1,4 @@
-import { SortType } from '../layers/components/SotrPanel/SortPanel.styles';
+import { SortType } from '../layers/components/SortPanel/SortPanel.types';
 import { IFilter, ISort, ProductListType } from '../layers/Model/Model.types';
 
 export const updateQuery = (filters: IFilter, sort: ISort): void => {
