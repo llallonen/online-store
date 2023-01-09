@@ -40,10 +40,8 @@ class Model {
             brand: 'Hedgren',
             category: 'backpacks',
             images: [
-                'https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg',
                 'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG',
                 'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG',
-                'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_03_800.JPG',
             ],
         },
     };
@@ -140,15 +138,11 @@ class Model {
                 }
                 if (query[0] === 'id' && !Number.isNaN(Number(query[1]))) {
                     const item = this.data.goods.products.find((el) => el.id === Number(query[1]));
-                    console.log(query[1], item);
                     if (item) {
                         this.data.currImg = item.images[0];
                         this.data.currProduct = { ...this.data.currProduct, ...item };
-                        console.log('ssssssssssssssss');
-                        console.log('z', this.data);
                     } else {
                         this.data.currProduct.id = Number(query[1]);
-                        console.log('azazz', this.data.currProduct);
                     }
                 }
             });
