@@ -86,7 +86,6 @@ class SortPanel {
 
                     if (value) {
                         this.observer.notify({ eventName: EventName.changeSearch, eventPayload: e });
-                        console.log('uuuu');
                     }
                 }
             });
