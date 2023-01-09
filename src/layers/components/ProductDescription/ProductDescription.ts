@@ -1,5 +1,4 @@
 import Observer from '../../Observer/Observer';
-// import data from '../../../data.json';
 import { IProductDescription } from './ProductDescription.types';
 import './ProductDescription.scss';
 import { IBasketProduct } from '../../Model/Model.types';
@@ -23,7 +22,6 @@ class ProductDescription {
         const productDescriptionList = document.createElement('ul');
         productDescriptionList.classList.add('product__description-list');
         productDescription.append(productDescriptionList);
-        // const productDescriptionItems = data.products[1];
 
         function genForObj<T>(t: T) {
             for (const k in t) {

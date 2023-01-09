@@ -31,8 +31,6 @@ class Router {
         } else {
             this.path = '';
         }
-
-        //console.log('hash', this.path);
     }
 
     getPage({ container, observer, data }: IMain) {

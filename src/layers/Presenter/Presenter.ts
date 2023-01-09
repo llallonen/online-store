@@ -28,12 +28,32 @@ class Presenter {
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
         this.subscribe();
         this.listenPopState();
-        // this.setHash();
         this.fetchLocalStorage();
     }
 
     start() {
         console.log('Старт');
+        console.log(
+            'Оценка 280',
+            `
+            --Главная страница 105 баллов:
+                Реализована фильтрация продуктов +40
+                Реализована сортировка продуктов +20
+                Реализован текстовый поиск по всем данным продуктов +0
+                Реализовано переключение вида найденных продуктов +10
+                Реализован роутинг с query-параметрами +10
+                Реализованы кнопки сброса и копирования поиска +10
+                Реализован блок кол-ва найденных товаров +5
+                Поведение карточек найденных товаров +10
+            --Корзина товаров 60 баллов
+            --Модальное окно 50 баллов
+            --Страница продукта 35 баллов:
+                Реализованы блоки страницы +25
+                Страница открывается в новом окне по ссылке с id/name товара +10
+            --Шапка сайта 20 баллов
+            --404 страница 10 баллов
+        `
+        );
     }
 
     subscribe() {
@@ -125,7 +145,6 @@ class Presenter {
                 });
             }
         }
-        console.log(this.model.getState());
     }
 
     addGoodToBasket(e: Event | IModelData) {
@@ -252,7 +271,6 @@ class Presenter {
 
     fetchGoods() {
         this.model.updateGoods({ products: [...data.products] });
-        // this.model.setQueryParams();
     }
 
     filterBrand(e: Event | IModelData) {
@@ -271,7 +289,6 @@ class Presenter {
         this.model.updateFilter({ ...this.state.filter, brand: brandFilter });
         this.getState();
         this.updateUrl();
-        console.log(this.state);
     }
 
     filterCategory(e: Event | IModelData) {

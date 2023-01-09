@@ -18,7 +18,7 @@ class FilterItem {
         this.eventName = eventName;
         this.filterArr = filterArr;
     }
-    // ${this.filteredCount !== 0 ? 'checked' : ''}
+
     public render() {
         const layout = `
             <input class="filterList__input ${

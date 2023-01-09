@@ -22,9 +22,6 @@ class ProductCard {
     }
 
     public render() {
-        // const product = `${this.data.currProduct.category}`;
-        // console.log(product);
-
         const productCard = document.createElement('section');
         productCard.classList.add('product');
         this.container.append(productCard);
