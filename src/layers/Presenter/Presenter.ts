@@ -23,6 +23,7 @@ class Presenter {
         this.container = container;
         this.model = new Model({ observer: this.observer });
         this.fetchGoods();
+        this.setHash();
         this.model.setQueryParams();
         this.state = this.model.getState();
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
@@ -131,8 +132,10 @@ class Presenter {
     }
 
     public setHash(): void {
-        window.location.hash = '#';
-        window.location.hash = '#/';
+        if (window.location.hash === '' || window.location.hash === '#') {
+            window.location.hash = '#/';
+        }
+        // window.location.hash = '#/';
     }
 
     public fetchLocalStorage(): void {
