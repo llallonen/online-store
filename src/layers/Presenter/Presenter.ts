@@ -23,12 +23,12 @@ class Presenter {
         this.container = container;
         this.model = new Model({ observer: this.observer });
         this.fetchGoods();
-        this.setHash();
         this.model.setQueryParams();
         this.state = this.model.getState();
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
         this.subscribe();
         this.listenPopState();
+        this.setHash();
         this.fetchLocalStorage();
     }
 
@@ -118,7 +118,7 @@ class Presenter {
         this.state = this.model.getState();
     }
 
-    listenPopState() {
+    public listenPopState(): void {
         const listener = () => {
             if (window.location.hash === '#/' || window.location.hash === '#') {
                 this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
@@ -132,10 +132,12 @@ class Presenter {
     }
 
     public setHash(): void {
-        if (window.location.hash === '' || window.location.hash === '#') {
+        if (window.location.hash === '' || window.location.hash === '#' || window.location.hash === '#/') {
+            window.location.hash = '';
+            window.location.hash = '#/';
+            window.location.hash = '#basket';
             window.location.hash = '#/';
         }
-        // window.location.hash = '#/';
     }
 
     public fetchLocalStorage(): void {
