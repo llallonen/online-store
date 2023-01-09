@@ -151,6 +151,7 @@ class MainPage {
             observer: this.observer,
             countProduct: this.filterProducts.length,
             sortType: this.data.sort.sort,
+            data: this.data,
         }).render();
     }
 

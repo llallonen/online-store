@@ -2,17 +2,20 @@ import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
 import { ISortPanelProps, SortType } from './SortPanel.types';
 import './SortPanel.scss';
+import { IModelData } from '../../Model/Model.types';
 
 class SortPanel {
     private container: HTMLElement;
     private observer: Observer;
     private countProduct: number;
     private sortType: SortType;
-    constructor({ container, observer, countProduct, sortType }: ISortPanelProps) {
+    private data: IModelData;
+    constructor({ container, observer, countProduct, sortType, data }: ISortPanelProps) {
         this.container = container;
         this.observer = observer;
         this.countProduct = countProduct;
         this.sortType = sortType;
+        this.data = data;
     }
 
     public render(): void {
@@ -21,7 +24,9 @@ class SortPanel {
 
         const sortPanelContent = `
         <div class="SortPanel__search-container">
-            <input class="SortPanel__search" placeholder="Search"/>
+            <input class="SortPanel__search" placeholder="Search" value="${
+                this.data.filter.search.length > 0 ? this.data.filter.search[0] : ''
+            }"/>
             <button class="button button__search">OK</button>
         </div>
         <div class="SortPanel__found">Found: ${this.countProduct}</div>

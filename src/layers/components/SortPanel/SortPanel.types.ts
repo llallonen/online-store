@@ -1,3 +1,4 @@
+import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 
 export interface ISortPanelProps {
@@ -5,6 +6,7 @@ export interface ISortPanelProps {
     observer: Observer;
     countProduct: number;
     sortType: SortType;
+    data: IModelData;
 }
 
 export enum SortType {

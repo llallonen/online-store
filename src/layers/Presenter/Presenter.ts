@@ -132,11 +132,22 @@ class Presenter {
     }
 
     public setHash(): void {
-        if (window.location.hash === '' || window.location.hash === '#' || window.location.hash === '#/') {
+        const hash = window.location.hash;
+        if (hash === '' || hash === '#' || hash === '#/') {
             window.location.hash = '';
             window.location.hash = '#/';
             window.location.hash = '#basket';
             window.location.hash = '#/';
+        }
+        if (hash.includes('#basket')) {
+            window.location.hash = '#/';
+            window.location.hash = '#basket';
+            window.location.hash = hash;
+        }
+        if (hash.includes('#product')) {
+            window.location.hash = '#/';
+            window.location.hash = '#product';
+            window.location.hash = hash;
         }
     }
 
@@ -410,7 +421,7 @@ class Presenter {
     }
 
     public clearFilter(): void {
-        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [] });
+        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [], search: [] });
 
         this.getState();
         this.updateUrl();
