@@ -48,7 +48,7 @@ class Header {
     public update(totalCount: number, bagCount: number) {
         const totalCountNode = document.querySelector('.total');
         if (totalCountNode) {
-            totalCountNode.textContent = `${totalCount}`;
+            totalCountNode.textContent = `${totalCount} $`;
         }
 
         const bagCountNode = document.querySelector('.bag__count');

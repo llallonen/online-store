@@ -1,3 +1,50 @@
 .SortPanel {
-  display: flex;
+    display: flex;
+    flex-wrap: wrap;
+
+    &--marg {
+        margin-bottom: 40px;
+    }
+
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__found {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .button {
+        &--sort-panel {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            font-size: 19px;
+            border: 1px solid rgb(162, 162, 162);
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: rgb(95, 95, 95);
+                border: 1px solid rgb(95, 95, 95);
+                color: white;
+            }
+        }
+
+        &--line {
+            &::before {
+                content: '☰';
+            }
+        }
+
+        &--square {
+            position: relative;
+
+            &::before {
+                content: '☷';
+            }
+        }
+    }
 }

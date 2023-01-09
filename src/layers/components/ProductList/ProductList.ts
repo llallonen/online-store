@@ -25,27 +25,36 @@ class ProductList {
         if (this.products.length === 0) {
             productList.innerHTML = `<div class="ProductList__not-found">No products found 😏</div>`;
         }
-        if (this.type === ProductListType.big) {
-            this.products.forEach((product) => {
-                const inBasket = this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;
-                new ProductItem({
-                    container: productList,
-                    observer: this.observer,
-                    product: product,
-                    inBasket: inBasket,
-                }).render();
-            });
-        }
-        if (this.type === ProductListType.small) {
-            this.products.forEach((product) => {
-                const inBasket = this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;
-                new ProductItemSmall({
-                    container: productList,
-                    observer: this.observer,
-                    product: product,
-                    inBasket: inBasket,
-                }).render();
-            });
+        const sortPanel = document.querySelector('.SortPanel');
+        if (sortPanel) {
+            if (this.type === ProductListType.big) {
+                productList.classList.remove('ProductList--inLine');
+                sortPanel.classList.add('SortPanel--marg');
+                this.products.forEach((product) => {
+                    const inBasket =
+                        this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;
+                    new ProductItem({
+                        container: productList,
+                        observer: this.observer,
+                        product: product,
+                        inBasket: inBasket,
+                    }).render();
+                });
+            }
+            if (this.type === ProductListType.small) {
+                this.products.forEach((product) => {
+                    productList.classList.add('ProductList--inLine');
+                    sortPanel.classList.remove('SortPanel--marg');
+                    const inBasket =
+                        this.basket.filter((basketProduct) => basketProduct.id === product.id).length !== 0;
+                    new ProductItemSmall({
+                        container: productList,
+                        observer: this.observer,
+                        product: product,
+                        inBasket: inBasket,
+                    }).render();
+                });
+            }
         }
         this.container.append(productList);
     }

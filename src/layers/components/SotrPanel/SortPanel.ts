@@ -17,9 +17,11 @@ class SortPanel {
 
     public render() {
         const sortPanel = document.createElement('div');
-        sortPanel.classList.add('SortPanel');
+        sortPanel.classList.add('SortPanel', 'SortPanel--marg');
 
         const sortPanelContent = `
+        <div class="SortPanel__found">Found: ${this.countProduct}</div>
+        <div class="SortPanel__bottom">
           <select class="SortPanel__select">
             <option ${this.sortType === SortType.priceASC ? 'selected' : ''} data-type="${
             SortType.priceASC
@@ -34,9 +36,11 @@ class SortPanel {
             SortType.ratingDESC
         }">Sort by rating DESC</option>
           </select>
-          <div class="SortPanel__found">Found: ${this.countProduct}</div>
-          <button class="SortPanel__button--line" data-type="small">Line</button>
-          <button class="SortPanel__button--square" data-type="big">Square</button>
+          <div class="SortPanel__buttons">
+          <button class="SortPanel__button button button--sort-panel button--line" data-type="small"></button>
+          <button class="SortPanel__button button button--sort-panel button--square" data-type="big"></button>
+          </div>
+          </div>
         `;
 
         sortPanel.innerHTML = sortPanelContent;
@@ -46,7 +50,7 @@ class SortPanel {
     }
 
     private addListener() {
-        const buttonLine = document.querySelector('.SortPanel__button--line');
+        const buttonLine = document.querySelector('.button--line');
 
         if (buttonLine) {
             buttonLine.addEventListener('click', (e) => {
@@ -54,7 +58,7 @@ class SortPanel {
             });
         }
 
-        const buttonSquare = document.querySelector('.SortPanel__button--square');
+        const buttonSquare = document.querySelector('.button--square');
 
         if (buttonSquare) {
             buttonSquare.addEventListener('click', (e) => {

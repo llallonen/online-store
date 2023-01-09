@@ -15,6 +15,7 @@ $pink: #d782a7;
 
 html {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -36,8 +37,13 @@ img {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    max-width: 85%;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 0 100px;
+
+    @media screen and (min-width: 1378px) {
+        max-width: 75%;
+    }
 }
 
 .logo {
@@ -65,7 +71,12 @@ img {
         background-repeat: no-repeat;
 
         &:first-of-type {
-            filter: invert(84%) sepia(51%) saturate(1344%) hue-rotate(286deg) brightness(87%) contrast(93%);;
+            filter: invert(84%) sepia(51%) saturate(1344%) hue-rotate(286deg) brightness(87%) contrast(93%);
         }
     }
+}
+
+input[type=text] {
+    border: 1px solid rgb(210, 210, 210);
+    font-family: 'Work Sans', sans-serif;
 }
