@@ -23,7 +23,7 @@ class Footer {
         const logo = footer.querySelector('.logo');
         logo?.addEventListener('click', (e: Event) => {
             e.preventDefault();
-            window.location.hash = '/';
+            window.location.hash = '/#';
         });
     }
 }
