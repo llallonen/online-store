@@ -34,12 +34,12 @@ class Presenter {
     private start(): void {
         console.log('Старт');
         console.log(
-            'Оценка 280',
+            'Оценка 300',
             `
-            --Главная страница 105 баллов:
+            --Главная страница 120 баллов:
                 Реализована фильтрация продуктов +40
                 Реализована сортировка продуктов +20
-                Реализован текстовый поиск по всем данным продуктов +0
+                Реализован текстовый поиск по всем данным продуктов +15
                 Реализовано переключение вида найденных продуктов +10
                 Реализован роутинг с query-параметрами +10
                 Реализованы кнопки сброса и копирования поиска +10
@@ -139,7 +139,7 @@ class Presenter {
         const localData = localStorage.getItem('online-store2023');
         let data: ILocalStorageData;
         if (localData) {
-            data = JSON.parse(localData) as ILocalStorageData;
+            data = JSON.parse(localData);
             if (data?.basketData) {
                 this.getState();
                 this.model.updateState({
