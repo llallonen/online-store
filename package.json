@@ -5,7 +5,9 @@
     "scripts": {
         "build": "webpack",
         "start": "webpack serve --open",
-        "lint": "eslint . --ext .ts --fix"
+        "lint": "eslint . --ext .ts --fix",
+        "test": "jest",
+        "test:coverage": "jest --coverage"
     },
     "repository": "https://github.com/llallonen/online-store",
     "author": "Valeria Sycheva, Andrey Lapin",
