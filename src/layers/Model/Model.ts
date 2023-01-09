@@ -22,6 +22,7 @@ class Model {
             category: [],
             price: [],
             stock: [],
+            search: [],
         },
         sort: {
             type: ProductListType.big,
@@ -78,6 +79,11 @@ class Model {
     }
     public updateIsModalOpen(payload: boolean): void {
         this.data.isModalOpen = payload;
+        this.notify();
+    }
+
+    public updateSearch(payload: string): void {
+        this.data.filter.search = [payload];
         this.notify();
     }
 

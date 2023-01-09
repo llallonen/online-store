@@ -3,6 +3,16 @@ import { IBasketProduct, IFilter } from '../layers/Model/Model.types';
 export const filterProducts = (filters: IFilter, products: IBasketProduct[]): IBasketProduct[] => {
     let filterProducts = [...products];
 
+    // if (filters.search.length !== 0) {
+    //     const newFilterProducts: IBasketProduct[] = [];
+
+    //     const wantedProducts = filters.search.forEach((search) => {
+    //         filterProducts.forEach((filterProduct) => {
+    //             const keys = Object.keys(filterProduct);
+    //         });
+    //     });
+    // }
+
     if (filters.category.length !== 0) {
         const newFilterProducts: IBasketProduct[] = [];
         filters.category.forEach((categoryName) => {

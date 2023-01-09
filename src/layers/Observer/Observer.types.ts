@@ -20,6 +20,7 @@ enum EventName {
     setCurrentProduct = 'setCurrentProduct',
     clearBasket = 'clearBasket',
     setModalOpen = 'setModalOpen',
+    changeSearch = 'changeSearch',
 }
 
 interface ISubscriber {

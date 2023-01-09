@@ -62,6 +62,7 @@ interface IFilter {
     brand: string[];
     price: number[];
     stock: number[];
+    search: string[];
 }
 
 interface ISort {

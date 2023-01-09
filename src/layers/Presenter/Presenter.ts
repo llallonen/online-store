@@ -87,6 +87,7 @@ class Presenter {
             function: this.setCurrentProduct.bind(this),
         });
         this.observer.subscribe({ eventName: EventName.setModalOpen, function: this.setIsModalOpen.bind(this) });
+        this.observer.subscribe({ eventName: EventName.changeSearch, function: this.handleChangeSearch.bind(this) });
     }
 
     public handleImgChange(e: Event | IModelData): void {
@@ -120,7 +121,7 @@ class Presenter {
         const listener = () => {
             if (window.location.hash === '#/' || window.location.hash === '#') {
                 this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
-                this.model.updateFilter({ category: [], brand: [], price: [], stock: [] });
+                this.model.updateFilter({ category: [], brand: [], price: [], stock: [], search: [] });
             }
             this.model.setQueryParams();
             this.getState();
@@ -448,6 +449,19 @@ class Presenter {
         }
         this.getState();
         console.log(this.state);
+    }
+
+    public handleChangeSearch(e: Event | IModelData): void {
+        if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
+            return;
+        }
+
+        const searchInputContent = e.target.value;
+
+        if (searchInputContent) {
+            this.model.updateSearch(searchInputContent);
+            this.getState();
+        }
     }
 }
 
