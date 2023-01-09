@@ -27,6 +27,7 @@ interface IModelData {
     goods: IGoods;
     filter: IFilter;
     sort: ISort;
+    isModalOpen: boolean;
 }
 
 interface IBasket {
