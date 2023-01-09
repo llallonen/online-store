@@ -24,7 +24,7 @@ class RangeSliderDual {
         this.eventName = eventName;
     }
 
-    public render() {
+    public render(): void {
         const slider = `
         <div class="RangeSlider__counters" id="${this.name}-counters">
             <span class="RangeSlider__counter-from">${this.from}</span><span class="RangeSlider__counter-to">${this.to}</span>
@@ -58,7 +58,7 @@ class RangeSliderDual {
         this.subscribe();
     }
 
-    private subscribe() {
+    private subscribe(): void {
         const slider = document.getElementById(`${this.name}`);
         const ad = document.querySelector(`.RangeSlider-${this.name}`);
         if (slider) {
@@ -77,7 +77,7 @@ class RangeSliderDual {
         }
     }
 
-    private updateCounter(from: number, to: number) {
+    private updateCounter(from: number, to: number): void {
         const sliderNode = document.getElementById(`${this.name}-counters`);
         const fromNode = sliderNode?.querySelector('.RangeSlider__counter-from');
         const toNode = sliderNode?.querySelector('.RangeSlider__counter-to');

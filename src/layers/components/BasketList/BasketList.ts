@@ -13,7 +13,7 @@ class BasketList {
         this.basketData = basketData;
     }
 
-    public render() {
+    public render(): void {
         const fromIterate = (this.basketData.page - 1) * this.basketData.limit;
         this.basketData.products.forEach((product, i) => {
             if (i >= fromIterate && i < this.basketData.page * this.basketData.limit) {

@@ -22,7 +22,7 @@ class BasketPage {
         this.data = data;
     }
 
-    public render() {
+    public render(): void {
         const basket = `<div class="basket">
             <div class="basket__left">
                 <div class="basket__header">
@@ -160,7 +160,7 @@ class BasketPage {
         this.renderBasketModal();
     }
 
-    private renderBasketList() {
+    private renderBasketList(): void {
         const basketList = document.querySelector('.basket__items');
         if (basketList && basketList instanceof HTMLElement && this.data.basket.products.length > 0) {
             new BasketList({ container: basketList, observer: this.observer, basketData: this.data.basket }).render();
@@ -172,7 +172,7 @@ class BasketPage {
         }
     }
 
-    private renderBasketDetailsButton() {
+    private renderBasketDetailsButton(): void {
         const basketDetailsButton: HTMLElement | null = document.querySelector('.basket__details-button');
 
         if (basketDetailsButton) {
@@ -185,19 +185,19 @@ class BasketPage {
         }
     }
 
-    private countTotalPrice() {
+    private countTotalPrice(): number {
         return countTotalPrice(this.data.basket.products);
     }
 
-    private countTotalPriceWithDiscount() {
+    private countTotalPriceWithDiscount(): number {
         return countTotalPriceWithPromo(this.data.basket.products, this.data.basket.promo);
     }
 
-    private countQuantityProducts() {
+    private countQuantityProducts(): number {
         return countQuantityProducts(this.data.basket.products);
     }
 
-    private renderBasketModal() {
+    private renderBasketModal(): void {
         const basketModalNode: HTMLElement | null = document.querySelector('.basket__modal-content');
 
         if (basketModalNode) {

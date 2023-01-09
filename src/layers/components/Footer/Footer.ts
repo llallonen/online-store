@@ -8,7 +8,7 @@ class Footer {
         this.container = container;
     }
 
-    public render() {
+    public render(): void {
         const footer = document.createElement('footer');
         footer.classList.add('footer');
         footer.innerHTML += `<div class="logo logo--foter"></div>

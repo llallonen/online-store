@@ -25,7 +25,7 @@ class Button {
         }
     }
 
-    public render() {
+    public render(): void {
         const button = document.createElement('button');
         button.textContent = `${this.textButton}`;
         button.classList.add('button', `${this.typeButton}`);
@@ -34,7 +34,7 @@ class Button {
         }
 
         if (this.event) {
-            const event = this.event as EventName;
+            const event = this.event;
             button.addEventListener('click', (e: Event) => {
                 const eventObject = { eventName: event, eventPayload: e };
                 this.observer.notify(eventObject);

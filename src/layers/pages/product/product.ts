@@ -14,11 +14,7 @@ class ProductPage {
         this.data = data;
     }
 
-    public render() {
-        // const header = document.createElement('h1');
-        // header.textContent = 'Product Page';
-        // this.container.append(header);
-
+    public render(): void {
         const main = document.querySelector('main');
 
         if (main) {

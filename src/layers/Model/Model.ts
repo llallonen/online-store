@@ -53,7 +53,7 @@ class Model {
         this.setQueryParams();
     }
 
-    public updateState({ type, payload }: IAction) {
+    public updateState({ type, payload }: IAction): void {
         switch (type) {
             case IActionType.basket:
                 this.data.basket = { ...this.data.basket, ...payload };
@@ -65,20 +65,20 @@ class Model {
         this.notify();
     }
 
-    public updateFilter(payload: IFilter) {
+    public updateFilter(payload: IFilter): void {
         this.data.filter = payload;
     }
-    public updateSort(payload: ISort) {
+    public updateSort(payload: ISort): void {
         this.data.sort = payload;
     }
-    public updateGoods(payload: IGoods) {
+    public updateGoods(payload: IGoods): void {
         this.data.goods = payload;
     }
-    public updateCurrProduct(payload: IBasketProduct) {
+    public updateCurrProduct(payload: IBasketProduct): void {
         this.data.currProduct = payload;
     }
 
-    private notify() {
+    private notify(): void {
         this.observer.notify({ eventName: EventName.updateState, eventPayload: this.data });
     }
 
@@ -86,7 +86,7 @@ class Model {
         return { ...this.data };
     }
 
-    public setQueryParams() {
+    public setQueryParams(): void {
         const hash = location.hash;
         const query = hash.match(/\?[a-zA-Z=&%'0-9,]{0,}/g);
         if (query && query[0]) {
@@ -156,7 +156,7 @@ class Model {
         }
     }
 
-    public changeImg(imgUrl: string) {
+    public changeImg(imgUrl: string): void {
         this.data.currImg = imgUrl;
         this.notify();
     }

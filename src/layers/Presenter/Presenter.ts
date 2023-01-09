@@ -32,11 +32,11 @@ class Presenter {
         this.fetchLocalStorage();
     }
 
-    start() {
+    private start(): void {
         console.log('Старт');
     }
 
-    subscribe() {
+    private subscribe(): void {
         this.observer.subscribe({ eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) });
         this.observer.subscribe({ eventName: EventName.addGoods, function: this.addGoodToBasket.bind(this) });
         this.observer.subscribe({
@@ -68,7 +68,7 @@ class Presenter {
         });
     }
 
-    handleImgChange(e: Event | IModelData): void {
+    public handleImgChange(e: Event | IModelData): void {
         if (!(e instanceof PointerEvent)) {
             return;
         }
@@ -83,7 +83,7 @@ class Presenter {
         this.getState();
     }
 
-    handleStateUpdate(data: Event | IModelData): void {
+    public handleStateUpdate(data: Event | IModelData): void {
         if (data instanceof Event) {
             return;
         }
@@ -91,7 +91,7 @@ class Presenter {
         this.view.update(data);
     }
 
-    getState() {
+    public getState(): void {
         this.state = this.model.getState();
     }
 
@@ -108,12 +108,12 @@ class Presenter {
         window.addEventListener('popstate', listener);
     }
 
-    setHash() {
+    public setHash(): void {
         window.location.hash = '#';
         window.location.hash = '#/';
     }
 
-    fetchLocalStorage() {
+    public fetchLocalStorage(): void {
         const localData = localStorage.getItem('online-store2023');
         let data: ILocalStorageData;
         if (localData) {
@@ -129,7 +129,7 @@ class Presenter {
         console.log(this.model.getState());
     }
 
-    addGoodToBasket(e: Event | IModelData) {
+    public addGoodToBasket(e: Event | IModelData): void {
         if (!(e instanceof MouseEvent)) {
             return;
         }
@@ -150,7 +150,7 @@ class Presenter {
         }
     }
 
-    removeGoodToBasket(e: Event | IModelData) {
+    public removeGoodToBasket(e: Event | IModelData): void {
         if (!(e instanceof Event)) {
             return;
         }
@@ -172,7 +172,7 @@ class Presenter {
         }
     }
 
-    changeBasketItemsLimit(e: Event | IModelData) {
+    public changeBasketItemsLimit(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
             return;
         }
@@ -190,7 +190,7 @@ class Presenter {
         window.location.hash = `#basket?limit=${this.state.basket.limit}&page=${this.state.basket.page}`;
     }
 
-    addNavigationPage(e: Event | IModelData) {
+    public addNavigationPage(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLButtonElement)) {
             return;
         }
@@ -217,7 +217,7 @@ class Presenter {
         }
     }
 
-    addPromoCode(e: Event | IModelData) {
+    public addPromoCode(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
             return;
         }
@@ -235,7 +235,7 @@ class Presenter {
         }
     }
 
-    removePromoCode(e: Event | IModelData) {
+    public removePromoCode(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
             return;
         }
@@ -251,12 +251,12 @@ class Presenter {
         }
     }
 
-    fetchGoods() {
+    public fetchGoods(): void {
         this.model.updateGoods({ products: [...data.products] });
         // this.model.setQueryParams();
     }
 
-    filterBrand(e: Event | IModelData) {
+    public filterBrand(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
             return;
         }
@@ -275,7 +275,7 @@ class Presenter {
         console.log(this.state);
     }
 
-    filterCategory(e: Event | IModelData) {
+    public filterCategory(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
             return;
         }
@@ -293,7 +293,7 @@ class Presenter {
         this.updateUrl();
     }
 
-    filterPrice(e: Event | IModelData) {
+    public filterPrice(e: Event | IModelData): void {
         if (!(e instanceof CustomEvent)) {
             return;
         }
@@ -315,7 +315,7 @@ class Presenter {
         }
     }
 
-    filterStock(e: Event | IModelData) {
+    public filterStock(e: Event | IModelData): void {
         if (!(e instanceof CustomEvent) || !(e.target instanceof HTMLElement)) {
             return;
         }
@@ -337,7 +337,7 @@ class Presenter {
         }
     }
 
-    changeViewListProducts(e: Event | IModelData) {
+    public changeViewListProducts(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
             return;
         }
@@ -354,7 +354,7 @@ class Presenter {
         this.updateUrl();
     }
 
-    setSort(e: Event | IModelData) {
+    public setSort(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLElement)) {
             return;
         }
@@ -385,18 +385,18 @@ class Presenter {
         this.updateUrl();
     }
 
-    clearFilter() {
+    public clearFilter(): void {
         this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [] });
 
         this.getState();
         this.updateUrl();
     }
 
-    updateUrl() {
+    public updateUrl(): void {
         updateQuery(this.state.filter, this.state.sort);
     }
 
-    setCurrentProduct(e: Event | IModelData) {
+    public setCurrentProduct(e: Event | IModelData): void {
         if (!(e instanceof Event) || !(e.target instanceof HTMLButtonElement)) {
             return;
         }
@@ -410,7 +410,7 @@ class Presenter {
         }
     }
 
-    clearBasket() {
+    public clearBasket(): void {
         this.getState();
         this.model.updateState({
             type: IActionType.basket,

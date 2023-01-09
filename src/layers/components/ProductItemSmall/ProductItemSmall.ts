@@ -16,7 +16,7 @@ class ProductItemSmall {
         this.inBasket = inBasket;
     }
 
-    public render() {
+    public render(): void {
         const productList = document.createElement('div');
         productList.classList.add('ProductItemSmall');
         productList.id = `ProductItemSmall-${String(this.product.id)}`;
@@ -48,7 +48,7 @@ class ProductItemSmall {
         this.subscribe();
     }
 
-    private subscribe() {
+    private subscribe(): void {
         const id = `#ProductItemSmall-${String(this.product.id)}`;
         const item = this.container.querySelector(id);
         if (item) {

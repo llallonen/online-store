@@ -26,25 +26,25 @@ class View {
         this.render();
     }
 
-    render() {
+    private render(): void {
         this.renderHeader();
         this.renderMain();
         this.renderFooter();
     }
 
-    renderHeader() {
+    private renderHeader(): void {
         this.header.render();
     }
 
-    renderFooter() {
+    private renderFooter(): void {
         this.footer.render();
     }
 
-    renderMain() {
+    private renderMain(): void {
         this.main.render();
     }
 
-    public update(data: IModelData) {
+    public update(data: IModelData): void {
         this.state = data;
         this.main.update(this.state);
         const totalPrice = countTotalPrice(this.state.basket.products);
