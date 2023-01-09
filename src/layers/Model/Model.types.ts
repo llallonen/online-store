@@ -1,5 +1,5 @@
 import { ProductListType } from '../components/ProductList/ProductList.types';
-import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { SortType } from '../components/SortPanel/SortPanel.types';
 import Observer from '../Observer/Observer';
 
 interface IModelProps {
@@ -51,6 +51,7 @@ interface IBasketProduct {
     category: string;
     images: string[];
     count?: number;
+    [key: string]: string | number | string[] | undefined;
 }
 
 interface IGoods {
@@ -62,6 +63,7 @@ interface IFilter {
     brand: string[];
     price: number[];
     stock: number[];
+    search: string[];
 }
 
 interface ISort {

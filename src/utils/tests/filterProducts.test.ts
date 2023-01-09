@@ -65,6 +65,7 @@ describe('filterProducts function', () => {
         category: ['Bags2'],
         price: [0, 300],
         stock: [0, 40],
+        search: ['bag'],
     };
 
     const result = [

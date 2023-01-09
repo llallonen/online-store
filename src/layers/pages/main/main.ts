@@ -7,7 +7,7 @@ import { IFilterListType } from '../../components/FilterList/FilterList.types';
 import { IMain } from '../../components/Main/Main.types';
 import { ProductList } from '../../components/ProductList/ProductList';
 import { RangeSliderDual } from '../../components/RangeSliderDual/RangeSliderDual';
-import { SortPanel } from '../../components/SotrPanel/SortPanel';
+import { SortPanel } from '../../components/SortPanel/SortPanel';
 import { IBasketProduct, IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';

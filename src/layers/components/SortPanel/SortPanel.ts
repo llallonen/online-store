@@ -1,6 +1,6 @@
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
-import { ISortPanelProps, SortType } from './SortPanel.styles';
+import { ISortPanelProps, SortType } from './SortPanel.types';
 import './SortPanel.scss';
 
 class SortPanel {
@@ -20,6 +20,10 @@ class SortPanel {
         sortPanel.classList.add('SortPanel', 'SortPanel--marg');
 
         const sortPanelContent = `
+        <div class="SortPanel__search-container">
+            <input class="SortPanel__search" placeholder="Search"/>
+            <button class="button button__search">OK</button>
+        </div>
         <div class="SortPanel__found">Found: ${this.countProduct}</div>
         <div class="SortPanel__bottom">
           <select class="SortPanel__select">
@@ -71,6 +75,22 @@ class SortPanel {
         if (select) {
             select.addEventListener('change', (e) => {
                 this.observer.notify({ eventName: EventName.setSorting, eventPayload: e });
+            });
+        }
+
+        const searchInput = document.querySelector('.button__search');
+
+        if (searchInput) {
+            searchInput.addEventListener('click', (e) => {
+                const input: HTMLInputElement | null = document.querySelector('.SortPanel__search');
+
+                if (input) {
+                    const value = input.value;
+
+                    if (value) {
+                        this.observer.notify({ eventName: EventName.changeSearch, eventPayload: e });
+                    }
+                }
             });
         }
     }

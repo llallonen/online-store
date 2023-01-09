@@ -1,4 +1,4 @@
-import { SortType } from '../layers/components/SotrPanel/SortPanel.styles';
+import { SortType } from '../layers/components/SortPanel/SortPanel.types';
 import { IFilter, ISort, ProductListType } from '../layers/Model/Model.types';
 
 export const updateQuery = (filters: IFilter, sort: ISort): void => {
@@ -9,6 +9,7 @@ export const updateQuery = (filters: IFilter, sort: ISort): void => {
         filters.category.length === 0 &&
         filters.price.length === 0 &&
         filters.stock.length === 0 &&
+        filters.search.length === 0 &&
         sort.sort === SortType.priceASC &&
         sort.type === ProductListType.big
     ) {
@@ -26,6 +27,9 @@ export const updateQuery = (filters: IFilter, sort: ISort): void => {
     }
     if (filters.stock.length !== 0) {
         query += `stock=${filters.stock.join(',')}&`;
+    }
+    if (filters.search.length !== 0) {
+        query += `search=${filters.search[0]}&`;
     }
     if (sort.sort && sort.sort !== SortType.priceASC) {
         query += `sort=${sort.sort}&`;

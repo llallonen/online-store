@@ -105,8 +105,8 @@
     }
 
     &__details-total {
-        font-size: 26px;
-        margin-bottom: 50px;
+        font-size: 22px;
+        margin-bottom: 35px;
 
         &.hide {
             display: none;
@@ -120,6 +120,7 @@
             display: none;
             &.active {
                 display: block;
+                font-size: 26px;
             }
         }
     }

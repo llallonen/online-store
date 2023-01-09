@@ -8,7 +8,7 @@ import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket
 import data from '../../data.json';
 import { RangeSlider } from 'toolcool-range-slider';
 import { ProductListType } from '../components/ProductList/ProductList.types';
-import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { SortType } from '../components/SortPanel/SortPanel.types';
 import { updateQuery } from '../../utils/updateQuery';
 
 class Presenter {
@@ -34,12 +34,12 @@ class Presenter {
     private start(): void {
         console.log('Старт');
         console.log(
-            'Оценка 280',
+            'Оценка 300',
             `
-            --Главная страница 105 баллов:
+            --Главная страница 120 баллов:
                 Реализована фильтрация продуктов +40
                 Реализована сортировка продуктов +20
-                Реализован текстовый поиск по всем данным продуктов +0
+                Реализован текстовый поиск по всем данным продуктов +15
                 Реализовано переключение вида найденных продуктов +10
                 Реализован роутинг с query-параметрами +10
                 Реализованы кнопки сброса и копирования поиска +10
@@ -87,6 +87,7 @@ class Presenter {
             function: this.setCurrentProduct.bind(this),
         });
         this.observer.subscribe({ eventName: EventName.setModalOpen, function: this.setIsModalOpen.bind(this) });
+        this.observer.subscribe({ eventName: EventName.changeSearch, function: this.handleChangeSearch.bind(this) });
     }
 
     public handleImgChange(e: Event | IModelData): void {
@@ -120,7 +121,7 @@ class Presenter {
         const listener = () => {
             if (window.location.hash === '#/' || window.location.hash === '#') {
                 this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
-                this.model.updateFilter({ category: [], brand: [], price: [], stock: [] });
+                this.model.updateFilter({ category: [], brand: [], price: [], stock: [], search: [] });
             }
             this.model.setQueryParams();
             this.getState();
@@ -138,7 +139,7 @@ class Presenter {
         const localData = localStorage.getItem('online-store2023');
         let data: ILocalStorageData;
         if (localData) {
-            data = JSON.parse(localData) as ILocalStorageData;
+            data = JSON.parse(localData);
             if (data?.basketData) {
                 this.getState();
                 this.model.updateState({
@@ -440,14 +441,30 @@ class Presenter {
         if (!(e instanceof Event)) {
             return;
         }
-        console.log('bbb');
         if (e.target instanceof HTMLButtonElement) {
             this.model.updateIsModalOpen(true);
         } else {
             this.model.updateIsModalOpen(false);
         }
         this.getState();
-        console.log(this.state);
+    }
+
+    public handleChangeSearch(e: Event | IModelData): void {
+        if (!(e instanceof Event)) {
+            return;
+        }
+
+        const input: HTMLInputElement | null = document.querySelector('.SortPanel__search');
+
+        if (input) {
+            const value = input.value;
+
+            if (value) {
+                this.model.updateSearch(value);
+                this.getState();
+                this.updateUrl();
+            }
+        }
     }
 }
 

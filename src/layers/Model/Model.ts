@@ -1,5 +1,5 @@
 import { ProductListType } from '../components/ProductList/ProductList.types';
-import { SortType } from '../components/SotrPanel/SortPanel.styles';
+import { SortType } from '../components/SortPanel/SortPanel.types';
 import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
 import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort, IBasketProduct } from './Model.types';
@@ -22,6 +22,7 @@ class Model {
             category: [],
             price: [],
             stock: [],
+            search: [],
         },
         sort: {
             type: ProductListType.big,
@@ -78,6 +79,11 @@ class Model {
     }
     public updateIsModalOpen(payload: boolean): void {
         this.data.isModalOpen = payload;
+        this.notify();
+    }
+
+    public updateSearch(payload: string): void {
+        this.data.filter.search = [payload];
         this.notify();
     }
 
@@ -149,6 +155,10 @@ class Model {
                     } else {
                         this.data.currProduct.id = Number(query[1]);
                     }
+                }
+                if (query[0] === 'search' && query[1].length !== 0) {
+                    const searchQuery = query[1].toLowerCase();
+                    this.data.filter.search = [searchQuery];
                 }
             });
             this.notify();
