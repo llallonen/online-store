@@ -3,10 +3,8 @@ import { removeDuplicates } from './removeDublicates';
 
 export const filterProducts = (filters: IFilter, products: IBasketProduct[]): IBasketProduct[] => {
     let filterProducts = [...products];
-    console.log(filters);
 
     if (filters.search.length !== 0) {
-        console.log('uuu');
         let newFilterProducts: IBasketProduct[] = [];
 
         const searchString = filters.search[0].toLowerCase();
@@ -19,7 +17,6 @@ export const filterProducts = (filters: IFilter, products: IBasketProduct[]): IB
 
         newFilterProducts = removeDuplicates([...categoryProducts, ...brandProducts, ...titleProducts]);
         filterProducts = newFilterProducts;
-        console.log(newFilterProducts);
     }
 
     if (filters.category.length !== 0) {

@@ -441,14 +441,12 @@ class Presenter {
         if (!(e instanceof Event)) {
             return;
         }
-        console.log('bbb');
         if (e.target instanceof HTMLButtonElement) {
             this.model.updateIsModalOpen(true);
         } else {
             this.model.updateIsModalOpen(false);
         }
         this.getState();
-        console.log(this.state);
     }
 
     public handleChangeSearch(e: Event | IModelData): void {
@@ -464,7 +462,6 @@ class Presenter {
             if (value) {
                 this.model.updateSearch(value);
                 this.getState();
-                console.log(this.state);
                 this.updateUrl();
             }
         }

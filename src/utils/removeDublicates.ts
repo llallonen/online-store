@@ -32,6 +32,5 @@ export function removeDuplicates(arr: IBasketProduct[]): IBasketProduct[] {
         }
     });
 
-    console.log(result);
     return result;
 }
