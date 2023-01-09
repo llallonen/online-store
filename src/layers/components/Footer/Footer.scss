@@ -18,4 +18,22 @@
         width: 80px;
         height: 55px;
     }
+
+    &__rs {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Work sans', sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        color: gray;
+
+        div {
+            width: 58px;
+            height: 30px;
+            background-image: url('./assets/rs_school_js.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
 }
