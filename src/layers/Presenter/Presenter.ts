@@ -95,16 +95,17 @@ class Presenter {
         this.state = this.model.getState();
     }
 
-    public listenPopState(): void {
-        window.addEventListener('popstate', () => {
-            this.getState();
-            this.view.update(this.state);
-            this.model.setQueryParams();
-            if (window.location.hash === '#/') {
+    listenPopState() {
+        const listener = () => {
+            if (window.location.hash === '#/' || window.location.hash === '#') {
                 this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
                 this.model.updateFilter({ category: [], brand: [], price: [], stock: [] });
             }
-        });
+            this.model.setQueryParams();
+            this.getState();
+            this.view.update(this.state);
+        };
+        window.addEventListener('popstate', listener);
     }
 
     public setHash(): void {
@@ -297,13 +298,13 @@ class Presenter {
             return;
         }
         const target = e.target as RangeSlider;
-        this.getState();
         if (
             typeof target.value1 == 'number' &&
             typeof target.value2 == 'number' &&
             !Number.isNaN(target.value1) &&
             !Number.isNaN(target.value2)
         ) {
+            this.getState();
             this.model.updateFilter({
                 ...this.state.filter,
                 price: [target.value1, target.value2],
@@ -319,13 +320,13 @@ class Presenter {
             return;
         }
         const target = e.target as RangeSlider;
-        this.getState();
         if (
             typeof target.value1 == 'number' &&
             typeof target.value2 == 'number' &&
             !Number.isNaN(target.value1) &&
             !Number.isNaN(target.value2)
         ) {
+            this.getState();
             this.model.updateFilter({
                 ...this.state.filter,
                 stock: [target.value1, target.value2],

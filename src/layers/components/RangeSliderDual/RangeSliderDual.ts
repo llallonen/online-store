@@ -46,24 +46,30 @@ class RangeSliderDual {
           ></tc-range-slider>
         `;
 
+        const sliderContent = document.createElement('div');
+        sliderContent.classList.add(`RangeSlider-${this.name}`);
+        sliderContent.innerHTML = slider;
+
         const sliderWrapper = document.createElement('div');
         sliderWrapper.classList.add(`RangeSlider`);
-        sliderWrapper.innerHTML = slider;
+        sliderWrapper.append(sliderContent);
+
         this.container.append(sliderWrapper);
         this.subscribe();
     }
 
     private subscribe(): void {
         const slider = document.getElementById(`${this.name}`);
+        const ad = document.querySelector(`.RangeSlider-${this.name}`);
         if (slider) {
-            slider.addEventListener('onMouseUp', (e: Event) => {
-                if (e instanceof CustomEvent) {
-                    this.observer.notify({ eventName: this.eventName, eventPayload: e });
-                }
-            });
             slider.addEventListener('change', (e: Event) => {
                 if (e instanceof CustomEvent) {
                     if (!Number.isNaN(e.detail.values[0]) && !Number.isNaN(e.detail.values[1])) {
+                        if (ad) {
+                            ad.addEventListener('mouseup', () => {
+                                this.observer.notify({ eventName: this.eventName, eventPayload: e });
+                            });
+                        }
                         this.updateCounter(e.detail.values[0], e.detail.values[1]);
                     }
                 }

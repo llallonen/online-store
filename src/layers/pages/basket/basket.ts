@@ -107,7 +107,7 @@ class BasketPage {
         this.renderBasketList();
         this.renderBasketDetailsButton();
 
-        const modalButton = document.querySelector('.button');
+        const modalButton = document.querySelector('.button.modal-open');
         if (modalButton) {
             modalButton.addEventListener('click', () => {
                 const modal = document.querySelector('.basket__modal');
@@ -176,7 +176,12 @@ class BasketPage {
         const basketDetailsButton: HTMLElement | null = document.querySelector('.basket__details-button');
 
         if (basketDetailsButton) {
-            new Button({ container: basketDetailsButton, observer: this.observer, textButton: 'Confirm' }).render();
+            new Button({
+                container: basketDetailsButton,
+                observer: this.observer,
+                textButton: 'Confirm',
+                typeButton: 'modal-open',
+            }).render();
         }
     }
 
