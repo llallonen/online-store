@@ -19,6 +19,7 @@ enum EventName {
     setSorting = 'setSorting',
     setCurrentProduct = 'setCurrentProduct',
     clearBasket = 'clearBasket',
+    setModalOpen = 'setModalOpen',
 }
 
 interface ISubscriber {

@@ -342,11 +342,12 @@ class BasketModal {
 
         if (confirm) {
             const modal = document.querySelector('.basket__modal.active');
-            modal?.classList.toggle('active');
             const successWindow = document.querySelector('.basket__success');
+            modal?.classList.toggle('active');
             successWindow?.classList.toggle('active');
             setTimeout((e: Event) => {
                 window.location.href = '#/';
+                this.observer.notify({ eventName: EventName.setModalOpen, eventPayload: e });
                 this.observer.notify({ eventName: EventName.clearBasket, eventPayload: e });
             }, 3000);
         }

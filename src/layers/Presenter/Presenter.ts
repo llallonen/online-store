@@ -86,6 +86,7 @@ class Presenter {
             eventName: EventName.setCurrentProduct,
             function: this.setCurrentProduct.bind(this),
         });
+        this.observer.subscribe({ eventName: EventName.setModalOpen, function: this.setIsModalOpen.bind(this) });
     }
 
     public handleImgChange(e: Event | IModelData): void {
@@ -433,6 +434,20 @@ class Presenter {
             type: IActionType.basket,
             payload: { ...this.state.basket, promo: [], products: [] },
         });
+    }
+
+    public setIsModalOpen(e: Event | IModelData): void {
+        if (!(e instanceof Event)) {
+            return;
+        }
+        console.log('bbb');
+        if (e.target instanceof HTMLButtonElement) {
+            this.model.updateIsModalOpen(true);
+        } else {
+            this.model.updateIsModalOpen(false);
+        }
+        this.getState();
+        console.log(this.state);
     }
 }
 

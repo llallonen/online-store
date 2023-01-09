@@ -81,8 +81,9 @@ class ProductCard {
                 buyNowButton = new Button({
                     container: productBtns,
                     observer: this.observer,
-                    typeButton: 'button--product',
+                    typeButton: 'button--buy-product',
                     textButton: 'Buy now',
+                    id: this.data.currProduct.id,
                 });
             }
             if (productCard && productData) {
@@ -113,6 +114,24 @@ class ProductCard {
             const header = document.createElement('h2');
             header.textContent = 'Product not found';
             productCard.append(header);
+        }
+
+        this.subscribe();
+    }
+
+    private subscribe(): void {
+        const buyButton = document.querySelector('.button--buy-product');
+
+        if (buyButton) {
+            buyButton.addEventListener('click', (e: Event) => {
+                if (
+                    !(this.data.basket.products.filter((product) => product.id === this.data.currProduct.id).length > 0)
+                ) {
+                    this.observer.notify({ eventName: EventName.addGoods, eventPayload: e });
+                }
+                this.observer.notify({ eventName: EventName.setModalOpen, eventPayload: e });
+                window.location.hash = '#basket';
+            });
         }
     }
 }

@@ -110,10 +110,7 @@ class BasketPage {
         const modalButton = document.querySelector('.button.modal-open');
         if (modalButton) {
             modalButton.addEventListener('click', () => {
-                const modal = document.querySelector('.basket__modal');
-                if (modal) {
-                    modal.classList.toggle('active');
-                }
+                this.openModalWindow();
             });
         }
 
@@ -121,7 +118,7 @@ class BasketPage {
         modalWrapper?.addEventListener('click', (e: Event) => {
             if (e.target instanceof HTMLDivElement) {
                 if (e.target === modalWrapper) {
-                    modalWrapper.classList.toggle('active');
+                    this.observer.notify({ eventName: EventName.setModalOpen, eventPayload: e });
                 }
             }
         });
@@ -158,6 +155,9 @@ class BasketPage {
         });
 
         this.renderBasketModal();
+        if (this.data.isModalOpen) {
+            this.openModalWindow();
+        }
     }
 
     private renderBasketList(): void {
@@ -202,6 +202,13 @@ class BasketPage {
 
         if (basketModalNode) {
             new BasketModal({ container: basketModalNode, observer: this.observer }).render();
+        }
+    }
+
+    private openModalWindow(): void {
+        const modal = document.querySelector('.basket__modal');
+        if (modal) {
+            modal.classList.toggle('active');
         }
     }
 }

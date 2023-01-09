@@ -44,6 +44,7 @@ class Model {
                 'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG',
             ],
         },
+        isModalOpen: false,
     };
 
     constructor({ observer }: IModelProps) {
@@ -74,6 +75,10 @@ class Model {
     }
     public updateCurrProduct(payload: IBasketProduct): void {
         this.data.currProduct = payload;
+    }
+    public updateIsModalOpen(payload: boolean): void {
+        this.data.isModalOpen = payload;
+        this.notify();
     }
 
     private notify(): void {
