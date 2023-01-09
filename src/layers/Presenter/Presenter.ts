@@ -452,15 +452,21 @@ class Presenter {
     }
 
     public handleChangeSearch(e: Event | IModelData): void {
-        if (!(e instanceof Event) || !(e.target instanceof HTMLInputElement)) {
+        if (!(e instanceof Event)) {
             return;
         }
 
-        const searchInputContent = e.target.value;
+        const input: HTMLInputElement | null = document.querySelector('.SortPanel__search');
 
-        if (searchInputContent) {
-            this.model.updateSearch(searchInputContent);
-            this.getState();
+        if (input) {
+            const value = input.value;
+
+            if (value) {
+                this.model.updateSearch(value);
+                this.getState();
+                console.log(this.state);
+                this.updateUrl();
+            }
         }
     }
 }

@@ -1,17 +1,26 @@
 import { IBasketProduct, IFilter } from '../layers/Model/Model.types';
+import { removeDuplicates } from './removeDublicates';
 
 export const filterProducts = (filters: IFilter, products: IBasketProduct[]): IBasketProduct[] => {
     let filterProducts = [...products];
+    console.log(filters);
 
-    // if (filters.search.length !== 0) {
-    //     const newFilterProducts: IBasketProduct[] = [];
+    if (filters.search.length !== 0) {
+        console.log('uuu');
+        let newFilterProducts: IBasketProduct[] = [];
 
-    //     const wantedProducts = filters.search.forEach((search) => {
-    //         filterProducts.forEach((filterProduct) => {
-    //             const keys = Object.keys(filterProduct);
-    //         });
-    //     });
-    // }
+        const searchString = filters.search[0].toLowerCase();
+
+        const categoryProducts = filterProducts.filter((product) =>
+            product.category.toLowerCase().includes(searchString)
+        );
+        const brandProducts = filterProducts.filter((product) => product.brand.toLowerCase().includes(searchString));
+        const titleProducts = filterProducts.filter((product) => product.title.toLowerCase().includes(searchString));
+
+        newFilterProducts = removeDuplicates([...categoryProducts, ...brandProducts, ...titleProducts]);
+        filterProducts = newFilterProducts;
+        console.log(newFilterProducts);
+    }
 
     if (filters.category.length !== 0) {
         const newFilterProducts: IBasketProduct[] = [];

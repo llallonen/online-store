@@ -20,7 +20,7 @@ class SortPanel {
         sortPanel.classList.add('SortPanel', 'SortPanel--marg');
 
         const sortPanelContent = `
-        <input class="SortPanel__search">
+        <input class="SortPanel__search" /><button class="button button__search">OK</button>
         <div class="SortPanel__found">Found: ${this.countProduct}</div>
         <div class="SortPanel__bottom">
           <select class="SortPanel__select">
@@ -75,11 +75,20 @@ class SortPanel {
             });
         }
 
-        const searchInput = document.querySelector('.SortPanel__search');
+        const searchInput = document.querySelector('.button__search');
 
         if (searchInput) {
-            searchInput.addEventListener('unput', (e) => {
-                this.observer.notify({ eventName: EventName.changeSearch, eventPayload: e });
+            searchInput.addEventListener('click', (e) => {
+                const input: HTMLInputElement | null = document.querySelector('.SortPanel__search');
+
+                if (input) {
+                    const value = input.value;
+
+                    if (value) {
+                        this.observer.notify({ eventName: EventName.changeSearch, eventPayload: e });
+                        console.log('uuuu');
+                    }
+                }
             });
         }
     }

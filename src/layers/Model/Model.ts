@@ -156,6 +156,10 @@ class Model {
                         this.data.currProduct.id = Number(query[1]);
                     }
                 }
+                if (query[0] === 'search' && query[1].length !== 0) {
+                    const searchQuery = query[1].toLowerCase();
+                    this.data.filter.search = [searchQuery];
+                }
             });
             this.notify();
         }

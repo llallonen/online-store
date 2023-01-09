@@ -51,6 +51,7 @@ interface IBasketProduct {
     category: string;
     images: string[];
     count?: number;
+    [key: string]: string | number | string[] | undefined;
 }
 
 interface IGoods {
