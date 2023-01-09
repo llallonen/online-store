@@ -16,7 +16,7 @@ class ProductItem {
         this.inBasket = inBasket;
     }
 
-    public render() {
+    public render(): void {
         const productList = document.createElement('div');
         productList.classList.add('ProductItem');
         productList.id = `ProductItem-${String(this.product.id)}`;
@@ -52,7 +52,7 @@ class ProductItem {
         this.subscribe();
     }
 
-    private subscribe() {
+    private subscribe(): void {
         const id = `#ProductItem-${String(this.product.id)}`;
         const item = this.container.querySelector(id);
         if (item) {

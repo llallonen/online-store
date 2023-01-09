@@ -19,7 +19,7 @@ class Header {
         }
     }
 
-    public render() {
+    public render(): void {
         const header = document.createElement('header');
         header.classList.add('header');
         header.innerHTML += `<div class="logo"></div>
@@ -45,7 +45,7 @@ class Header {
         });
     }
 
-    public update(totalCount: number, bagCount: number) {
+    public update(totalCount: number, bagCount: number): void {
         const totalCountNode = document.querySelector('.total');
         if (totalCountNode) {
             totalCountNode.textContent = `${totalCount} $`;

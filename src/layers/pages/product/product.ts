@@ -14,7 +14,7 @@ class ProductPage {
         this.data = data;
     }
 
-    public render() {
+    public render(): void {
         const main = document.querySelector('main');
 
         if (main) {

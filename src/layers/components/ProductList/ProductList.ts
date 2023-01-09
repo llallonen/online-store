@@ -19,7 +19,7 @@ class ProductList {
         this.basket = basket;
     }
 
-    public render() {
+    public render(): void {
         const productList = document.createElement('div');
         productList.classList.add('ProductList');
         if (this.products.length === 0) {

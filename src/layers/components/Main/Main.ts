@@ -3,6 +3,7 @@ import Observer from '../../Observer/Observer';
 import Router from '../../Router/Router';
 import { IMain } from './Main.types';
 import './Main.scss';
+import { className } from '../../Router/Router.types';
 
 class Main {
     private container: HTMLElement;
@@ -16,7 +17,7 @@ class Main {
         this.state = data;
     }
 
-    public render() {
+    public render(): void {
         const main = document.createElement('main');
         main.classList.add('main');
         this.main = main;
@@ -24,13 +25,13 @@ class Main {
         this.container.append(this.main);
     }
 
-    public route() {
+    public route(): className | undefined {
         const router = new Router();
         if (!this.main) return;
         return router.getPage({ container: this.main, observer: this.observer, data: this.state });
     }
 
-    public update(state: IModelData) {
+    public update(state: IModelData): void {
         this.state = state;
         if (this.main) {
             this.main.innerHTML = '';

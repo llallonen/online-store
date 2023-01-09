@@ -18,8 +18,7 @@ class FilterItem {
         this.eventName = eventName;
         this.filterArr = filterArr;
     }
-
-    public render() {
+    public render(): void {
         const layout = `
             <input class="filterList__input ${
                 this.eventName === EventName.filterCategory ? 'brand' : 'category'

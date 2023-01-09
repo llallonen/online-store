@@ -15,7 +15,7 @@ class SortPanel {
         this.sortType = sortType;
     }
 
-    public render() {
+    public render(): void {
         const sortPanel = document.createElement('div');
         sortPanel.classList.add('SortPanel', 'SortPanel--marg');
 
@@ -49,7 +49,7 @@ class SortPanel {
         this.addListener();
     }
 
-    private addListener() {
+    private addListener(): void {
         const buttonLine = document.querySelector('.button--line');
 
         if (buttonLine) {

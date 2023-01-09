@@ -14,7 +14,7 @@ class ProductDescription {
         this.product = product;
     }
 
-    public render() {
+    public render(): void {
         const productDescription = document.createElement('div');
         productDescription.classList.add('product__description');
         this.container.prepend(productDescription);

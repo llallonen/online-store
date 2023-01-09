@@ -14,7 +14,7 @@ class Page404 {
         this.data = data;
     }
 
-    public render() {
+    public render(): void {
         const header = document.createElement('h1');
         header.classList.add('page404__header');
         header.textContent = 'PAGE NOT FOUND (404)';

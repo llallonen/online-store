@@ -24,7 +24,7 @@ class RangeSliderDual {
         this.eventName = eventName;
     }
 
-    public render() {
+    public render(): void {
         const slider = `
         <div class="RangeSlider__counters" id="${this.name}-counters">
             <span class="RangeSlider__counter-from">${this.from}</span><span class="RangeSlider__counter-to">${this.to}</span>
@@ -46,24 +46,30 @@ class RangeSliderDual {
           ></tc-range-slider>
         `;
 
+        const sliderContent = document.createElement('div');
+        sliderContent.classList.add(`RangeSlider-${this.name}`);
+        sliderContent.innerHTML = slider;
+
         const sliderWrapper = document.createElement('div');
         sliderWrapper.classList.add(`RangeSlider`);
-        sliderWrapper.innerHTML = slider;
+        sliderWrapper.append(sliderContent);
+
         this.container.append(sliderWrapper);
         this.subscribe();
     }
 
-    private subscribe() {
+    private subscribe(): void {
         const slider = document.getElementById(`${this.name}`);
+        const ad = document.querySelector(`.RangeSlider-${this.name}`);
         if (slider) {
-            slider.addEventListener('onMouseUp', (e: Event) => {
-                if (e instanceof CustomEvent) {
-                    this.observer.notify({ eventName: this.eventName, eventPayload: e });
-                }
-            });
             slider.addEventListener('change', (e: Event) => {
                 if (e instanceof CustomEvent) {
                     if (!Number.isNaN(e.detail.values[0]) && !Number.isNaN(e.detail.values[1])) {
+                        if (ad) {
+                            ad.addEventListener('mouseup', () => {
+                                this.observer.notify({ eventName: this.eventName, eventPayload: e });
+                            });
+                        }
                         this.updateCounter(e.detail.values[0], e.detail.values[1]);
                     }
                 }
@@ -71,7 +77,7 @@ class RangeSliderDual {
         }
     }
 
-    private updateCounter(from: number, to: number) {
+    private updateCounter(from: number, to: number): void {
         const sliderNode = document.getElementById(`${this.name}-counters`);
         const fromNode = sliderNode?.querySelector('.RangeSlider__counter-from');
         const toNode = sliderNode?.querySelector('.RangeSlider__counter-to');

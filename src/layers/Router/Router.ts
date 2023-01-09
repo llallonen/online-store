@@ -3,7 +3,7 @@ import { Page404 } from '../pages/404/404';
 import { BasketPage } from '../pages/basket/basket';
 import { MainPage } from '../pages/main/main';
 import { ProductPage } from '../pages/product/product';
-import IRoutes from './Router.types';
+import IRoutes, { className } from './Router.types';
 
 class Router {
     private path: string;
@@ -18,11 +18,11 @@ class Router {
         this.path = location.hash;
     }
 
-    getPath() {
+    getPath(): string {
         return this.path;
     }
 
-    setPath() {
+    setPath(): void {
         const hash = location.hash.match(/^[#]\w*/g);
         if (hash) {
             if (hash[0]) {
@@ -33,7 +33,7 @@ class Router {
         }
     }
 
-    getPage({ container, observer, data }: IMain) {
+    getPage({ container, observer, data }: IMain): className {
         this.setPath();
         const className = this.routes.find((route) => route.path === this.path)?.class;
         return className

@@ -16,7 +16,7 @@ class BasketItem {
         this.data = data;
     }
 
-    public render() {
+    public render(): void {
         const basketItem = `<div class="basketItem">
         <div class="basketItem__id">${this.number + 1}</div>
         <div class="basketItem__main">
@@ -67,7 +67,7 @@ class BasketItem {
         });
     }
 
-    private countTotalPrice() {
+    private countTotalPrice(): number | undefined {
         if (!this.data.count) {
             return;
         }

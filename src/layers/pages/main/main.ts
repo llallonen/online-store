@@ -29,7 +29,7 @@ class MainPage {
         );
     }
 
-    public render() {
+    public render(): void {
         const main = document.createElement('div');
         main.classList.add('MainPage');
 
@@ -61,7 +61,7 @@ class MainPage {
         }
     }
 
-    private renderStockFilterList(container: HTMLElement) {
+    private renderStockFilterList(container: HTMLElement): void {
         const filterListBrand = new FilterList({
             container: container,
             observer: this.observer,
@@ -87,7 +87,7 @@ class MainPage {
         this.listenFilter();
     }
 
-    private listenFilter() {
+    private listenFilter(): void {
         const allInput = document.querySelectorAll('.filterList__input');
         allInput.forEach((el) => {
             el.addEventListener('click', (e: Event) => {
@@ -106,7 +106,7 @@ class MainPage {
         });
     }
 
-    private renderRangeSliders(container: HTMLElement) {
+    private renderRangeSliders(container: HTMLElement): void {
         const maxMinPriceAllProducts = getMaxMinPrice(this.data.goods.products);
         const maxMinStockAllProducts = getMaxMinStock(this.data.goods.products);
 
@@ -135,7 +135,7 @@ class MainPage {
         stockRangeSlide.render();
     }
 
-    private renderProductList(container: HTMLElement) {
+    private renderProductList(container: HTMLElement): void {
         new ProductList({
             container: container,
             observer: this.observer,
@@ -145,7 +145,7 @@ class MainPage {
         }).render();
     }
 
-    private sortPanel(container: HTMLElement) {
+    private sortPanel(container: HTMLElement): void {
         new SortPanel({
             container: container,
             observer: this.observer,
@@ -154,7 +154,7 @@ class MainPage {
         }).render();
     }
 
-    private listenSidebarButtons() {
+    private listenSidebarButtons(): void {
         const buttonReset = document.querySelector('.MainPage__button--reset');
         if (buttonReset) {
             buttonReset.addEventListener('click', (e) => {
