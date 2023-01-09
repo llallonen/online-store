@@ -410,7 +410,7 @@ class Presenter {
     }
 
     public clearFilter(): void {
-        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [] });
+        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [], search: [] });
 
         this.getState();
         this.updateUrl();
