@@ -1,7 +1,7 @@
 import { Model } from '../Model/Model';
 import { IActionType, IModelData } from '../Model/Model.types';
 import Observer from '../Observer/Observer';
-import { EventName } from '../Observer/Observer.types';
+import { EventName, ISubscriber } from '../Observer/Observer.types';
 import { View } from '../View/View';
 import { ILocalStorageData, IPresenterProps } from './Presenter.types';
 import { addGoodToBasket, removeGoodToBasket } from '../../utils/changeGoodToBasket';
@@ -58,37 +58,54 @@ class Presenter {
     }
 
     private subscribe(): void {
-        this.observer.subscribe({ eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) });
-        this.observer.subscribe({ eventName: EventName.addGoods, function: this.addGoodToBasket.bind(this) });
-        this.observer.subscribe({
-            eventName: EventName.changeItemsLimit,
-            function: this.changeBasketItemsLimit.bind(this),
+        const observerEvents: ISubscriber[] = [
+            { eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) },
+            { eventName: EventName.addGoods, function: this.addGoodToBasket.bind(this) },
+            {
+                eventName: EventName.changeItemsLimit,
+                function: this.changeBasketItemsLimit.bind(this),
+            },
+            {
+                eventName: EventName.changeNavigationPage,
+                function: this.addNavigationPage.bind(this),
+            },
+
+            { eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) },
+            { eventName: EventName.addGoods, function: this.addGoodToBasket.bind(this) },
+            {
+                eventName: EventName.changeItemsLimit,
+                function: this.changeBasketItemsLimit.bind(this),
+            },
+            {
+                eventName: EventName.changeNavigationPage,
+                function: this.addNavigationPage.bind(this),
+            },
+            { eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) },
+            { eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) },
+            { eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) },
+            { eventName: EventName.clickImg, function: this.handleImgChange.bind(this) },
+            { eventName: EventName.filterBrand, function: this.filterBrand.bind(this) },
+            { eventName: EventName.filterCategory, function: this.filterCategory.bind(this) },
+            { eventName: EventName.filterPrice, function: this.filterPrice.bind(this) },
+            { eventName: EventName.filterStock, function: this.filterStock.bind(this) },
+            {
+                eventName: EventName.changeViewList,
+                function: this.changeViewListProducts.bind(this),
+            },
+            { eventName: EventName.setSorting, function: this.setSort.bind(this) },
+            { eventName: EventName.clearFilter, function: this.clearFilter.bind(this) },
+            { eventName: EventName.clearBasket, function: this.clearBasket.bind(this) },
+            {
+                eventName: EventName.setCurrentProduct,
+                function: this.setCurrentProduct.bind(this),
+            },
+            { eventName: EventName.setModalOpen, function: this.setIsModalOpen.bind(this) },
+            { eventName: EventName.changeSearch, function: this.handleChangeSearch.bind(this) },
+        ];
+
+        observerEvents.forEach((el) => {
+            this.observer.subscribe(el);
         });
-        this.observer.subscribe({
-            eventName: EventName.changeNavigationPage,
-            function: this.addNavigationPage.bind(this),
-        });
-        this.observer.subscribe({ eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) });
-        this.observer.subscribe({ eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) });
-        this.observer.subscribe({ eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) });
-        this.observer.subscribe({ eventName: EventName.clickImg, function: this.handleImgChange.bind(this) });
-        this.observer.subscribe({ eventName: EventName.filterBrand, function: this.filterBrand.bind(this) });
-        this.observer.subscribe({ eventName: EventName.filterCategory, function: this.filterCategory.bind(this) });
-        this.observer.subscribe({ eventName: EventName.filterPrice, function: this.filterPrice.bind(this) });
-        this.observer.subscribe({ eventName: EventName.filterStock, function: this.filterStock.bind(this) });
-        this.observer.subscribe({
-            eventName: EventName.changeViewList,
-            function: this.changeViewListProducts.bind(this),
-        });
-        this.observer.subscribe({ eventName: EventName.setSorting, function: this.setSort.bind(this) });
-        this.observer.subscribe({ eventName: EventName.clearFilter, function: this.clearFilter.bind(this) });
-        this.observer.subscribe({ eventName: EventName.clearBasket, function: this.clearBasket.bind(this) });
-        this.observer.subscribe({
-            eventName: EventName.setCurrentProduct,
-            function: this.setCurrentProduct.bind(this),
-        });
-        this.observer.subscribe({ eventName: EventName.setModalOpen, function: this.setIsModalOpen.bind(this) });
-        this.observer.subscribe({ eventName: EventName.changeSearch, function: this.handleChangeSearch.bind(this) });
     }
 
     public handleImgChange(e: Event | IModelData): void {
