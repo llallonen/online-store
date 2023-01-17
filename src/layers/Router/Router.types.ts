@@ -7,10 +7,10 @@ type IRoutes = IRoute[];
 
 type IRoute = {
     path: string;
-    class: classNames;
+    component: ClassNames;
 };
 
-type classNames = typeof Page404 | typeof MainPage | typeof BasketPage | typeof ProductPage;
-export type className = Page404 | MainPage | BasketPage | ProductPage;
+type ClassNames = typeof Page404 | typeof MainPage | typeof BasketPage | typeof ProductPage;
+export type ClassName = Page404 | MainPage | BasketPage | ProductPage;
 
 export default IRoutes;

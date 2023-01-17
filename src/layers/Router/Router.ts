@@ -3,16 +3,16 @@ import { Page404 } from '../pages/404/404';
 import { BasketPage } from '../pages/basket/basket';
 import { MainPage } from '../pages/main/main';
 import { ProductPage } from '../pages/product/product';
-import IRoutes, { className } from './Router.types';
+import IRoutes, { ClassName } from './Router.types';
 
 class Router {
     private path: string;
     private routes: IRoutes = [
-        { path: '404', class: Page404 },
-        { path: '#', class: MainPage },
-        { path: '', class: MainPage },
-        { path: '#basket', class: BasketPage },
-        { path: '#product', class: ProductPage },
+        { path: '404', component: Page404 },
+        { path: '#', component: MainPage },
+        { path: '', component: MainPage },
+        { path: '#basket', component: BasketPage },
+        { path: '#product', component: ProductPage },
     ];
     constructor() {
         this.path = location.hash;
@@ -33,12 +33,12 @@ class Router {
         }
     }
 
-    getPage({ container, observer, data }: IMain): className {
+    getPage({ container, observer, data }: IMain): ClassName {
         this.setPath();
-        const className = this.routes.find((route) => route.path === this.path)?.class;
+        const className = this.routes.find((route) => route.path === this.path)?.component;
         return className
             ? new className({ container, observer, data })
-            : new this.routes[0].class({ container, observer, data });
+            : new this.routes[0].component({ container, observer, data });
     }
 }
 
