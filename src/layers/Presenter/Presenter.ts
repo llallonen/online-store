@@ -126,9 +126,6 @@ class Presenter {
 
     public setHash(): void {
         if (window.location.hash === '' || window.location.hash === '#' || window.location.hash === '#/') {
-            window.location.hash = '';
-            window.location.hash = '#/';
-            window.location.hash = '#basket';
             window.location.hash = '#/';
         }
     }
