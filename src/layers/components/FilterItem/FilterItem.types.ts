@@ -1,9 +1,7 @@
-import Observer from '../../Observer/Observer';
+import { ICommonProps } from '../../Model/Model.types';
 import { EventName } from '../../Observer/Observer.types';
 
-export interface IFilterItemProps {
-    container: HTMLElement;
-    observer: Observer;
+export interface IFilterItemProps extends ICommonProps {
     product: IAllProducts;
     filteredCount: number;
     eventName: EventName;

@@ -1,9 +1,6 @@
-import { IBasketProduct, IModelData } from '../../Model/Model.types';
-import Observer from '../../Observer/Observer';
+import { IBasketProduct, ICommonProps, IModelData } from '../../Model/Model.types';
 
-interface IBreadcrumbs {
-    container: HTMLElement;
-    observer: Observer;
+interface IBreadcrumbs extends ICommonProps {
     breadData: IModelData;
     product: IBasketProduct;
 }

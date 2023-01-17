@@ -1,9 +1,6 @@
-import Observer from '../../Observer/Observer';
-import { IModelData } from '../../Model/Model.types';
+import { ICommonProps, IModelData } from '../../Model/Model.types';
 
-interface IProductCard {
-    container: HTMLElement;
-    observer: Observer;
+interface IProductCard extends ICommonProps {
     data: IModelData;
     currImg?: string;
 }

@@ -1,9 +1,7 @@
-import Observer from '../../Observer/Observer';
+import { ICommonProps } from '../../Model/Model.types';
 import { EventName } from '../../Observer/Observer.types';
 
-interface IButtonProps {
-    container: HTMLElement;
-    observer: Observer;
+interface IButtonProps extends ICommonProps {
     typeButton?: string | null;
     textButton?: string | null;
     event?: EventName;

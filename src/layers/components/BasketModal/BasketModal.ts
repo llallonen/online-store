@@ -1,9 +1,8 @@
 import Observer from '../../Observer/Observer';
-import { IBasketModalProps } from './BasketModal.types';
 import './BasketModal.scss';
 import { EventName } from '../../Observer/Observer.types';
 import { Validators } from '../../../utils/validators';
-import { TValidationError } from '../../Model/Model.types';
+import { ICommonProps, TValidationError } from '../../Model/Model.types';
 import { createElement } from '../../../utils/createElement';
 
 const fields = [
@@ -54,7 +53,7 @@ const fields = [
 class BasketModal {
     private container: HTMLElement;
     private observer: Observer;
-    constructor({ container, observer }: IBasketModalProps) {
+    constructor({ container, observer }: ICommonProps) {
         this.container = container;
         this.observer = observer;
     }

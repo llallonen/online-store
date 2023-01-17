@@ -1,9 +1,6 @@
-import { IModelData } from '../../Model/Model.types';
-import Observer from '../../Observer/Observer';
+import { ICommonProps, IModelData } from '../../Model/Model.types';
 
-interface IMain {
-    container: HTMLElement;
-    observer: Observer;
+interface IMain extends ICommonProps {
     data: IModelData;
 }
 

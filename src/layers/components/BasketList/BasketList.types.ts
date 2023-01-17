@@ -1,9 +1,6 @@
-import { IBasket } from '../../Model/Model.types';
-import Observer from '../../Observer/Observer';
+import { IBasket, ICommonProps } from '../../Model/Model.types';
 
-interface IBasketListProps {
-    container: HTMLElement;
-    observer: Observer;
+interface IBasketListProps extends ICommonProps {
     basketData: IBasket;
 }
 

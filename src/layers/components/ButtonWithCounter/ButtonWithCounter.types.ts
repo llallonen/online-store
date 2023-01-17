@@ -1,9 +1,7 @@
-import Observer from '../../Observer/Observer';
+import { ICommonProps } from '../../Model/Model.types';
 
-interface IButtonWithCounterProps {
-    container: HTMLElement;
+interface IButtonWithCounterProps extends ICommonProps {
     count?: number;
-    observer: Observer;
 }
 
 export { IButtonWithCounterProps };

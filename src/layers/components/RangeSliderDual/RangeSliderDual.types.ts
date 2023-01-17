@@ -1,9 +1,7 @@
-import Observer from '../../Observer/Observer';
+import { ICommonProps } from '../../Model/Model.types';
 import { EventName } from '../../Observer/Observer.types';
 
-export interface IRangeSliderProps {
-    observer: Observer;
-    container: HTMLElement;
+export interface IRangeSliderProps extends ICommonProps {
     name: string;
     min: number;
     max: number;

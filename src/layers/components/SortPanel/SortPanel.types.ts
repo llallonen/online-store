@@ -1,9 +1,6 @@
-import { IModelData } from '../../Model/Model.types';
-import Observer from '../../Observer/Observer';
+import { ICommonProps, IModelData } from '../../Model/Model.types';
 
-export interface ISortPanelProps {
-    container: HTMLElement;
-    observer: Observer;
+export interface ISortPanelProps extends ICommonProps {
     countProduct: number;
     sortType: SortType;
     data: IModelData;

@@ -6,6 +6,11 @@ interface IModelProps {
     observer: Observer;
 }
 
+interface ICommonProps {
+    container: HTMLElement;
+    observer: Observer;
+}
+
 interface IAction {
     type: IActionType;
     payload: IBasket;
@@ -75,6 +80,7 @@ type TValidationError = { errorText: string; errorNode: HTMLInputElement };
 
 export {
     IModelProps,
+    ICommonProps,
     IAction,
     IActionType,
     IModelData,

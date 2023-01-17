@@ -1,11 +1,8 @@
-import { IBasketProduct } from '../../Model/Model.types';
-import Observer from '../../Observer/Observer';
+import { IBasketProduct, ICommonProps } from '../../Model/Model.types';
 
-export interface IProductListProps {
+export interface IProductListProps extends ICommonProps {
     type: ProductListType;
     products: IBasketProduct[];
-    container: HTMLElement;
-    observer: Observer;
     basket: IBasketProduct[];
 }
 
