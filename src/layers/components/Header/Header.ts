@@ -1,16 +1,13 @@
-import Observer from '../../Observer/Observer';
 import { IHeader } from './Header.types';
 import './Header.scss';
 
 class Header {
     private container: HTMLElement;
-    private observer: Observer;
     private bagCount: number | undefined;
     private totalSum: number | undefined;
 
-    constructor({ container, observer, bagCount, totalSum }: IHeader) {
+    constructor({ container, bagCount, totalSum }: IHeader) {
         this.container = container;
-        this.observer = observer;
         if (bagCount) {
             this.bagCount = bagCount;
         }

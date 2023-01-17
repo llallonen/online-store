@@ -19,7 +19,7 @@ class View {
         this.container = container;
         this.observer = observer;
         this.state = data;
-        this.header = new Header({ container: this.container, observer: this.observer });
+        this.header = new Header({ container: this.container });
         this.footer = new Footer({ container: this.container });
         this.main = new Main({ container: this.container, observer: this.observer, data: this.state });
 
