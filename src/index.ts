@@ -2,8 +2,8 @@ import { Presenter } from './layers/Presenter/Presenter';
 import './style.scss';
 
 const initApp = (): void => {
-    const container = document.querySelector('#app');
-    if (!(container instanceof HTMLElement)) {
+    const container: HTMLElement | null = document.querySelector('#app');
+    if (!container) {
         return;
     }
     new Presenter({ container });
