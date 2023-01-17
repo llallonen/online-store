@@ -45,11 +45,7 @@ export class Validators {
     }
 
     static isEmailValid(str: string): boolean {
-        if (/.+@.+\..+/g.test(str)) {
-            return true;
-        } else {
-            return false;
-        }
+        return /.+@.+\..+/g.test(str);
     }
 
     static isCardNumberValid(str: string): boolean {
