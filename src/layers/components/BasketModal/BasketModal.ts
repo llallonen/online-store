@@ -4,6 +4,7 @@ import './BasketModal.scss';
 import { EventName } from '../../Observer/Observer.types';
 import { Validators } from '../../../utils/validators';
 import { TValidationError } from '../../Model/Model.types';
+import { createElement } from '../../../utils/createElement';
 
 const fields = [
     {
@@ -49,7 +50,6 @@ const fields = [
         errorMessage: 'Please enter a correct CVV',
     },
 ];
-import { createElement } from '../../../utils/createElement';
 
 class BasketModal {
     private container: HTMLElement;
