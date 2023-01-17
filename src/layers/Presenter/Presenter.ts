@@ -23,7 +23,7 @@ class Presenter {
         this.observer = new Observer();
         this.container = container;
         this.model = new Model({ observer: this.observer });
-        this.fetchGoods();
+        this.getGoods();
         this.model.setQueryParams();
         this.state = this.model.getState();
         this.view = new View({ container: this.container, observer: this.observer, data: this.state });
@@ -270,7 +270,7 @@ class Presenter {
         }
     }
 
-    public fetchGoods(): void {
+    public getGoods(): void {
         this.model.updateGoods({ products: [...data.products] });
     }
 
