@@ -10,6 +10,7 @@ import { RangeSlider } from 'toolcool-range-slider';
 import { ProductListType } from '../components/ProductList/ProductList.types';
 import { SortType } from '../components/SortPanel/SortPanel.types';
 import { updateQuery } from '../../utils/updateQuery';
+import { start } from './startMessage';
 
 class Presenter {
     private view: View;
@@ -18,7 +19,7 @@ class Presenter {
     private observer: Observer;
     private state: IModelData;
     constructor({ container }: IPresenterProps) {
-        this.start();
+        start();
         this.observer = new Observer();
         this.container = container;
         this.model = new Model({ observer: this.observer });
@@ -30,31 +31,6 @@ class Presenter {
         this.listenPopState();
         this.setHash();
         this.fetchLocalStorage();
-    }
-
-    private start(): void {
-        console.log('Старт');
-        console.log(
-            'Оценка 300',
-            `
-            --Главная страница 120 баллов:
-                Реализована фильтрация продуктов +40
-                Реализована сортировка продуктов +20
-                Реализован текстовый поиск по всем данным продуктов +15
-                Реализовано переключение вида найденных продуктов +10
-                Реализован роутинг с query-параметрами +10
-                Реализованы кнопки сброса и копирования поиска +10
-                Реализован блок кол-ва найденных товаров +5
-                Поведение карточек найденных товаров +10
-            --Корзина товаров 60 баллов
-            --Модальное окно 50 баллов
-            --Страница продукта 35 баллов:
-                Реализованы блоки страницы +25
-                Страница открывается в новом окне по ссылке с id/name товара +10
-            --Шапка сайта 20 баллов
-            --404 страница 10 баллов
-        `
-        );
     }
 
     private subscribe(): void {
