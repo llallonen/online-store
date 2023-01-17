@@ -39,7 +39,7 @@ const fields = [
     {
         input: '.BasketModal__valid-input',
         errorBox: '.BasketModal__cardValid-error',
-        validator: Validators.dateCardValid,
+        validator: Validators.isDateCardValid,
         errorMessage: 'Please enter a valid date',
     },
     {

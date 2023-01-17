@@ -67,14 +67,14 @@ export class Validators {
         }
     }
 
-    static dateCardValid(str: string): boolean {
-        const arr = str.trim().split('/');
+    static isDateCardValid(date: string): boolean {
+        const proccessedDate = date.trim().split('/');
         if (
-            arr[0].trim().length !== 2 ||
-            Number.isNaN(Number(arr[0])) ||
-            Number(arr[0].trim()) > 12 ||
-            arr[1].trim().length !== 2 ||
-            Number.isNaN(Number(arr[1]))
+            proccessedDate[0].trim().length !== 2 ||
+            Number.isNaN(Number(proccessedDate[0])) ||
+            Number(proccessedDate[0].trim()) > 12 ||
+            proccessedDate[1].trim().length !== 2 ||
+            Number.isNaN(Number(proccessedDate[1]))
         ) {
             return false;
         } else {
