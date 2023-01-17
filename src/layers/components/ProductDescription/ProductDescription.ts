@@ -1,16 +1,13 @@
-import Observer from '../../Observer/Observer';
 import { IProductDescription } from './ProductDescription.types';
 import './ProductDescription.scss';
 import { IBasketProduct } from '../../Model/Model.types';
 
 class ProductDescription {
     private container: HTMLElement;
-    private observer: Observer;
     private product: IBasketProduct;
 
-    constructor({ container, observer, product }: IProductDescription) {
+    constructor({ container, product }: IProductDescription) {
         this.container = container;
-        this.observer = observer;
         this.product = product;
     }
 

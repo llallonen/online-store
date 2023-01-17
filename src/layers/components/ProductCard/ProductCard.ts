@@ -50,7 +50,6 @@ class ProductCard {
 
                     productDescription = new ProductDescription({
                         container: productInfo,
-                        observer: this.observer,
                         product: productData,
                     });
                 }
