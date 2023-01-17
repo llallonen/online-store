@@ -27,21 +27,9 @@ class View {
     }
 
     private render(): void {
-        this.renderHeader();
-        this.renderMain();
-        this.renderFooter();
-    }
-
-    private renderHeader(): void {
         this.header.render();
-    }
-
-    private renderFooter(): void {
-        this.footer.render();
-    }
-
-    private renderMain(): void {
         this.main.render();
+        this.footer.render();
     }
 
     public update(data: IModelData): void {
