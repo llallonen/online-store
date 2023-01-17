@@ -1,5 +1,5 @@
 import { IBasketProduct } from '../../layers/Model/Model.types';
-import { addGoodToBasket } from '../addGoodToBasket';
+import { addGoodToBasket } from '../changeGoodToBasket';
 
 describe('getMaxMinStock function', () => {
     const product: IBasketProduct[] = [

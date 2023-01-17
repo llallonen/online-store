@@ -4,7 +4,7 @@ import Observer from '../Observer/Observer';
 import { EventName } from '../Observer/Observer.types';
 import { View } from '../View/View';
 import { ILocalStorageData, IPresenterProps } from './Presenter.types';
-import { addGoodToBasket, removeGoodToBasket } from '../../utils/addGoodToBasket';
+import { addGoodToBasket, removeGoodToBasket } from '../../utils/changeGoodToBasket';
 import data from '../../data.json';
 import { RangeSlider } from 'toolcool-range-slider';
 import { ProductListType } from '../components/ProductList/ProductList.types';
