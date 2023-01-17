@@ -67,9 +67,9 @@ class BasketItem {
         });
     }
 
-    private countTotalPrice(): number | undefined {
+    private countTotalPrice(): number {
         if (!this.data.count) {
-            return;
+            return 0;
         }
         return this.data.price * this.data.count;
     }
