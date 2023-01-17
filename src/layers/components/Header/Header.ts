@@ -1,5 +1,6 @@
 import { IHeader } from './Header.types';
 import './Header.scss';
+import { createElement } from '../../../utils/createElement';
 
 class Header {
     private container: HTMLElement;
@@ -17,8 +18,7 @@ class Header {
     }
 
     public render(): void {
-        const header = document.createElement('header');
-        header.classList.add('header');
+        const header = createElement('header', 'header');
         header.innerHTML += `<div class="logo"></div>
         <div class="order-info">
             <div class="total">${this.totalSum ? this.totalSum : 0} $</div>

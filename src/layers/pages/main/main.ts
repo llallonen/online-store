@@ -1,3 +1,4 @@
+import { createElement } from '../../../utils/createElement';
 import { filterProducts } from '../../../utils/filterProducts';
 import { getMaxMinPrice } from '../../../utils/getMaxMinPrice';
 import { getMaxMinStock } from '../../../utils/getMaxMinStock';
@@ -30,9 +31,7 @@ class MainPage {
     }
 
     public render(): void {
-        const main = document.createElement('div');
-        main.classList.add('MainPage');
-
+        const main = createElement('div', 'MainPage');
         const mainContent = `
             <div class="MainPage__sidebar">
                 <div class="MainPage__buttons">
@@ -166,7 +165,7 @@ class MainPage {
         const buttonCopy = document.querySelector('.MainPage__button--copy');
         if (buttonCopy) {
             buttonCopy.addEventListener('click', () => {
-                const tempSpan = document.createElement('textarea');
+                const tempSpan = createElement<HTMLTextAreaElement>('textarea');
                 tempSpan.value = window.location.href;
 
                 this.container.append(tempSpan);

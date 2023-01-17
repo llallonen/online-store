@@ -1,3 +1,4 @@
+import { createElement } from '../../../utils/createElement';
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
 import { IAllProducts, IFilterItemProps } from './FilterItem.types';
@@ -28,8 +29,7 @@ class FilterItem {
             <label for="${this.product.name}">${this.product.name}</label>
             <span>(${this.filteredCount}/${this.product.count})</span>`;
 
-        const wrapper = document.createElement('div');
-        wrapper.classList.add(`filterList__item`);
+        const wrapper = createElement('div', `filterList__item`);
         if (this.filteredCount === 0) {
             wrapper.classList.add('disabled');
         }

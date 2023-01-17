@@ -4,6 +4,7 @@ import { ProductItem } from '../ProductItem/ProductItem';
 import { ProductItemSmall } from '../ProductItemSmall/ProductItemSmall';
 import { IProductListProps, ProductListType } from './ProductList.types';
 import './ProductList.scss';
+import { createElement } from '../../../utils/createElement';
 
 class ProductList {
     private container: HTMLElement;
@@ -20,8 +21,7 @@ class ProductList {
     }
 
     public render(): void {
-        const productList = document.createElement('div');
-        productList.classList.add('ProductList');
+        const productList = createElement('div', 'ProductList');
         if (this.products.length === 0) {
             productList.innerHTML = `<div class="ProductList__not-found">No products found 😏</div>`;
         }

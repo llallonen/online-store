@@ -2,6 +2,7 @@ import { IBasketProduct, IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { IBreadcrumbs } from './Breadcrumbs.types';
 import './Breadcrumbs.scss';
+import { createElement } from '../../../utils/createElement';
 
 class Breadcrumbs {
     private container: HTMLElement;
@@ -17,8 +18,7 @@ class Breadcrumbs {
     }
 
     public render(): void {
-        const BreadcrumbsContent = document.createElement('ul');
-        BreadcrumbsContent.classList.add('breadcrumbs');
+        const BreadcrumbsContent = createElement('ul', 'breadcrumbs');
         BreadcrumbsContent.innerHTML = `
         <li class="breadcrumbs__item"><a href="#" class="link">All bags and bagpacks</a></li>
         <li class="breadcrumbs__item"><a href="#" class="link">${this.product.category}</a></li>

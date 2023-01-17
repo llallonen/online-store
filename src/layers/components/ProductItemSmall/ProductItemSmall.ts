@@ -3,6 +3,7 @@ import Observer from '../../Observer/Observer';
 import { IProductItemSmallProps } from './ProductItemSmall.types';
 import './ProductItemSmall.scss';
 import { EventName } from '../../Observer/Observer.types';
+import { createElement } from '../../../utils/createElement';
 
 class ProductItemSmall {
     private container: HTMLElement;
@@ -17,8 +18,7 @@ class ProductItemSmall {
     }
 
     public render(): void {
-        const productList = document.createElement('div');
-        productList.classList.add('ProductItemSmall');
+        const productList = createElement('div', 'ProductItemSmall');
         productList.id = `ProductItemSmall-${String(this.product.id)}`;
 
         const product = `

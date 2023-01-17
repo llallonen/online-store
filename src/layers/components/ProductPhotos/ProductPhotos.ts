@@ -4,6 +4,7 @@ import './ProductPhotos.scss';
 import { EventName } from '../../Observer/Observer.types';
 import Drift from 'drift-zoom';
 import { IModelData } from '../../Model/Model.types';
+import { createElement } from '../../../utils/createElement';
 
 class ProductPhotos {
     private container: HTMLElement;
@@ -19,18 +20,15 @@ class ProductPhotos {
     }
 
     public render(): void {
-        const productPhotos = document.createElement('div');
-        productPhotos.classList.add('product__photos');
+        const productPhotos = createElement('div', 'product__photos');
         this.container.prepend(productPhotos);
 
-        const productSlider = document.createElement('div');
-        productSlider.classList.add('product__slider');
+        const productSlider = createElement('div', 'product__slider');
         productPhotos.append(productSlider);
 
         const productSlides = this.data.currProduct.images;
         productSlides.map((item) => {
-            const slide = document.createElement('img');
-            slide.classList.add('product__slide');
+            const slide = createElement<HTMLImageElement>('img', 'product__slide');
             slide.src = `${item}`;
             productSlider.append(slide);
         });
@@ -48,11 +46,8 @@ class ProductPhotos {
     }
 
     public renderThumbnail(): void {
-        const productThumbnail = document.createElement('div');
-        productThumbnail.classList.add('product__thumbnail');
-
-        const productThumbnailImg = document.createElement('img');
-        productThumbnailImg.classList.add('product__thumbnail-img');
+        const productThumbnail = createElement('div', 'product__thumbnail');
+        const productThumbnailImg = createElement<HTMLImageElement>('img', 'product__thumbnail-img');
 
         if (this.currImg) {
             productThumbnailImg.src = `${this.currImg}`;

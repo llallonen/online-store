@@ -45,17 +45,6 @@ class Presenter {
                 eventName: EventName.changeNavigationPage,
                 function: this.addNavigationPage.bind(this),
             },
-
-            { eventName: EventName.updateState, function: this.handleStateUpdate.bind(this) },
-            { eventName: EventName.addGoods, function: this.addGoodToBasket.bind(this) },
-            {
-                eventName: EventName.changeItemsLimit,
-                function: this.changeBasketItemsLimit.bind(this),
-            },
-            {
-                eventName: EventName.changeNavigationPage,
-                function: this.addNavigationPage.bind(this),
-            },
             { eventName: EventName.removeGoods, function: this.removeGoodToBasket.bind(this) },
             { eventName: EventName.addPromoCode, function: this.addPromoCode.bind(this) },
             { eventName: EventName.removePromoCode, function: this.removePromoCode.bind(this) },

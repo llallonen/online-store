@@ -2,6 +2,7 @@ import { IButtonProps } from './Button.types';
 import './Button.scss';
 import Observer from '../../Observer/Observer';
 import { EventName } from '../../Observer/Observer.types';
+import { createElement } from '../../../utils/createElement';
 
 class Button {
     private container: HTMLElement;
@@ -26,9 +27,8 @@ class Button {
     }
 
     public render(): void {
-        const button = document.createElement('button');
+        const button = createElement('button', 'button', `${this.typeButton}`);
         button.textContent = `${this.textButton}`;
-        button.classList.add('button', `${this.typeButton}`);
         if (this.id) {
             button.dataset.id = `${this.id}`;
         }
