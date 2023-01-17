@@ -29,14 +29,14 @@ export class Validators {
         }
     }
 
-    static isAddressValid(str: string): boolean {
+    static isAddressValid(address: string): boolean {
         let result = true;
-        const arr = str.trim().split(' ');
-        if (arr.length < 3) {
+        const processedAddress = address.trim().split(' ');
+        if (processedAddress.length < 3) {
             return false;
         }
-        arr.forEach((el) => {
-            if (el.trim().length < 5) {
+        processedAddress.forEach((addressItem) => {
+            if (addressItem.trim().length < 5) {
                 result = false;
             }
         });
