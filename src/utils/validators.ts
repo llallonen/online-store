@@ -82,7 +82,7 @@ export class Validators {
         }
     }
 
-    static isCCVValid(str: string): boolean {
-        return str.trim().length !== 3 || Number.isNaN(Number(str.trim())) ? false : true;
+    static isCCVValid(cvv: string): boolean {
+        return cvv.trim().length !== 3 || Number.isNaN(Number(cvv.trim())) ? false : true;
     }
 }
