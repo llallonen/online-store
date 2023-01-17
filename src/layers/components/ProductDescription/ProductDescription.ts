@@ -20,36 +20,36 @@ class ProductDescription {
         productDescriptionList.classList.add('product__description-list');
         productDescription.append(productDescriptionList);
 
-        function genForObj<T>(t: T) {
-            for (const k in t) {
+        function generateDescription(product: IBasketProduct) {
+            for (const property in product) {
                 const fields = ['title', 'description', 'price', 'stock', 'color', 'brand'];
-                if (fields.includes(k)) {
-                    const field = `${k}`;
+                if (fields.includes(property)) {
+                    const field = `${property}`;
                     const productDescriptionItem = document.createElement('li');
                     productDescriptionItem.classList.add('product__info-item');
 
                     switch (field) {
                         case 'title':
-                            productDescriptionItem.innerHTML = `<div class="product__info-head">${t[k]}</div>`;
+                            productDescriptionItem.innerHTML = `<div class="product__info-head">${product[property]}</div>`;
                             break;
                         case 'price':
-                            productDescriptionItem.innerHTML = `<div>${t[k]}$</div>`;
+                            productDescriptionItem.innerHTML = `<div>${product[property]}$</div>`;
                             break;
                         case 'stock':
-                            productDescriptionItem.innerHTML = `<div>${t[k]} in stock</div>`;
+                            productDescriptionItem.innerHTML = `<div>${product[property]} in stock</div>`;
                             break;
                         case 'brand':
-                            productDescriptionItem.innerHTML = `<div class="product__info-brand">${t[k]}</div>`;
+                            productDescriptionItem.innerHTML = `<div class="product__info-brand">${product[property]}</div>`;
                             break;
                         default:
-                            productDescriptionItem.innerHTML = `${t[k]}`;
+                            productDescriptionItem.innerHTML = `${product[property]}`;
                     }
 
                     productDescriptionList.append(productDescriptionItem);
                 }
             }
         }
-        genForObj(this.product);
+        generateDescription(this.product);
     }
 }
 
