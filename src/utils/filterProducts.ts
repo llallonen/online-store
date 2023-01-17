@@ -28,9 +28,9 @@ export const filterProducts = (filters: IFilter, products: IBasketProduct[]): IB
         filterProducts = newFilterProducts;
     }
 
-    if (filters.brand.length !== 0) {
+    if (filters.brands.length !== 0) {
         const newFilterProducts: IBasketProduct[] = [];
-        filters.brand.forEach((brandName) => {
+        filters.brands.forEach((brandName) => {
             const brandProducts = filterProducts.filter((product) => product.brand === brandName);
             newFilterProducts.push(...brandProducts);
         });

@@ -61,7 +61,7 @@ describe('filterProducts function', () => {
     ];
 
     const filter: IFilter = {
-        brand: ['BingoBongo2'],
+        brands: ['BingoBongo2'],
         category: ['Bags2'],
         price: [0, 300],
         stock: [0, 40],

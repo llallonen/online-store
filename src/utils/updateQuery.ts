@@ -5,7 +5,7 @@ export const updateQuery = (filters: IFilter, sort: ISort): void => {
     let query = `?`;
 
     if (
-        filters.brand.length === 0 &&
+        filters.brands.length === 0 &&
         filters.category.length === 0 &&
         filters.price.length === 0 &&
         filters.stock.length === 0 &&
@@ -16,8 +16,8 @@ export const updateQuery = (filters: IFilter, sort: ISort): void => {
         window.location.hash = '/';
     }
 
-    if (filters.brand.length !== 0) {
-        query += `brand=${filters.brand.join(',')}&`;
+    if (filters.brands.length !== 0) {
+        query += `brands=${filters.brands.join(',')}&`;
     }
     if (filters.category.length !== 0) {
         query += `category=${filters.category.join(',')}&`;

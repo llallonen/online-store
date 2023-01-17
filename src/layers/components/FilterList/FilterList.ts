@@ -50,7 +50,7 @@ class FilterList {
                         product: brand,
                         filteredCount: filteredProducts || 0,
                         eventName: EventName.filterCategory,
-                        filterArr: this.filter.brand,
+                        filterArr: this.filter.brands,
                     }).render();
                 });
             }

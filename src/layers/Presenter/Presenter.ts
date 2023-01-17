@@ -115,7 +115,7 @@ class Presenter {
         const listener = () => {
             if (window.location.hash === '#/' || window.location.hash === '#') {
                 this.model.updateSort({ sort: SortType.priceASC, type: ProductListType.big });
-                this.model.updateFilter({ category: [], brand: [], price: [], stock: [], search: [] });
+                this.model.updateFilter({ category: [], brands: [], price: [], stock: [], search: [] });
             }
             this.model.setQueryParams();
             this.getState();
@@ -287,7 +287,7 @@ class Presenter {
             }
         });
 
-        this.model.updateFilter({ ...this.state.filter, brand: brandFilter });
+        this.model.updateFilter({ ...this.state.filter, brands: brandFilter });
         this.getState();
         this.updateUrl();
     }
@@ -403,7 +403,7 @@ class Presenter {
     }
 
     public clearFilter(): void {
-        this.model.updateFilter({ ...this.state.filter, category: [], brand: [], stock: [], price: [], search: [] });
+        this.model.updateFilter({ ...this.state.filter, category: [], brands: [], stock: [], price: [], search: [] });
 
         this.getState();
         this.updateUrl();

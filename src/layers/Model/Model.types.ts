@@ -60,7 +60,7 @@ interface IGoods {
 
 interface IFilter {
     category: string[];
-    brand: string[];
+    brands: string[];
     price: number[];
     stock: number[];
     search: string[];

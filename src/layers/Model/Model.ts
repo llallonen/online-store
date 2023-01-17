@@ -18,7 +18,7 @@ class Model {
             products: [],
         },
         filter: {
-            brand: [],
+            brands: [],
             category: [],
             price: [],
             stock: [],
@@ -128,11 +128,11 @@ class Model {
                         this.data.filter.category.push(category);
                     });
                 }
-                if (query[0] === 'brand' && query[1].length !== 0) {
+                if (query[0] === 'brands' && query[1].length !== 0) {
                     const brands = query[1].split(',');
-                    this.data.filter.brand = [];
+                    this.data.filter.brands = [];
                     brands.forEach((brand) => {
-                        this.data.filter.brand.push(brand);
+                        this.data.filter.brands.push(brand);
                     });
                 }
                 if (query[0] === 'price' && query[1].length !== 0 && /\d*/g.test(query[1])) {
