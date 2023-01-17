@@ -7,6 +7,7 @@ import { ProductDescription } from '../ProductDescription/ProductDescription';
 import { IModelData } from '../../Model/Model.types';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { EventName } from '../../Observer/Observer.types';
+import { createElement } from '../../../utils/createElement';
 
 class ProductCard {
     private container: HTMLElement;
@@ -22,15 +23,13 @@ class ProductCard {
     }
 
     public render(): void {
-        const productCard = document.createElement('section');
-        productCard.classList.add('product');
+        const productCard = createElement('section', 'product');
         this.container.append(productCard);
 
         const productData = this.data.goods.products.find((el) => el.id === this.data.currProduct.id);
 
         if (productData) {
-            const productInfo = document.createElement('div');
-            productInfo.classList.add('product__info');
+            const productInfo = createElement('div', 'product__info');
             productCard.append(productInfo);
 
             let productPhotos;
@@ -54,8 +53,7 @@ class ProductCard {
                     });
                 }
 
-                const productBtns = document.createElement('div');
-                productBtns.classList.add('product__btns');
+                const productBtns = createElement('div', 'product__btns');
                 productInfo.append(productBtns);
 
                 if (this.data.basket.products.find((el) => el.id === this.data.currProduct.id)) {
@@ -110,7 +108,7 @@ class ProductCard {
                 buyNowButton.render();
             }
         } else {
-            const header = document.createElement('h2');
+            const header = createElement('h2');
             header.textContent = 'Product not found';
             productCard.append(header);
         }

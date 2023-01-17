@@ -1,5 +1,6 @@
 import { IFooter } from './Footer.types';
 import './footer.scss';
+import { createElement } from '../../../utils/createElement';
 
 class Footer {
     private container: HTMLElement;
@@ -9,8 +10,7 @@ class Footer {
     }
 
     public render(): void {
-        const footer = document.createElement('footer');
-        footer.classList.add('footer');
+        const footer = createElement('footer', 'footer');
         footer.innerHTML += `<div class="logo logo--foter"></div>
         <div><a class="footer__rs" href="https://rs.school/js/"><div></div>2023</a></div>
         <div class="footer__links">

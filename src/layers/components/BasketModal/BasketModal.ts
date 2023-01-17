@@ -2,6 +2,7 @@ import Observer from '../../Observer/Observer';
 import { IBasketModalProps } from './BasketModal.types';
 import './BasketModal.scss';
 import { EventName } from '../../Observer/Observer.types';
+import { createElement } from '../../../utils/createElement';
 
 class BasketModal {
     private container: HTMLElement;
@@ -60,8 +61,7 @@ class BasketModal {
           </div>
         `;
 
-        const basketModal = document.createElement('div');
-        basketModal.classList.add('BasketModal');
+        const basketModal = createElement('div', 'BasketModal');
 
         basketModal.innerHTML = modal;
         this.container.append(basketModal);

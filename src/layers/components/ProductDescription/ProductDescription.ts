@@ -1,6 +1,7 @@
 import { IProductDescription } from './ProductDescription.types';
 import './ProductDescription.scss';
 import { IBasketProduct } from '../../Model/Model.types';
+import { createElement } from '../../../utils/createElement';
 
 class ProductDescription {
     private container: HTMLElement;
@@ -12,12 +13,10 @@ class ProductDescription {
     }
 
     public render(): void {
-        const productDescription = document.createElement('div');
-        productDescription.classList.add('product__description');
+        const productDescription = createElement('div', 'product__description');
         this.container.prepend(productDescription);
 
-        const productDescriptionList = document.createElement('ul');
-        productDescriptionList.classList.add('product__description-list');
+        const productDescriptionList = createElement('ul', 'product__description-list');
         productDescription.append(productDescriptionList);
 
         function generateDescription(product: IBasketProduct) {
@@ -25,8 +24,7 @@ class ProductDescription {
                 const fields = ['title', 'description', 'price', 'stock', 'color', 'brand'];
                 if (fields.includes(property)) {
                     const field = `${property}`;
-                    const productDescriptionItem = document.createElement('li');
-                    productDescriptionItem.classList.add('product__info-item');
+                    const productDescriptionItem = createElement('li', 'product__info-item');
 
                     switch (field) {
                         case 'title':

@@ -3,6 +3,7 @@ import { EventName } from '../../Observer/Observer.types';
 import { IRangeSliderProps } from './RangeSliderDual.types';
 import 'toolcool-range-slider';
 import './RangeSliderDual.scss';
+import { createElement } from '../../../utils/createElement';
 
 class RangeSliderDual {
     private container: HTMLElement;
@@ -46,12 +47,10 @@ class RangeSliderDual {
           ></tc-range-slider>
         `;
 
-        const sliderContent = document.createElement('div');
-        sliderContent.classList.add(`RangeSlider-${this.name}`);
+        const sliderContent = createElement('div', `RangeSlider-${this.name}`);
         sliderContent.innerHTML = slider;
 
-        const sliderWrapper = document.createElement('div');
-        sliderWrapper.classList.add(`RangeSlider`);
+        const sliderWrapper = createElement('div', `RangeSlider`);
         sliderWrapper.append(sliderContent);
 
         this.container.append(sliderWrapper);

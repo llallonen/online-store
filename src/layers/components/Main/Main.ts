@@ -4,6 +4,7 @@ import Router from '../../Router/Router';
 import { IMain } from './Main.types';
 import './Main.scss';
 import { ClassName } from '../../Router/Router.types';
+import { createElement } from '../../../utils/createElement';
 
 class Main {
     private container: HTMLElement;
@@ -18,8 +19,7 @@ class Main {
     }
 
     public render(): void {
-        const main = document.createElement('main');
-        main.classList.add('main');
+        const main = createElement('main', 'main');
         this.main = main;
 
         this.container.append(this.main);

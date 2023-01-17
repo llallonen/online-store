@@ -1,3 +1,4 @@
+import { createElement } from '../../../utils/createElement';
 import Observer from '../../Observer/Observer';
 import { Button } from '../Button/Button';
 import { IButtonWithCounterProps } from './ButtonWithCounter.types';
@@ -7,7 +8,7 @@ class ButtonWithCounter {
     private observer: Observer;
     private button: Button | undefined;
     private count: number;
-    private counter: HTMLDivElement | undefined;
+    private counter: HTMLElement | undefined;
     constructor({ container, count, observer }: IButtonWithCounterProps) {
         this.container = container;
         this.observer = observer;
@@ -24,8 +25,7 @@ class ButtonWithCounter {
     }
 
     private renderCounter(): void {
-        const div = document.createElement('div');
-        div.classList.add('counter');
+        const div = createElement('div', 'counter');
         div.textContent = `${this.count}`;
         this.container.append(div);
         this.counter = div;

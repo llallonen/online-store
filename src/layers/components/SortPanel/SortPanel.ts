@@ -3,6 +3,7 @@ import { EventName } from '../../Observer/Observer.types';
 import { ISortPanelProps, SortType } from './SortPanel.types';
 import './SortPanel.scss';
 import { IModelData } from '../../Model/Model.types';
+import { createElement } from '../../../utils/createElement';
 
 class SortPanel {
     private container: HTMLElement;
@@ -19,8 +20,7 @@ class SortPanel {
     }
 
     public render(): void {
-        const sortPanel = document.createElement('div');
-        sortPanel.classList.add('SortPanel', 'SortPanel--marg');
+        const sortPanel = createElement('div', 'SortPanel', 'SortPanel--marg');
 
         const sortPanelContent = `
         <div class="SortPanel__search-container">
