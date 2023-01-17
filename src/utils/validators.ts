@@ -1,15 +1,15 @@
 export class Validators {
-    static isNameValid(str: string): boolean {
+    static isNameValid(name: string): boolean {
         let result = true;
-        const arr = str.trim().split(' ');
-        if (arr.length < 2) {
+        const processedName = name.trim().split(' ');
+        if (processedName.length < 2) {
             return false;
         }
-        arr.forEach((el) => {
-            if (el.trim().length < 3) {
+        processedName.forEach((nameItem) => {
+            if (nameItem.trim().length < 3) {
                 result = false;
             }
-            if (!/[a-zA-Z]{3}/g.test(el.trim())) {
+            if (!/[a-zA-Z]{3}/g.test(nameItem.trim())) {
                 result = false;
             }
         });
