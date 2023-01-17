@@ -87,13 +87,6 @@ export class Validators {
     }
 
     static isCCVValid(str: string): boolean {
-        let result = true;
-
-        if (str.trim().length !== 3 || Number.isNaN(Number(str.trim()))) {
-            result = false;
-            return result;
-        } else {
-            return result;
-        }
+        return str.trim().length !== 3 || Number.isNaN(Number(str.trim())) ? false : true;
     }
 }
