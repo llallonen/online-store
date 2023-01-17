@@ -17,12 +17,12 @@ export class Validators {
         return result;
     }
 
-    static isPhoneValid(str: string): boolean {
-        if (/\s/gm.test(str)) {
+    static isPhoneValid(phone: string): boolean {
+        if (/\s/gm.test(phone)) {
             return false;
         }
         // eslint-disable-next-line no-useless-escape
-        if (/^((\+))(\(?\d{3}\)?[\- ]?)?[\d\- ]{9,}$/g.test(str)) {
+        if (/^((\+))(\(?\d{3}\)?[\- ]?)?[\d\- ]{9,}$/g.test(phone)) {
             return true;
         } else {
             return false;
