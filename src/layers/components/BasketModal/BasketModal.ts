@@ -2,6 +2,53 @@ import Observer from '../../Observer/Observer';
 import { IBasketModalProps } from './BasketModal.types';
 import './BasketModal.scss';
 import { EventName } from '../../Observer/Observer.types';
+import { Validators } from '../../../utils/validators';
+import { TValidationError } from '../../Model/Model.types';
+
+const fields = [
+    {
+        input: '.BasketModal__input.name',
+        errorBox: '.BasketModal__error.name',
+        validator: Validators.isNameValid,
+        errorMessage: 'Must contain at least two words, each at least 3 characters long',
+    },
+    {
+        input: '.BasketModal__input.phone',
+        errorBox: '.BasketModal__error.phone',
+        validator: Validators.isPhoneValid,
+        errorMessage: 'Must start with "+", contain only digits and be at least 9 digits',
+    },
+    {
+        input: '.BasketModal__input.address',
+        errorBox: '.BasketModal__error.address',
+        validator: Validators.isAddressValid,
+        errorMessage: 'Must contain at least three words, each at least 5 characters long',
+    },
+    {
+        input: '.BasketModal__input.email',
+        errorBox: '.BasketModal__error.email',
+        validator: Validators.isEmailValid,
+        errorMessage: 'Must be email',
+    },
+    {
+        input: '.BasketModal__cardNumber',
+        errorBox: '.BasketModal__cardNumber-error',
+        validator: Validators.isCardNumberValid,
+        errorMessage: 'The number of entered digits must be exactly 16',
+    },
+    {
+        input: '.BasketModal__valid-input',
+        errorBox: '.BasketModal__cardValid-error',
+        validator: Validators.dateCardValid,
+        errorMessage: 'Please enter a valid date',
+    },
+    {
+        input: '.BasketModal__cvv-input',
+        errorBox: '.BasketModal__cardCVV-error',
+        validator: Validators.isCCVValid,
+        errorMessage: 'Please enter a correct CVV',
+    },
+];
 
 class BasketModal {
     private container: HTMLElement;
@@ -156,191 +203,49 @@ class BasketModal {
         }
     }
 
-    private isNameValid(str: string): boolean {
-        let result = true;
-        const arr = str.trim().split(' ');
-        if (arr.length < 2) {
-            return false;
-        }
-        arr.forEach((el) => {
-            if (el.trim().length < 3) {
-                result = false;
-            }
-            if (!/[a-zA-Z]{3}/g.test(el.trim())) {
-                result = false;
-            }
-        });
-
-        return result;
-    }
-
-    private isPhoneValid(str: string): boolean {
-        if (/\s/gm.test(str)) {
-            return false;
-        }
-        // eslint-disable-next-line no-useless-escape
-        if (/^((\+))(\(?\d{3}\)?[\- ]?)?[\d\- ]{9,}$/g.test(str)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private isAddressValid(str: string): boolean {
-        let result = true;
-        const arr = str.trim().split(' ');
-        if (arr.length < 3) {
-            return false;
-        }
-        arr.forEach((el) => {
-            if (el.trim().length < 5) {
-                result = false;
-            }
-        });
-
-        return result;
-    }
-
-    private isEmailValid(str: string): boolean {
-        if (/.+@.+\..+/g.test(str)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private isCardNumberValid(str: string): boolean {
-        let result = true;
-        const arr = str.trim().split(' ');
-        arr.forEach((el) => {
-            if (el.trim().length !== 4) {
-                result = false;
-            }
-            if (Number.isNaN(Number(el))) {
-                result = false;
-            }
-        });
-        if (str.trim().length !== 19) {
-            result = false;
-            return result;
-        } else {
-            return result;
-        }
-    }
-
-    private dateCardValid(str: string): boolean {
-        const arr = str.trim().split('/');
-        if (
-            arr[0].trim().length !== 2 ||
-            Number.isNaN(Number(arr[0])) ||
-            Number(arr[0].trim()) > 12 ||
-            arr[1].trim().length !== 2 ||
-            Number.isNaN(Number(arr[1]))
-        ) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private isCCVValid(str: string): boolean {
-        let result = true;
-
-        if (str.trim().length !== 3 || Number.isNaN(Number(str.trim()))) {
-            result = false;
-            return result;
-        } else {
-            return result;
-        }
-    }
-
     private confirm(): void {
-        let confirm = true;
-        const basketModalName: HTMLInputElement | null = document.querySelector('.BasketModal__input.name');
-        const basketModalNameError = document.querySelector('.BasketModal__error.name');
-        if (basketModalName && basketModalNameError) {
-            const value = basketModalName.value;
-            if (!this.isNameValid(value)) {
-                confirm = false;
-                basketModalNameError.textContent = `Must contains at least two words, each at least 3 characters long`;
-            } else {
-                basketModalNameError.textContent = ``;
+        const validationStates = fields.reduce((acc, el) => {
+            const validator = el.validator;
+            const elemForConfirm: HTMLInputElement | null = document.querySelector(`${el.input}`);
+            const elemForConfirmError: HTMLInputElement | null = document.querySelector(`${el.errorBox}`);
+
+            if (elemForConfirm && elemForConfirmError) {
+                const value = elemForConfirm.value;
+
+                if (validator(value)) {
+                    acc.push(true);
+                } else {
+                    acc.push({
+                        errorNode: elemForConfirmError,
+                        errorText: el.errorMessage,
+                    });
+                }
+
+                return acc;
             }
+            return acc;
+        }, [] as (true | TValidationError)[]);
+
+        const hasErrors = !!validationStates.find((el) => typeof el === 'object');
+
+        const canConfirm = !hasErrors;
+
+        fields.forEach((field) => {
+            const errorBox: HTMLInputElement | null = document.querySelector(`${field.errorBox}`);
+            if (errorBox) {
+                errorBox.textContent = '';
+            }
+        });
+
+        if (hasErrors) {
+            const errors = validationStates.filter((el): el is TValidationError => typeof el === 'object');
+
+            errors.forEach((error) => {
+                error.errorNode.textContent = error.errorText;
+            });
         }
 
-        const basketModalPhone: HTMLInputElement | null = document.querySelector('.BasketModal__input.phone');
-        const basketModalPhoneError = document.querySelector('.BasketModal__error.phone');
-        if (basketModalPhone && basketModalPhoneError) {
-            const value = basketModalPhone.value;
-            if (!this.isPhoneValid(value)) {
-                confirm = false;
-                basketModalPhoneError.textContent = `Must start with '+', contain only digits and be at least 9 digits`;
-            } else {
-                basketModalPhoneError.textContent = ``;
-            }
-        }
-
-        const basketModalAddress: HTMLInputElement | null = document.querySelector('.BasketModal__input.address');
-        const basketModalAddressError = document.querySelector('.BasketModal__error.address');
-        if (basketModalAddress && basketModalAddressError) {
-            const value = basketModalAddress.value;
-            if (!this.isAddressValid(value)) {
-                confirm = false;
-                basketModalAddressError.textContent = `Must contains at least three words, each at least 5 characters long`;
-            } else {
-                basketModalAddressError.textContent = ``;
-            }
-        }
-
-        const basketModalEmail: HTMLInputElement | null = document.querySelector('.BasketModal__input.email');
-        const basketModalEmailError = document.querySelector('.BasketModal__error.email');
-        if (basketModalEmail && basketModalEmailError) {
-            const value = basketModalEmail.value;
-            if (!this.isEmailValid(value)) {
-                confirm = false;
-                basketModalEmailError.textContent = `Must be email`;
-            } else {
-                basketModalEmailError.textContent = ``;
-            }
-        }
-
-        const basketModalCardNumber: HTMLInputElement | null = document.querySelector('.BasketModal__cardNumber');
-        const basketModalCardNumberError = document.querySelector('.BasketModal__cardNumber-error');
-        if (basketModalCardNumber && basketModalCardNumberError) {
-            const value = basketModalCardNumber.value;
-            if (!this.isCardNumberValid(value)) {
-                confirm = false;
-                basketModalCardNumberError.textContent = `The number of entered digits must be exactly 16`;
-            } else {
-                basketModalCardNumberError.textContent = ``;
-            }
-        }
-
-        const basketModalValid: HTMLInputElement | null = document.querySelector('.BasketModal__valid-input');
-        const basketModalValidError = document.querySelector('.BasketModal__cardValid-error');
-        if (basketModalValid && basketModalValidError) {
-            const value = basketModalValid.value;
-            if (!this.dateCardValid(value)) {
-                confirm = false;
-                basketModalValidError.textContent = `Please enter a valid date`;
-            } else {
-                basketModalValidError.textContent = ``;
-            }
-        }
-
-        const basketModalCVV: HTMLInputElement | null = document.querySelector('.BasketModal__cvv-input');
-        const basketModalCVVError = document.querySelector('.BasketModal__cardCVV-error');
-        if (basketModalCVV && basketModalCVVError) {
-            const value = basketModalCVV.value;
-            if (!this.isCCVValid(value)) {
-                confirm = false;
-                basketModalCVVError.textContent = `Please enter a correct CVV`;
-            } else {
-                basketModalCVVError.textContent = ``;
-            }
-        }
-
-        if (confirm) {
+        if (canConfirm) {
             const modal = document.querySelector('.basket__modal.active');
             const successWindow = document.querySelector('.basket__success');
             modal?.classList.toggle('active');

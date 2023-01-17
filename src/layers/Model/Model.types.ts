@@ -71,6 +71,8 @@ interface ISort {
     sort: SortType;
 }
 
+type TValidationError = { errorText: string; errorNode: HTMLInputElement };
+
 export {
     IModelProps,
     IAction,
@@ -82,4 +84,5 @@ export {
     IFilter,
     ISort,
     ProductListType,
+    TValidationError,
 };
