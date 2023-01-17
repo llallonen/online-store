@@ -48,18 +48,18 @@ export class Validators {
         return /.+@.+\..+/g.test(str);
     }
 
-    static isCardNumberValid(str: string): boolean {
+    static isCardNumberValid(cardNumber: string): boolean {
         let result = true;
-        const arr = str.trim().split(' ');
-        arr.forEach((el) => {
-            if (el.trim().length !== 4) {
+        const proccessedCardNumber = cardNumber.trim().split(' ');
+        proccessedCardNumber.forEach((cardNumberItem) => {
+            if (cardNumberItem.trim().length !== 4) {
                 result = false;
             }
-            if (Number.isNaN(Number(el))) {
+            if (Number.isNaN(Number(cardNumberItem))) {
                 result = false;
             }
         });
-        if (str.trim().length !== 19) {
+        if (cardNumber.trim().length !== 19) {
             result = false;
             return result;
         } else {
