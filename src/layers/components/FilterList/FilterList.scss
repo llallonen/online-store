@@ -1,0 +1,25 @@
+.filterList {
+    margin-bottom: 20px;
+
+    &__header {
+        margin-bottom: 10px;
+        letter-spacing: 3px;
+    }
+
+    &__item {
+        font-family: 'Work Sans', sans-serif;
+
+        &:not(:last-of-type) {
+            margin-bottom: 4px;
+
+            
+        }
+
+        &.disabled {
+            & span,
+            & label {
+                color: gray;
+            }
+        }
+    }
+}

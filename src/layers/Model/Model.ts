@@ -1,0 +1,174 @@
+import { ProductListType } from '../components/ProductList/ProductList.types';
+import { SortType } from '../components/SortPanel/SortPanel.types';
+import Observer from '../Observer/Observer';
+import { EventName } from '../Observer/Observer.types';
+import { IAction, IActionType, IModelData, IModelProps, IGoods, IFilter, ISort, IBasketProduct } from './Model.types';
+
+class Model {
+    private observer: Observer;
+    private data: IModelData = {
+        currImg: '',
+        basket: {
+            limit: 3,
+            page: 1,
+            products: [],
+            promo: [],
+        },
+        goods: {
+            products: [],
+        },
+        filter: {
+            brands: [],
+            category: [],
+            price: [],
+            stock: [],
+            search: [],
+        },
+        sort: {
+            type: ProductListType.big,
+            sort: SortType.priceASC,
+        },
+        currProduct: {
+            id: 2,
+            title: 'Leather backpack',
+            description: 'A city backpack middle size made of genuine leather',
+            price: 479,
+            discountPercentage: 12.96,
+            rating: 4.5,
+            color: 'brown',
+            size: 'midi',
+            stock: 2,
+            brand: 'Hedgren',
+            category: 'backpacks',
+            images: [
+                'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_01_800.JPG',
+                'https://dxclnrbvyw82b.cloudfront.net/images/product/web/13/24/22/00/0/000000222413_02_800.JPG',
+            ],
+        },
+        isModalOpen: false,
+    };
+
+    constructor({ observer }: IModelProps) {
+        this.observer = observer;
+        this.setQueryParams();
+    }
+
+    public updateState({ type, payload }: IAction): void {
+        switch (type) {
+            case IActionType.basket:
+                this.data.basket = { ...this.data.basket, ...payload };
+                localStorage.setItem('online-store2023', JSON.stringify({ basketData: { ...this.data.basket } }));
+                break;
+            default:
+                break;
+        }
+        this.notify();
+    }
+
+    public updateFilter(payload: IFilter): void {
+        this.data.filter = payload;
+    }
+    public updateSort(payload: ISort): void {
+        this.data.sort = payload;
+    }
+    public updateGoods(payload: IGoods): void {
+        this.data.goods = payload;
+    }
+    public updateCurrProduct(payload: IBasketProduct): void {
+        this.data.currProduct = payload;
+    }
+    public updateIsModalOpen(payload: boolean): void {
+        this.data.isModalOpen = payload;
+        this.notify();
+    }
+
+    public updateSearch(payload: string): void {
+        this.data.filter.search = [payload];
+        this.notify();
+    }
+
+    private notify(): void {
+        this.observer.notify({ eventName: EventName.updateState, eventPayload: this.data });
+    }
+
+    public getState(): IModelData {
+        return { ...this.data };
+    }
+
+    public setQueryParams(): void {
+        const hash = location.hash;
+        const query = hash.match(/\?[a-zA-Z=&%'0-9,]{0,}/g);
+        if (query && query[0]) {
+            const urlParams = new URLSearchParams(query[0]);
+            const params = Object.fromEntries(urlParams.entries());
+            const queryArray = Object.entries(params);
+            queryArray.forEach((query) => {
+                if (query[0] === 'limit' && /\d*/g.test(query[1])) {
+                    this.data.basket.limit = Number(query[1]);
+                }
+                if (query[0] === 'page' && /\d*/g.test(query[1])) {
+                    this.data.basket.page = Number(query[1]);
+                }
+                if (query[0] === 'type' && query[1] === ProductListType.small) {
+                    this.data.sort.type = ProductListType.small;
+                }
+                if (
+                    query[0] === 'sort' &&
+                    (query[1] === SortType.priceDESC ||
+                        query[1] === SortType.priceASC ||
+                        query[1] === SortType.ratingASC ||
+                        query[1] === SortType.ratingDESC)
+                ) {
+                    this.data.sort.sort = query[1];
+                }
+                if (query[0] === 'category' && query[1].length !== 0) {
+                    const categories = query[1].split(',');
+                    this.data.filter.category = [];
+                    categories.forEach((category) => {
+                        this.data.filter.category.push(category);
+                    });
+                }
+                if (query[0] === 'brands' && query[1].length !== 0) {
+                    const brands = query[1].split(',');
+                    this.data.filter.brands = [];
+                    brands.forEach((brand) => {
+                        this.data.filter.brands.push(brand);
+                    });
+                }
+                if (query[0] === 'price' && query[1].length !== 0 && /\d*/g.test(query[1])) {
+                    const priceArr = query[1].split(',');
+                    if (!Number.isNaN(Number(priceArr[0])) && !Number.isNaN(Number(priceArr[1]))) {
+                        this.data.filter.price = [Number(priceArr[0]), Number(priceArr[1])];
+                    }
+                }
+                if (query[0] === 'stock' && query[1].length !== 0 && /\d*/g.test(query[1])) {
+                    const stockArr = query[1].split(',');
+                    if (!Number.isNaN(Number(stockArr[0])) && !Number.isNaN(Number(stockArr[1]))) {
+                        this.data.filter.stock = [Number(stockArr[0]), Number(stockArr[1])];
+                    }
+                }
+                if (query[0] === 'id' && !Number.isNaN(Number(query[1]))) {
+                    const item = this.data.goods.products.find((el) => el.id === Number(query[1]));
+                    if (item) {
+                        this.data.currImg = item.images[0];
+                        this.data.currProduct = { ...this.data.currProduct, ...item };
+                    } else {
+                        this.data.currProduct.id = Number(query[1]);
+                    }
+                }
+                if (query[0] === 'search' && query[1].length !== 0) {
+                    const searchQuery = query[1].toLowerCase();
+                    this.data.filter.search = [searchQuery];
+                }
+            });
+            this.notify();
+        }
+    }
+
+    public changeImg(imgUrl: string): void {
+        this.data.currImg = imgUrl;
+        this.notify();
+    }
+}
+
+export { Model };

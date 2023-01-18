@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 40px;
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+
+.order-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.bag {
+    width: 30px;
+    height: 30px;
+    background-image: url("../../../assets/icons/bag.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    &__count {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 23px;
+        left: 23px;
+        width: 23px;
+        height: 23px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #d2bed2;
+    }
+}

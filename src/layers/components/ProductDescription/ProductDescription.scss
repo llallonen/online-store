@@ -1,0 +1,15 @@
+.product {
+    &__description {
+        position: relative;
+    }
+
+    &__description-list {
+        padding: 0;
+        list-style: none;
+        text-transform: uppercase;
+    }
+
+    &__info-top {
+        background-color: azure;
+    }
+}

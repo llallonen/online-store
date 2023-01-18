@@ -1,0 +1,24 @@
+.breadcrumbs {
+    display: flex;
+    list-style: none;
+    padding: 10px 0;
+    justify-content: center;
+
+    &__item {
+        position: relative;
+        margin-right: 70px;
+        color: rgb(87, 86, 86);
+
+        &:not(:last-of-type)::after {
+            content: '>>';
+            position: relative;
+            left: 30px;
+            color: rgb(87, 86, 86);
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px;
+        }
+    }
+}

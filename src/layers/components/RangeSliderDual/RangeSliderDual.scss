@@ -1,0 +1,11 @@
+.RangeSlider {
+  margin-bottom: 20px;
+  padding: 0 10px;
+
+  &__counters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-family: 'Work Sans', sans-serif;
+  }
+}
