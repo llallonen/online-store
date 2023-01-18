@@ -124,8 +124,8 @@ class BasketModal {
                 if (e.target instanceof HTMLInputElement) {
                     const value = e.target.value;
                     const arr = value.split(' ');
-
-                    if (Number.isNaN(Number(arr[arr.length - 1]))) {
+                    const lastNumberIsNaN = Number.isNaN(Number(arr[arr.length - 1]));
+                    if (lastNumberIsNaN) {
                         cardNumberInput.value = `${value.slice(0, -1)}`;
                     }
                     if (cardNumberImage) {
@@ -168,8 +168,8 @@ class BasketModal {
                 if (e.target instanceof HTMLInputElement) {
                     const value = e.target.value;
                     const arr = value.split('/');
-
-                    if (Number.isNaN(Number(arr[arr.length - 1]))) {
+                    const lastNumberIsNaN = Number.isNaN(Number(arr[arr.length - 1]));
+                    if (lastNumberIsNaN) {
                         cardValidInput.value = `${value.slice(0, -1)}`;
                     }
 
@@ -190,7 +190,8 @@ class BasketModal {
                 if (e.target instanceof HTMLInputElement) {
                     const value = e.target.value;
                     const arr = value.split(' ');
-                    if (Number.isNaN(Number(arr[arr.length - 1]))) {
+                    const lastNumberIsNaN = Number.isNaN(Number(arr[arr.length - 1]));
+                    if (lastNumberIsNaN) {
                         cardCVVInput.value = `${value.slice(0, -1)}`;
                     }
 

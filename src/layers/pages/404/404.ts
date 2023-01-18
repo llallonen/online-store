@@ -2,6 +2,7 @@ import { IModelData } from '../../Model/Model.types';
 import Observer from '../../Observer/Observer';
 import { IPage404Props } from './404.types';
 import './404.scss';
+import { createElement } from '../../../utils/createElement';
 
 class Page404 {
     private container: HTMLElement;
@@ -15,8 +16,7 @@ class Page404 {
     }
 
     public render(): void {
-        const header = document.createElement('h1');
-        header.classList.add('page404__header');
+        const header = createElement('h1', 'page404__header');
         header.textContent = 'PAGE NOT FOUND (404)';
 
         this.container.append(header);
